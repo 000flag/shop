@@ -3,7 +3,7 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.CouponDAO;
-import comm.vo.EndCouponVO;
+import comm.vo.seller.EndCouponVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

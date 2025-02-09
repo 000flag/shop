@@ -2,11 +2,10 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.SellerDAO;
-import comm.vo.SellerVO;
+import comm.vo.seller.SellerVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 public class BrandInfoAction implements Action {

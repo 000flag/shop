@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class DeliveryVO {
     private String id, cus_no, name, pos_code, addr1, addr2, phone, request, is_default, is_del;

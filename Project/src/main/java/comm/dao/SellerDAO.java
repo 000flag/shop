@@ -1,11 +1,10 @@
 package comm.dao;
 
-import comm.vo.SellerVO;
+import comm.vo.seller.SellerVO;
 import org.apache.ibatis.session.SqlSession;
 import comm.service.FactoryService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SellerDAO {

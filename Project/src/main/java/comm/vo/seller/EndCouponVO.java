@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class EndCouponVO {
     private String id, root_no, category_no, seller_no, grade_no, type, name, sale_per, start_date, end_date, status, is_del;

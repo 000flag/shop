@@ -3,8 +3,8 @@ package seller.action;
 import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.dao.SellerLogDAO;
-import comm.vo.CouponVO;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.CouponVO;
+import comm.vo.seller.SellerLogVO;
 import org.json.JSONObject; // JSON 응답을 위해 필요
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +75,7 @@ public class CouponUpdateAction implements Action {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(jsonResponse.toString());
+            request.setAttribute("cnt",result);
 
         } catch (IOException e) {
             e.printStackTrace();

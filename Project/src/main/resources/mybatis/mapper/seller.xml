@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seller">
-    <select id="login" parameterType="String" resultType="comm.vo.SellerVO">
+    <select id="login" parameterType="String" resultType="comm.vo.seller.SellerVO">
         SELECT * FROM seller
         WHERE seller_id = #{seller_id}
         AND active=0
     </select>
-    <select id="getSellerInfo" resultType="comm.vo.SellerVO">
+    <select id="getSellerInfo" resultType="comm.vo.seller.SellerVO">
         SELECT seller_id, name, phone, email, `desc`, address, seller_icon FROM shop.seller where id = 2
     </select>
 

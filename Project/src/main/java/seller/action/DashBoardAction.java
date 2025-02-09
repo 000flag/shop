@@ -2,8 +2,6 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.DashboardDAO;
-import comm.dao.OrderDAO;
-import comm.vo.OrderVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

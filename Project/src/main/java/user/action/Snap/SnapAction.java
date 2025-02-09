@@ -1,7 +1,7 @@
 package user.action.Snap;
 
 import user.action.Action;
-import user.vo.BoardVO;
+import comm.vo.seller.BoardVO;
 import user.vo.snap.ProductVO;
 
 import javax.servlet.http.HttpServletRequest;

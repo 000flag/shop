@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class MajorCategoryVO {
     private String id, name, ename, type;

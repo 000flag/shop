@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
-  <select id="new_order_list" parameterType="String" resultType="comm.vo.OrderVO">
+  <select id="new_order_list" parameterType="String" resultType="comm.vo.seller.OrderVO">
     SELECT o.*, p.name as prod_name, c.cus_id,i.option_name,i.count as option_count
     FROM `order` as o
     LEFT JOIN product as p ON o.prod_no = p.id
@@ -13,7 +13,7 @@
     ORDER BY id DESC;
 
   </select>
-  <select id="get_order_one" parameterType="String" resultType="comm.vo.OrderVO">
+  <select id="get_order_one" parameterType="String" resultType="comm.vo.seller.OrderVO">
     SELECT o.*,p.name as prod_name,d.*,i.option_name,i.count as option_count,c.cus_id,c.name as cus_name
     FROM `order` as o
     LEFT JOIN product as p ON o.prod_no = p.id

@@ -1,13 +1,11 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.OrderVO;
-import comm.vo.ProductVO;
+import comm.vo.seller.OrderVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 public class OrderDAO {
     public static OrderVO[] getOrderList(String seller_no){

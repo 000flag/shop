@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class MiddleCategoryVO {
     private String id, major_no, name, type, major_name;

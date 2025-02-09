@@ -24,7 +24,7 @@
      SELECT id FROM customer
      WHERE nickname = #{nickname}
    </select>
-<!--  <select id="getId2" parameterType="user.vo.BoardVOVO" resultType="user.vo.BoardVO">-->
+<!--  <select id="getId2" parameterType="user.vo.BoardVOVO" resultType="comm.vo.seller.BoardVO">-->
 <!--    SELECT * FROM board-->
 <!--    WHERE cus_no = #{cus_id}-->
 

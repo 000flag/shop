@@ -1,12 +1,9 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.ProductVO;
+import comm.vo.seller.ProductVO;
 import org.apache.ibatis.session.SqlSession;
 
-import java.math.BigInteger;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package user.vo;
+package comm.vo.seller;
 
 import java.util.List;
 

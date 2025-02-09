@@ -1,7 +1,7 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.QuestionVO;
+import comm.vo.seller.QuestionVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;

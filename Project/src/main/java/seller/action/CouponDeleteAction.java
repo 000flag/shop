@@ -3,7 +3,7 @@ package seller.action;
 import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.dao.SellerLogDAO;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.SellerLogVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ public class CouponDeleteAction implements Action {
 
         int result = CouponDAO.deleteCoupon(id);
         SellerLogDAO.insertSellerLog(vo);
-
+        request.setAttribute("cnt",result);
         if (result > 0) {
             System.out.println("✅ CouponDeleteAction: Coupon deleted successfully!");
         } else {

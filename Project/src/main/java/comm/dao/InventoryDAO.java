@@ -1,8 +1,7 @@
 package comm.dao;
 
-import user.action.Action;
 import comm.service.FactoryService;
-import comm.vo.InventoryVO;
+import comm.vo.seller.InventoryVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Arrays;

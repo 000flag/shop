@@ -642,16 +642,16 @@
           end_date: end,
           sale_per: discount,
           grade_no: grade,
-          category_no: category
-        },
-        success: function (response) {
-          alert("쿠폰이 수정되었습니다.");
+          category_no: category,
+        }
+      }).done(function(res) {
+        if (res.cnt > 0) {
+          alert("업데이트 완료~!");
           $(`#name-${couponId}, #start-${couponId}, #end-${couponId}, #discount-${couponId}, #grade-${couponId}, #category-${couponId}`).prop("disabled", true);
           $(`.save-button[data-id='${couponId}']`).hide();
           $(`.edit-button[data-id='${couponId}']`).show();
-        },
-        error: function () {
-          alert("수정 중 오류가 발생했습니다.");
+        } else {
+          alert("업데이트에 실패했습니다 ㅠㅠ");
         }
       });
     });
@@ -667,13 +667,11 @@
         url: "/shop/Controller?type=deleteCoupon",
         type: "POST",
         data: { id: couponId },
-        success: function () {
-          alert("쿠폰이 삭제되었습니다.");
-          $(`tr[data-id='${couponId}']`).remove();
-        },
-        error: function () {
-          alert("삭제 중 오류가 발생했습니다.");
-        }
+      }).done(function(res){
+        if(res.cnt>0){
+          alert("삭제 완료~ 했습니다!");
+        }else
+          alert("삭제에 실패 했습니다 ㅠㅠ")
       });
     });
   });

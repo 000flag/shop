@@ -2,15 +2,13 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.SellerDAO;
-import comm.vo.SellerVO;
+import comm.vo.seller.SellerVO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SellerLoginAction implements Action {
     @Override

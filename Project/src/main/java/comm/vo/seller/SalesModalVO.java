@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class SalesModalVO {
     private String order_id, order_date, status, customer_name, customer_phone, customer_address, product_name, category_name, quantity, price, discount_value, total_price;

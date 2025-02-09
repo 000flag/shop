@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class SellerLogVO {
     private String id, root_no, seller_no, cus_no, writer_type, target, log_type, prev, current, log_date;

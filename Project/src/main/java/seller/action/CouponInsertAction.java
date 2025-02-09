@@ -4,8 +4,8 @@ package seller.action;
 import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.dao.SellerLogDAO;
-import comm.vo.CouponVO;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.CouponVO;
+import comm.vo.seller.SellerLogVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

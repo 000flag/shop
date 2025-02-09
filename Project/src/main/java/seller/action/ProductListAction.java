@@ -2,7 +2,7 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.ProductDAO;
-import comm.vo.ProductVO;
+import comm.vo.seller.ProductVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class OrderVO {
     private String id, cus_no, prod_no, coupon_no, deli_no, retrieve_deli_no, inventory_no, exchange_inventory_no, tid, order_code, count, amount, benefit_type, result_amount, expected_point, pay_type, status, order_date, invoice_number, delivery_date, purchase_confirm_date, refund_bank, refund_account, refund_request_date, cancel_request_date, exchange_request_date, reason_customer, reason_seller, refund_completed_date;
