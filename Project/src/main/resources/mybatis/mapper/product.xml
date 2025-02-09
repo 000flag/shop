@@ -8,13 +8,15 @@
   <select id="getAll" parameterType="String" resultType="comm.vo.ProductVO">
     SELECT * FROM product
     WHERE seller_no = #{id}
-    AND is_del = 0;
+    AND is_del = 0
+    ORDER BY id DESC;
   </select>
   <select id="search_product_all" parameterType="map" resultType="comm.vo.ProductVO">
     SELECT * FROM product
     WHERE seller_no=1
     AND name LIKE CONCAT('%',#{prod_name},'%')
     AND is_del = 0
+    ORDER BY id DESC
   </select>
   <select id="search_product" parameterType="map" resultType="comm.vo.ProductVO">
     SELECT * FROM product
@@ -22,6 +24,7 @@
     AND category_no = #{category}
     AND name LIKE CONCAT('%',#{prod_name},'%')
     AND is_del = 0
+    ORDER BY id DESC
   </select>
   <select id="getProductOne" parameterType="String" resultType="comm.vo.ProductVO">
     SELECT * FROM product

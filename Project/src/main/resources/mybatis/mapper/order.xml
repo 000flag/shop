@@ -10,6 +10,7 @@
     LEFT JOIN customer as c ON c.id = o.cus_no
     LEFT JOIN inventory as i ON o.inventory_no = i.id
     WHERE p.seller_no = #{seller_no}
+    ORDER BY id DESC;
 
   </select>
   <select id="get_order_one" parameterType="String" resultType="comm.vo.OrderVO">
