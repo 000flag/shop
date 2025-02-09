@@ -53,13 +53,16 @@ public class ProductDAO {
         ss.close();
         return vo;
     }
-    public static int changeActive(String prod_no,String active){
+    public static int changeActive(String prod_no,String active,String seller_no){
         SqlSession ss = FactoryService.getFactory().openSession();
         HashMap<String,String> map = new HashMap<>();
         map.put("prod_no",prod_no);
         map.put("active",active);
+        map.put("seller_no",seller_no);
+        map.put("writer_type", "1"); // 하드코딩된 값 추가
+        map.put("log_type", "2");
         int cnt = ss.update("product.changeActive",map);
-
+        ss.insert("product.log_update",map);
 
         if(cnt>0){
             ss.commit();
@@ -69,9 +72,13 @@ public class ProductDAO {
         ss.close();
         return cnt;
     }
-    public static int deleteProduct(String prod_no){
+    public static int deleteProduct(String prod_no,String seller_no){
         SqlSession ss= FactoryService.getFactory().openSession();
         int cnt = ss.update("product.delete_product",prod_no);
+        HashMap<String,String> map = new HashMap<>();
+        map.put("prod_no",prod_no);
+        map.put("seller_no",seller_no);
+        ss.insert("product.log_delete_product",map);
         if(cnt>0){
             ss.commit();
         }else {
@@ -98,6 +105,7 @@ public class ProductDAO {
         SqlSession ss = FactoryService.getFactory().openSession();
 
         int cnt = ss.insert("product.addProduct",map);
+        ss.insert("product.log_add_product",map);
         System.out.println(map.get("id").getClass());
         String prod_no=null;
         if(cnt>0) {
@@ -112,13 +120,14 @@ public class ProductDAO {
         return prod_no;
     }
     public static int updateProduct(String prod_no,String prod_name, String major_category,String middle_category,String price,String sale,
-                                    String prod_image, String additional_image ,String content,String saled_price,String content_image){
+                                    String seller_no,String prod_image, String additional_image ,String content,String saled_price,String content_image){
         HashMap<String,Object> map = new HashMap<>();
 
         map.put("prod_no",prod_no);
         map.put("prod_name",prod_name);
         map.put("major_category",major_category);
         map.put("middle_category",middle_category);
+        map.put("seller_no",seller_no);
         map.put("price",price);
         map.put("sale",sale);
         map.put("prod_image",prod_image);
@@ -129,7 +138,7 @@ public class ProductDAO {
         SqlSession ss = FactoryService.getFactory().openSession();
 
         int cnt = ss.update("product.updateProduct",map);
-
+        ss.insert("product.log_update_product",map);
         if(cnt>0) {
             ss.commit();
         }

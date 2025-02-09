@@ -53,5 +53,12 @@
     AND MONTH(o.purchase_confirm_date) = MONTH(CURDATE())
     AND p.seller_no = #{seller_no}
   </select>
-
+  <insert id="log_cancel_order" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, '1', CONCAT('order_no: ', #{order_no}), '0',#{reason_seller} , NOW())
+  </insert>
+  <insert id="log_change_status" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, '1', CONCAT('tid: ', #{tid}), '2',#{status} , NOW())
+  </insert>
 </mapper>

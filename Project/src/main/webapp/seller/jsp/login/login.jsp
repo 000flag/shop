@@ -22,10 +22,6 @@
             <input type="password" class="form-control" id="password" name="seller_pw" placeholder="비밀번호">
         </div>
         <button type="submit" class="btn btn-dark w-100 mb-2">로그인</button>
-        <button type="button" class="btn btn-warning w-100 text-dark">
-            <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=274018667b4194489ad21f128fe91165&redirect_uri=http://localhost:8080/Controller?type=kakaoCallback"
-               class="btn btn-warning">카카오로 로그인</a>
-        </button>
     </form>
     <div class="d-flex justify-content-between mt-3">
         <a href="/shop/seller/jsp/login/sign_up.jsp" class="text-decoration-none text-muted">입점 신청</a>

@@ -100,5 +100,15 @@ public class SellerDAO {
         ss.close();
         return  vo;
     }
+    public static void Loginlog(String seller_no){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        ss.insert("seller.log_login",seller_no);
+
+    }
+    public static void Logoutlog(String seller_no){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        ss.insert("seller.log_logout",seller_no);
+
+    }
 
 }

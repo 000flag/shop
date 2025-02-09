@@ -137,7 +137,7 @@ public class Controller extends HttpServlet {
 			}
 			Action action = actionMap.get(type);
 			String viewPath = action.execute(request, response);
-			
+
 			// viewPath가 null이면 현재 컨트롤러를 sendRedirect로 
 			//다시 호출하도록 하자!
 

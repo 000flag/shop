@@ -29,4 +29,13 @@
         INSERT INTO seller(seller_id,seller_pw,email,phone,name,address,courier,`desc`)
         VALUES(#{seller_id},#{seller_pw},#{email},#{phone},#{name},#{address},#{courier},#{desc})
     </insert>
+    <insert id="log_login" parameterType="String">
+        INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+        VALUES(#{seller_no}, '1', 'LOGIN' , '1',#{seller_no} , NOW())
+    </insert>
+    <insert id="log_logout" parameterType="String">
+        INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+        VALUES(#{seller_no}, '1', 'LOGOUT' , '0',#{seller_no} , NOW())
+    </insert>
+
 </mapper>

@@ -55,4 +55,20 @@
     content_image=#{content_image}
     WHERE id = #{prod_no}
   </update>
+  <insert id="log_add_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', 'new Product', '1', 'product_add', NOW())
+  </insert>
+  <insert id="log_update_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', CONCAT('prod_no: ', #{prod_no}), '2', 'product_update', NOW())
+  </insert>
+  <insert id="log_update" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, #{writer_type}, CONCAT('prod_no: ', #{prod_no}), #{log_type}, #{active}, NOW())
+  </insert>
+  <insert id="log_delete_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', CONCAT('prod_no: ', #{prod_no}), '2', 'delete', NOW())
+  </insert>
 </mapper>

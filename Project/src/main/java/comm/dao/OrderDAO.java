@@ -44,7 +44,7 @@ public class OrderDAO {
         ss.close();
         return vo;
     }
-    public static int changeStatus(String[] selectedOrders,String[] status){
+    public static int changeStatus(String[] selectedOrders,String[] status,String seller_no){
         SqlSession ss= FactoryService.getFactory().openSession();
         int cnt = -1;
         boolean chk = true;
@@ -59,8 +59,10 @@ public class OrderDAO {
                 if(status[i]!=null && !status[i].trim().isEmpty())
                     str= status[i].trim();
                 map.put("status",str);
+                map.put("seller_no",seller_no);
                 if(ss.update("order.change_status",map)<0)
                     chk=false;
+                ss.insert("order.log_change_status",map);
             }
         }
         if(chk) {
@@ -73,13 +75,15 @@ public class OrderDAO {
         ss.close();
         return cnt;
     }
-    public static int cancelOrder(String order_no,String reason_seller,String status){
+    public static int cancelOrder(String order_no,String reason_seller,String status,String seller_no){
         SqlSession ss = FactoryService.getFactory().openSession();
         HashMap<String,String> map = new HashMap<>();
         map.put("order_no",order_no);
         map.put("reason_seller",reason_seller);
         map.put("status",status);
+        map.put("seller_no",seller_no);
         int cnt = ss.update("order.cancel_order",map);
+        ss.insert("order.log_cancel_order",map);
         if(cnt>0){
             ss.commit();
         }else

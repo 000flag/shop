@@ -15,6 +15,7 @@ public class DashBoardAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String seller_no = (String) session.getAttribute("seller_no");
+
         int newOrder = 0;
         int readyDeli =0;
         int changeProd =0;

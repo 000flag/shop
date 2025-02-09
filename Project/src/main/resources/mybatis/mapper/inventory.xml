@@ -17,7 +17,7 @@
   <select id="getOptions" parameterType="String" resultType="comm.vo.InventoryVO">
     SELECT * FROM inventory
     WHERE prod_no = #{prod_no}
-    AND status =0
+    AND is_del =0
   </select>
   <insert id="addOptions" parameterType="list">
     INSERT INTO inventory(prod_no, option_name, count,total_length,shoulder,chest,sleeve,waist,hip,thigh,rise,hem,foot_length,foot_width,ankle_height,heel_height)
@@ -28,7 +28,11 @@
   </insert>
   <update id="delete_option" parameterType="String">
     UPDATE inventory
-    SET status=1
+    SET is_del=1
     WHERE prod_no=#{prod_no}
   </update>
+  <insert id="log_delete_option" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, '1', CONCAT('prod_no: ', #{prod_no}), '0','option_delete' , NOW())
+  </insert>
 </mapper>

@@ -23,7 +23,6 @@ public class CouponUpdateAction implements Action {
             String end_date = request.getParameter("end_date");
             String category_no = request.getParameter("category_no");
             String grade_no = request.getParameter("grade_no");
-
             // 쿠폰 객체 생성 및 값 설정
             CouponVO coupon = new CouponVO();
             coupon.setId(id);
@@ -58,6 +57,6 @@ public class CouponUpdateAction implements Action {
             e.printStackTrace();
         }
 
-        return null; // AJAX 요청이므로 JSP 이동 불필요
+        return "/seller/jsp/ajax/coupon_delete.jsp"; // AJAX 요청이므로 JSP 이동 불필요
     }
 }

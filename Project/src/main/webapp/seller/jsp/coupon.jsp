@@ -631,7 +631,7 @@
           grade_no: grade,
           category_no: category
         },
-        success: function (response) {
+        success: function() {
           alert("쿠폰이 수정되었습니다.");
           $(`#name-${couponId}, #start-${couponId}, #end-${couponId}, #discount-${couponId}, #grade-${couponId}, #category-${couponId}`).prop("disabled", true);
           $(`.save-button[data-id='${couponId}']`).hide();

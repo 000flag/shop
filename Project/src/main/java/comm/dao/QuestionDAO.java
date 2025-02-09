@@ -28,7 +28,7 @@ public class QuestionDAO{
         map.put("board_no",board_no);
         map.put("content",content);
         int cnt = ss.insert("question.reply_question",map);
-
+        ss.insert("question.log_reply_question",map);
         if(cnt>0){
             ss.commit();
         }else

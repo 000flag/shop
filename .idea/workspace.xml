@@ -10,10 +10,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="병합 중간 푸쉬">
-      <change afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/coupon_delete.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/control/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/InventoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/InventoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/QuestionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/QuestionDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponDeleteAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponDeleteAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CancelOrderAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CancelOrderAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeActiveAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeActiveAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeStatusAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeStatusAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponUpdateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponUpdateAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/DeleteProductAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/DeleteProductAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ProductEditAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ProductEditAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/QuestionAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ReplyQuestionAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ReplyQuestionAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SaveProductAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SaveProductAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLogoutAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLogoutAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/inventory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/inventory.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/product.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/question.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/question.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/seller.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/seller.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/WEB-INF/action.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/WEB-INF/action.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/order_one.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/order_one.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/coupon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/coupon.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/layout/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/layout/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/login/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/login/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/order_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/order_list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,32 +84,20 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat 서버.Tomcat 9.0.98.executor": "Run",
-    "git-widget-placeholder": "seller",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/my_study/HTML_Study/work/shop/Project",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat 서버.Tomcat 9.0.98.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;seller&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/my_study/HTML_Study/work/shop/Project&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tomcat 9.0.98" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.98" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/shop/Controller" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -200,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739083854645</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="병합 중간 푸쉬">
+      <option name="closed" value="true" />
+      <created>1739084970043</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739084970043</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,5 +232,16 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="병합 중간 푸쉬" />
     <option name="LAST_COMMIT_MESSAGE" value="병합 중간 푸쉬" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
