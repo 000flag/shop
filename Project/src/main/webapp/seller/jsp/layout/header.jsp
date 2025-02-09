@@ -50,7 +50,7 @@
     <div class="d-flex gap-3 align-items-center justify-content-center flex-grow-1">
         <a href="${pageContext.request.contextPath}/Controller?type=productList" class="text-decoration-none nav-link">상품 관리</a>
         <a href="${pageContext.request.contextPath}/Controller?type=orderList" class="text-decoration-none nav-link">주문/배송</a>
-        <a href="${pageContext.request.contextPath}/Controller?type=question" class="text-decoration-none nav-link">문의</a>
+        <a href="${pageContext.request.contextPath}/Controller?type=sellerQuestion" class="text-decoration-none nav-link">문의</a>
         <a href="${pageContext.request.contextPath}/Controller?type=sales" class="text-decoration-none nav-link">정산</a>
 
         <a href="${pageContext.request.contextPath}/Controller?type=couponList" class="text-decoration-none nav-link">쿠폰관리</a>

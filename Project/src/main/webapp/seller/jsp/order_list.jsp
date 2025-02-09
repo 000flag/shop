@@ -381,7 +381,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="cancelForm" method="post" action="cancelOrder">
+                <form id="cancelForm" method="post" action="sellerCancelOrder">
                     <div class="mb-3">
                         <label for="cancelReason" class="form-label">사유 선택</label>
                         <select class="form-select" id="cancelReason" name="cancelReason" required onchange="cancelChange()">
@@ -686,7 +686,7 @@
             if (!userConfirmed) {
                 return; // 사용자가 "취소"를 클릭하면 아무 작업도 하지 않음
             }
-            const param = "type=cancelOrder&order_no="+encodeURIComponent(order_no)+"&reason_seller="+encodeURIComponent(reason)+"&status="+encodeURIComponent(status);
+            const param = "type=sellerCancelOrder&order_no="+encodeURIComponent(order_no)+"&reason_seller="+encodeURIComponent(reason)+"&status="+encodeURIComponent(status);
             // 예시로, 서버에 데이터를 전송하는 코드 (AJAX)
             $.ajax({
                 url: "Controller",  // 취소 요청을 처리할 서버 URL

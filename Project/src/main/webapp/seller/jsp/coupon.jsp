@@ -363,7 +363,6 @@
   </div>
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
@@ -460,8 +459,6 @@
   // 페이지 초기화
   showPage(1);
 
-
-
   document.querySelector(".search-button").addEventListener("click", function () {
     const criteria = document.querySelector(".search-criteria").value; // 선택된 검색 기준
     const rows = document.querySelectorAll("#couponTableBody tr"); // 쿠폰 테이블의 모든 행
@@ -507,7 +504,6 @@
       }
     });
   });
-
 
   // 신규 쿠폰 발급 버튼 클릭 시 AJAX 요청
   $("#addCouponButton").on("click", function () {
@@ -577,7 +573,7 @@
     });
 
 
-    // 모달 닫기
+  // 모달 닫기
     $('#newCouponModal').modal('hide');
 
     // 모달 초기화 (입력된 값 초기화)
@@ -648,7 +644,7 @@
           grade_no: grade,
           category_no: category
         },
-        success: function () {
+        success: function (response) {
           alert("쿠폰이 수정되었습니다.");
           $(`#name-${couponId}, #start-${couponId}, #end-${couponId}, #discount-${couponId}, #grade-${couponId}, #category-${couponId}`).prop("disabled", true);
           $(`.save-button[data-id='${couponId}']`).hide();
@@ -672,7 +668,7 @@
         type: "POST",
         data: { id: couponId },
         success: function () {
-          alert("쿠폰이 삭제되었습니다!");
+          alert("쿠폰이 삭제되었습니다.");
           $(`tr[data-id='${couponId}']`).remove();
         },
         error: function () {

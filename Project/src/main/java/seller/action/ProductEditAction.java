@@ -23,6 +23,7 @@ public class ProductEditAction implements Action{
 
         String  prod_no = request.getParameter("prod_no");
         String  cPage = request.getParameter("cPage");
+
         ProductVO vo = ProductDAO.getProductOne(prod_no);
         MajorCategoryVO[] majorCategoryAr = CategoryDAO.AllMajorCategory();
         MiddleCategoryVO[] middleCategoryAr = CategoryDAO.AllMiddleCategory();

@@ -22,7 +22,7 @@
 "phone":"<%=vo.getPhone()%>",
 "addr1":"<%=vo.getAddr1()%>",
 "addr2":"<%=vo.getAddr2()%>",
-"reason":"<%=vo.getReason()%>"
+"reason":"<%=vo.getReason_seller()%>"
 }
 <%
     }

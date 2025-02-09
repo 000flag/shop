@@ -41,7 +41,6 @@ public class CouponUpdateAction implements Action {
             coupon.setEnd_date(end_date);
             coupon.setCategory_no(category_no);
             coupon.setGrade_no(grade_no);
-            System.out.println(coupon);
 
             // 데이터베이스 업데이트 실행
             int result = CouponDAO.updateCoupon(coupon);

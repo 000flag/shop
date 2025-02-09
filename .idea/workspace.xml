@@ -9,11 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="병합 중간 푸쉬">
-      <change afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/coupon_delete.jsp" afterDir="false" />
+    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="log 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponDeleteAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponDeleteAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/DashboardDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/DashboardDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/dash_board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/dash_board.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/000flag/shop.git&quot;,
-    &quot;accountId&quot;: &quot;a5bd25bd-bf00-4f06-9e7c-9799e4ed5953&quot;
+    &quot;accountId&quot;: &quot;b3c0ec77-988e-4a66-8961-09272c273e23&quot;
   }
 }</component>
   <component name="LogFilters">
@@ -66,24 +67,14 @@
     "git-widget-placeholder": "seller",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/my_study/HTML_Study/work/shop/Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="TomeeConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Tomcat 9.0.98" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.98" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/shop/Controller" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -176,8 +167,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -191,6 +182,8 @@
       <updated>1738758162302</updated>
       <workItem from="1738758163410" duration="12000" />
       <workItem from="1738819173605" duration="43000" />
+      <workItem from="1739092861697" duration="49000" />
+      <workItem from="1739113394082" duration="3140000" />
     </task>
     <task id="LOCAL-00001" summary="병합 중간 푸쉬">
       <option name="closed" value="true" />
@@ -200,7 +193,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739083854645</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="병합 중간 푸쉬">
+      <option name="closed" value="true" />
+      <created>1739084970043</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739084970043</updated>
+    </task>
+    <task id="LOCAL-00003" summary="log 추가">
+      <option name="closed" value="true" />
+      <created>1739092894622</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739092894622</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +218,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
     <MESSAGE value="병합 중간 푸쉬" />
-    <option name="LAST_COMMIT_MESSAGE" value="병합 중간 푸쉬" />
+    <MESSAGE value="log 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="log 추가" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

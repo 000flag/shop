@@ -18,6 +18,7 @@ public class ReplyQuestionAction implements Action {
         String seller_no =(String) session.getAttribute("seller_no");
 
         int cnt = QuestionDAO.replyQuestion(seller_no,cus_no,question_no,content);
+
         request.setAttribute("cnt",cnt);
         return "/seller/jsp/ajax/change_active.jsp";
 
