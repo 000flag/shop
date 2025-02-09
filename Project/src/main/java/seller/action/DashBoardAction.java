@@ -8,6 +8,7 @@ import comm.vo.OrderVO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DashBoardAction implements Action {
@@ -43,6 +44,8 @@ public class DashBoardAction implements Action {
         request.setAttribute("readyDeli",readyDeli);
         request.setAttribute("changeProd",changeProd);
         request.setAttribute("returnProd",returnProd);
+        HashMap<String,Object>[] arMap = DashboardDAO.getTotal(seller_no);
+        request.setAttribute("arMap",arMap);
         return "/seller/jsp/dash_board.jsp";
     }
 }

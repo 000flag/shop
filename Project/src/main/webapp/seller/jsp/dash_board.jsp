@@ -1,3 +1,4 @@
+<%@ page import="java.util.HashMap" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -90,16 +91,47 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    var chartData = [];
+    <%
+        HashMap<String, Object>[] arMap = (HashMap<String, Object>[]) request.getAttribute("arMap");
+        if (arMap != null) {
+            for (HashMap<String, Object> map : arMap) {
+    %>
+    chartData.push({
+        month: "<%= map.get("month") %>",
+        totalSales: <%= map.get("total_sales") %>
+    });
+    <%
+            }
+        }
+    %>
+    const months = [];
+    const today = new Date();
+    for (let i = 0; i < 7; i++) {
+        const monthIndex = (today.getMonth() - i + 12) % 12;  // 현재 달 기준으로 과거 12개월
+        months.push((monthIndex + 1) + '월'); // 1월 ~ 12월 형식
+    }
+    months.reverse();  // 최신 달부터 나오도록 역순 정렬
+
+    // 데이터를 매칭
+    const salesData = new Array(12).fill(0); // 기본값 0으로 초기화
+
+    chartData.forEach(item => {
+        const index = months.indexOf(item.month);
+        if (index !== -1) {
+            salesData[index] = item.totalSales; // 매출 데이터를 해당 월에 삽입
+        }
+    });
+
+    // Chart.js 설정
     var ctx = document.getElementById('salesChart').getContext('2d');
     var salesChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월' ,'8월','9월','10월',
-                '11월', '12월'],
+            labels: months,  // 동적 라벨
             datasets: [{
                 label: '월별 매출',
-                data: [55000000, 20000000, 16000000, 30000000, 50000000,23790000, 20000000,
-                32000000,37000000,65000000,76000000,77000000],
+                data: salesData,  // 동적 데이터
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderWidth: 2
@@ -111,7 +143,6 @@
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        // 화폐 형식으로 표시
                         callback: function(value) {
                             return '₩' + value.toLocaleString();  // 숫자를 화폐 형식으로 변환
                         }
@@ -121,7 +152,6 @@
             plugins: {
                 tooltip: {
                     callbacks: {
-                        // 툴팁에도 화폐 형식으로 표시
                         label: function(tooltipItem) {
                             return '₩' + tooltipItem.raw.toLocaleString();  // 툴팁 숫자 화폐 형식
                         }

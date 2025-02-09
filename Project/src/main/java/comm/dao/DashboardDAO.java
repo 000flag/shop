@@ -4,6 +4,7 @@ import comm.service.FactoryService;
 import comm.vo.StatusVO;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,5 +30,17 @@ public class DashboardDAO {
         ar[1] = ss.selectOne("order.get_confirm_month",seller_no);
         ss.close();
         return ar;
+    }
+    public static HashMap<String,Object>[] getTotal(String seller_no){
+        SqlSession ss = FactoryService.getFactory().openSession();
+
+        HashMap<String,Object>[] arMap = null;
+        List<HashMap<String,Object>> listMap= ss.selectList("order.get_total",seller_no);
+        if(listMap != null){
+            arMap = new HashMap[listMap.size()];
+            listMap.toArray(arMap);
+        }
+        return arMap;
+
     }
 }

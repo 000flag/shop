@@ -9,37 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="병합 중간 푸쉬">
+    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="log 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/control/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/InventoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/InventoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/QuestionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/QuestionDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/SellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CancelOrderAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CancelOrderAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeActiveAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeActiveAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeStatusAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ChangeStatusAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponUpdateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/CouponUpdateAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/dao/DashboardDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/dao/DashboardDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/DashBoardAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/DeleteProductAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/DeleteProductAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ProductEditAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ProductEditAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/QuestionAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/ReplyQuestionAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/ReplyQuestionAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SaveProductAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SaveProductAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLogoutAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/SellerLogoutAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/inventory.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/inventory.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/order.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/product.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/question.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/question.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/seller.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/seller.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/WEB-INF/action.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/WEB-INF/action.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/order_one.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/ajax/order_one.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/coupon.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/coupon.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/layout/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/layout/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/login/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/login/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/order_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/order_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/dash_board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/webapp/seller/jsp/dash_board.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +40,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/000flag/shop.git&quot;,
-    &quot;accountId&quot;: &quot;a5bd25bd-bf00-4f06-9e7c-9799e4ed5953&quot;
+    &quot;accountId&quot;: &quot;b3c0ec77-988e-4a66-8961-09272c273e23&quot;
   }
 }</component>
   <component name="LogFilters">
@@ -84,19 +59,21 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Tomcat 서버.Tomcat 9.0.98.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;seller&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/my_study/HTML_Study/work/shop/Project&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Tomcat 서버.Tomcat 9.0.98.executor": "Run",
+    "git-widget-placeholder": "seller",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/my_study/HTML_Study/work/shop/Project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.98" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.98" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/shop/Controller" />
@@ -190,8 +167,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -205,6 +182,8 @@
       <updated>1738758162302</updated>
       <workItem from="1738758163410" duration="12000" />
       <workItem from="1738819173605" duration="43000" />
+      <workItem from="1739092861697" duration="49000" />
+      <workItem from="1739113394082" duration="3140000" />
     </task>
     <task id="LOCAL-00001" summary="병합 중간 푸쉬">
       <option name="closed" value="true" />
@@ -222,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739084970043</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="log 추가">
+      <option name="closed" value="true" />
+      <created>1739092894622</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739092894622</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +218,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes" />
     <MESSAGE value="병합 중간 푸쉬" />
-    <option name="LAST_COMMIT_MESSAGE" value="병합 중간 푸쉬" />
+    <MESSAGE value="log 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="log 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
