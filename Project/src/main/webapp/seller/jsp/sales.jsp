@@ -330,7 +330,14 @@
     const totalSalesAmountElement = document.getElementById("totalSalesAmount");
 
     console.log("🔵 totalSalesAmountElement:", totalSalesAmountElement);
+    filteredRows = [...originalRows];
 
+    // ✅ totalPages 업데이트 (검색이 아닐 때도 전체 페이지 적용)
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+    // ✅ 페이지네이션 먼저 업데이트한 후 첫 페이지 표시
+    updatePagination();
+    showPage(1);
     if (calculateSalesBtn) {
       calculateSalesBtn.addEventListener("click", function () {
         const startDate = document.getElementById("startDate").value;
@@ -384,81 +391,144 @@
   });
 
 
-  const rowsPerPage = 5; // 한 페이지에 표시할 행 수
+  const rowsPerPage = 5; // 한 페이지당 표시할 행 수
   let currentPage = 1; // 현재 페이지
-  const rows = document.querySelectorAll("#mainTable tbody tr"); // 모든 주문 목록
-  const totalPages = Math.ceil(rows.length / rowsPerPage); // 전체 페이지 수
+  let originalRows = Array.from(document.querySelectorAll("#mainTable tbody tr")); // 원본 데이터 저장
+  let filteredRows = [...originalRows]; // 검색된 데이터 (초기에는 원본과 동일)
+  let totalPages = Math.ceil(filteredRows.length / rowsPerPage); // 전체 페이지 수
 
-  const prevPageButton = document.getElementById("prevPage");  // 이전 그룹 버튼
-  const nextPageButton = document.getElementById("nextPage");  // 다음 그룹 버튼
-  const pageNumbersContainer = document.getElementById("pageNumbers"); // 페이지 번호 영역 (ul 태그)
+  const prevPageButton = document.getElementById("prevPage");
+  const nextPageButton = document.getElementById("nextPage");
+  const pageNumbersContainer = document.getElementById("pageNumbers");
+  const pagesPerGroup = 3;
+  let currentGroup = 1;
 
-  const pagesPerGroup = 3; // 한 번에 표시할 페이지 개수
-  let currentGroup = 1; // 현재 페이지 그룹
+  // ✅ 페이지 표시 함수
+  function showPage(page) {
+    if (filteredRows.length === 0) {
+      document.querySelectorAll("#mainTable tbody tr").forEach(row => row.style.display = "none");
+      return;
+    }
 
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
 
+    // ✅ 모든 행 숨기고, 현재 페이지 데이터만 보이게 설정
+    originalRows.forEach(row => row.style.display = "none");
+    filteredRows.slice(start, end).forEach(row => row.style.display = "");
 
+    // ✅ 페이지 정보 업데이트
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    currentPage = Math.min(currentPage, totalPages); // 현재 페이지가 범위 초과 시 보정
+    updatePagination();
+  }
+
+  // ✅ 페이지네이션 버튼 업데이트
   function updatePagination() {
-    // ✅ 기존 페이지 버튼 삭제 후 다시 추가
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    const totalGroups = Math.ceil(totalPages / pagesPerGroup);
+    currentGroup = Math.ceil(currentPage / pagesPerGroup);
+
     document.querySelectorAll("#pageNumbers .page-item").forEach(el => {
       if (el.id !== "prevPage" && el.id !== "nextPage") el.remove();
     });
 
-    const totalGroups = Math.ceil(totalPages / pagesPerGroup); // 전체 그룹 수
-    const startPage = (currentGroup - 1) * pagesPerGroup + 1;
-    let endPage = startPage + pagesPerGroup - 1;
-
-    if (endPage > totalPages) endPage = totalPages; // 마지막 페이지를 초과하지 않도록
+    let startPage = (currentGroup - 1) * pagesPerGroup + 1;
+    let endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
 
     for (let i = startPage; i <= endPage; i++) {
       const pageItem = document.createElement("li");
-      pageItem.className = `page-item ${i eq currentPage ? "active" : ""}`;
-      pageItem.innerHTML = `<a class="page-link" href="#">`+i+`</a>`;
+      pageItem.classList.add("page-item");
+      if (i === currentPage) pageItem.classList.add("active");
 
-      pageItem.addEventListener("click", () => {
+      const pageLink = document.createElement("a");
+      pageLink.classList.add("page-link");
+      pageLink.href = "#";
+      pageLink.textContent = i;
+
+      pageLink.addEventListener("click", () => {
+        document.querySelector(".page-item.active")?.classList.remove("active");
+        pageItem.classList.add("active");
         currentPage = i;
         showPage(currentPage);
       });
 
-      nextPageButton.before(pageItem); // ✅ "다음" 버튼 앞에 추가
+      pageItem.appendChild(pageLink);
+      nextPageButton.before(pageItem);
     }
 
-    // 이전/다음 그룹 버튼 활성화 및 비활성화
     prevPageButton.classList.toggle("disabled", currentGroup === 1);
     nextPageButton.classList.toggle("disabled", currentGroup === totalGroups);
   }
-  function showPage(page) {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
 
-    rows.forEach((row, index) => {
-      row.style.display = index >= start && index < end ? "" : "none";
-    });
-
-    updatePagination();
-  }
-
-  // 이전 그룹 버튼 클릭 시
+  // ✅ 이전 페이지 그룹 이동
   prevPageButton.addEventListener("click", () => {
     if (currentGroup > 1) {
       currentGroup--;
-      currentPage = (currentGroup - 1) * pagesPerGroup + 1; // 현재 그룹의 첫 번째 페이지로 이동
+      currentPage = (currentGroup - 1) * pagesPerGroup + 1;
       showPage(currentPage);
     }
   });
 
-  // 다음 그룹 버튼 클릭 시
+  // ✅ 다음 페이지 그룹 이동
   nextPageButton.addEventListener("click", () => {
     const totalGroups = Math.ceil(totalPages / pagesPerGroup);
     if (currentGroup < totalGroups) {
       currentGroup++;
-      currentPage = (currentGroup - 1) * pagesPerGroup + 1; // 현재 그룹의 첫 번째 페이지로 이동
+      currentPage = (currentGroup - 1) * pagesPerGroup + 1;
       showPage(currentPage);
     }
   });
 
-  // 페이지 초기화
-  showPage(1);
+  document.querySelector("#totalSearch").addEventListener("click", function () {
+    const criteria = document.querySelector("#searchCategory").value;
+    let keyword = document.querySelector("#searchInput").value.toLowerCase();
+    const selectedCategory = document.querySelector("#categorySelect").value.toLowerCase();
+    const selectedStatus = document.querySelector("#statusSelect").value;
+
+    // ✅ 검색어가 없으면 전체 목록으로 복원
+    if (!keyword && criteria !== "category" && criteria !== "status") {
+      filteredRows = [...originalRows];
+    } else {
+      filteredRows = originalRows.filter(row => {
+        let cellValue = "";
+        switch (criteria) {
+          case "orderId":
+            cellValue = row.children[0].textContent.toLowerCase();
+            break;
+          case "productName":
+            cellValue = row.children[2].textContent.toLowerCase();
+            break;
+          case "category":
+            return selectedCategory === "전체" || row.children[3].textContent.trim() === selectedCategory;
+          case "status":
+            return selectedStatus === "전체" || row.children[6].textContent.trim() === selectedStatus;
+        }
+        return cellValue.includes(keyword);
+      });
+    }
+
+    // ✅ 검색 후 데이터가 없으면 원래 데이터로 복원
+    if (filteredRows.length === 0) {
+      alert("🔍 검색된 데이터가 없습니다. 전체 목록을 복원합니다.");
+      filteredRows = [...originalRows];
+    }
+
+    // ✅ totalPages 업데이트 (검색 결과에 따라 전체 페이지 수 계산)
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+
+    // ✅ 현재 페이지 보정 (검색 결과 개수가 적을 경우)
+    currentPage = 1;
+
+    // ✅ 페이지네이션 업데이트
+    updatePagination();
+
+    // ✅ 페이지 표시 (이제 페이징이 유지됨!)
+    showPage(currentPage);
+  });
+
+
+
   function showOrderDetail() {
     const orderId = this.getAttribute("data-order-id");
 
@@ -546,28 +616,30 @@
     const endDate = document.getElementById("endDate").value;
 
     if (!startDate || !endDate) {
-      alert("시작일과 종료일을 모두 선택하세요.");
+      alert("📅 시작일과 종료일을 모두 선택하세요!");
       return;
     }
 
-    const rows = document.querySelectorAll("#mainTable tbody tr");
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    end.setHours(23, 59, 59, 999);
 
-    // ✅ 모든 행을 초기화하여 다시 보이게 설정
-    rows.forEach(row => {
-      row.style.display = "";
+    filteredRows = originalRows.filter(row => {
+      const orderDateText = row.children[1].textContent.trim();
+      const orderDate = new Date(orderDateText);
+      return !isNaN(orderDate) && orderDate >= start && orderDate <= end;
     });
-    rows.forEach(row => {
-      const orderDate = row.children[1].textContent.trim(); // 주문일 컬럼 (YYYY-MM-DD)
 
-      if (!orderDate) return;
+    if (filteredRows.length === 0) {
+      alert("🔍 검색된 데이터가 없습니다. 전체 목록을 복원합니다.");
+      filteredRows = [...originalRows];
+    }
 
-      // ✅ 선택한 날짜 범위 내에 포함되지 않으면 숨김
-      if (orderDate >= startDate && orderDate <= endDate) {
-        row.style.display = "";  // ✅ 날짜 범위 내 → 보이게 처리
-      } else {
-        row.style.display = "none";  // ❌ 날짜 범위 밖 → 숨김
-      }
-    });
+    // ✅ 검색 후 첫 페이지부터 다시 표시
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    currentPage = 1;
+    updatePagination();
+    showPage(currentPage); // ✅ 첫 페이지부터 다시 표시
   });
 
   // ✅ 전체 검색 기능 개선
@@ -577,40 +649,35 @@
     const selectedCategory = document.querySelector("#categorySelect").value.toLowerCase();
     const selectedStatus = document.querySelector("#statusSelect").value;
 
-    const rows = document.querySelectorAll("#mainTable tbody tr");
-
-    // ✅ 모든 행 보이게 초기화
-    rows.forEach(row => {
-      row.style.display = "";
-      row.removeAttribute("hidden");
-    });
-
-    rows.forEach(row => {
-      let isVisible = false;
-
+    filteredRows = originalRows.filter(row => {
+      let cellValue = "";
       switch (criteria) {
         case "orderId":
-          isVisible = row.children[0].textContent.toLowerCase().includes(keyword);
+          cellValue = row.children[0].textContent.toLowerCase();
           break;
         case "productName":
-          isVisible = row.children[2].textContent.toLowerCase().includes(keyword);
+          cellValue = row.children[2].textContent.toLowerCase();
           break;
         case "category":
-          isVisible = selectedCategory === "전체" || row.children[3].textContent.trim() === selectedCategory;
-          break;
+          return selectedCategory === "전체" || row.children[3].textContent.trim() === selectedCategory;
         case "status":
-          isVisible = selectedStatus === "전체" || row.children[6].textContent.trim() === selectedStatus;
-          break;
+          return selectedStatus === "전체" || row.children[6].textContent.trim() === selectedStatus;
       }
-
-      if (!isVisible) {
-        row.style.display = "none";
-        row.setAttribute("hidden", "true");  // ✅ 검색 결과에서 제외
-      }
+      return cellValue.includes(keyword);
     });
 
-    attachDetailButtonEvent(); // ✅ 검색 후 버튼 이벤트 다시 등록
+    if (filteredRows.length === 0) {
+      alert("🔍 검색된 데이터가 없습니다. 전체 목록을 복원합니다.");
+      filteredRows = [...originalRows];
+    }
+
+    // ✅ 검색 후 첫 페이지부터 다시 표시
+    totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+    currentPage = 1;
+    updatePagination();
+    showPage(currentPage); // ✅ 첫 페이지부터 다시 표시
   });
+
 
   // ✅ 검색 카테고리 변경 시 UI 업데이트
   document.getElementById("searchCategory").addEventListener("change", function () {
