@@ -53,7 +53,7 @@
                     </c:if>
 
                     <!-- 주문 내역 -->
-                    <div class="custom-order-block">
+                    <div class="custom-order-block" onclick="location.href='Controller?type=orderDetails&action=select&order_code=${item.order_code}'">
                         <div class="custom-order-header">
                             <c:choose>
                                 <c:when test="${item.status == 1}"><span class="custom-order-status">결제 완료</span></c:when>
@@ -69,7 +69,7 @@
                                 <c:when test="${item.status == 11}"><span class="custom-order-status">반품완료</span></c:when>
                             </c:choose>
                         </div>
-                        <div class="custom-order-content" onclick="location.href='Controller?type=orderDetails&action=select&order_code=${item.order_code}'">
+                        <div class="custom-order-content">
                             <div class="custom-product-image">
                                 <img src="${fn:split(item.prod_image, ',')[0]}" alt="상품 이미지">
                             </div>

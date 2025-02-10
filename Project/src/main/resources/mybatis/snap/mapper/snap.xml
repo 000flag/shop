@@ -6,7 +6,7 @@
 
 
   <!-- 스냅샷 글쓰기 저장 -->
-  <insert id="insertBoard" parameterType="user.vo.BoardVO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+  <insert id="insertBoard" parameterType="comm.vo.seller.BoardVO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     INSERT INTO board (bname, cus_no, gender, season, style, tags, content, snapshot_image, additional_images, like_count, write_date, is_del)
     VALUES (#{bname}, #{cus_no}, #{gender}, #{season}, #{style}, #{tags}, #{content}, #{snapshot_image}, #{additional_images}, 0, NOW(), 0)
   </insert>
@@ -22,7 +22,7 @@
 
 
 
-  <select id="getSnapList"  parameterType="map" resultType="user.vo.BoardVO">
+  <select id="getSnapList"  parameterType="map" resultType="comm.vo.seller.BoardVO">
     SELECT id, cus_no, gender, season, style, title, content, snapshot_image, like_count, write_date, is_del
     FROM board
     WHERE is_del = 0 AND bname = snap
@@ -37,7 +37,7 @@
   </select>
 
 
-  <select id="getFilteredSnapList" parameterType="map" resultType="user.vo.BoardVO">
+  <select id="getFilteredSnapList" parameterType="map" resultType="comm.vo.seller.BoardVO">
     SELECT id, cus_no, gender, season, style, title, content, snapshot_image, like_count, write_date, is_del
     FROM board
     WHERE 1=1
@@ -72,13 +72,13 @@
     WHERE id = #{boardNo}
   </update>
 
-  <select id="getBoardDetail" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getBoardDetail" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT id, cus_no, gender, season, style, title, content, snapshot_image, additional_images, like_count, write_date
     FROM board
     WHERE id = #{id}
   </select>
 
-  <select id="getSnapWithCustomerData" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getSnapWithCustomerData" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT s.id AS snap_id, s.title, s.content, s.snapshot_image, s.additional_images, c.height, c.weight, c.profile_image, c.nickname, c.gender
     FROM board s JOIN customer c ON s.cus_no = c.id WHERE s.id = #{snapId}
   </select>
@@ -97,13 +97,13 @@
     WHERE name LIKE CONCAT('%', #{keyword}, '%') AND active = 1
   </select>
 
-  <select id="getProfile" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getProfile" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT c.id, b.cus_no, b.gender, b.season, b.style, b.title, b.content, b.snapshot_image, b.like_count, b.write_date, b.is_del , c.Introduce,
     c.profile_image,c.nickname
     FROM customer c LEFT JOIN board b ON b.cus_no = c.id  AND bname = 'snap' AND b.is_del = 0 WHERE c.id =#{cus_no}
   </select>
 
-  <select id="getProfile1" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getProfile1" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT b.id, b.cus_no, b.gender, b.season, b.style, b.title, b.content, b.snapshot_image, b.like_count, b.write_date, b.is_del , c.Introduce,
     c.profile_image,c.nickname
     FROM customer c LEFT JOIN board b ON b.cus_no = c.id  AND bname = 'snap' AND b.is_del = 0 WHERE c.id =#{cus_no}
@@ -119,7 +119,7 @@
     WHERE bp.board_no = #{boardNo}
   </select>
 
-  <select id="getSnapDetail" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getSnapDetail" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT b.*, c.nickname, c.profile_image, c.gender AS customer_gender, c.height, c.weight
     FROM board b JOIN customer c ON b.cus_no = c.id
     WHERE b.id = #{boardNo}
@@ -135,7 +135,7 @@
 
   </update>
 
-  <update id="updateSnap" parameterType="user.vo.BoardVO">
+  <update id="updateSnap" parameterType="comm.vo.seller.BoardVO">
     UPDATE board
     SET content = #{content}, gender = #{gender}, season = #{season}, style = #{style},
     tags = #{tags}, snapshot_image = #{snapshot_image}, additional_images = #{additional_images}
@@ -150,7 +150,7 @@
     INSERT INTO board_prod (board_no, prod_no) VALUES (#{board_no}, #{prod_no})
   </insert>
 
-  <select id="getSnapDetaill" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="getSnapDetaill" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT
     b.*,
     COALESCE(GROUP_CONCAT(bp.prod_no SEPARATOR ','), '') AS products
@@ -170,7 +170,7 @@
 
 
   <!-- 테스트용 -->
-  <select id="selectBoardById" parameterType="int" resultType="user.vo.BoardVO">
+  <select id="selectBoardById" parameterType="int" resultType="comm.vo.seller.BoardVO">
     SELECT id, cus_no, bname, gender, season, style, tags, content, snapshot_image, additional_images,
     like_count, write_date, order_code, type, status, is_del, is_private, prod_no
     FROM board
@@ -178,7 +178,7 @@
   </select>
 
   <!-- 게시글 업데이트 -->
-  <update id="updateBoard" parameterType="user.vo.BoardVO">
+  <update id="updateBoard" parameterType="comm.vo.seller.BoardVO">
     UPDATE board
     SET
     gender = #{gender},

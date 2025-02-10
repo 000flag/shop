@@ -1,8 +1,7 @@
 package comm.dao;
 
-import user.action.Action;
 import comm.service.FactoryService;
-import comm.vo.InventoryVO;
+import comm.vo.seller.InventoryVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.Arrays;
@@ -50,10 +49,13 @@ public class InventoryDAO{
         ss.close();
         return cnt;
     }
-    public static int deleteOptions(String prod_no){
+    public static int deleteOptions(String prod_no,String seller_no){
         SqlSession ss=  FactoryService.getFactory().openSession();
-
         int cnt = ss.update("inventory.delete_option",prod_no);
+        HashMap<String,String> map = new HashMap<>();
+        map.put("prod_no",prod_no);
+        map.put("seller_no",seller_no);
+        ss.insert("inventory.log_delete_option",map);
         if (cnt > 0) {
             ss.commit();
         } else {

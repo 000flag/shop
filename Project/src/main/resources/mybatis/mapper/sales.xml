@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sales">
 
-    <select id="getSalesList" resultType="comm.vo.SalesVO">
+    <select id="getSalesList" resultType="comm.vo.seller.SalesVO">
         SELECT
         o.id AS order_id,
         o.order_date,
@@ -21,15 +21,15 @@
         LEFT JOIN shop.product p ON p.id = o.prod_no
         LEFT JOIN shop.middle_category mc ON mc.type = p.category_no
         LEFT JOIN shop.coupon c ON c.id = o.coupon_no
-        WHERE p.seller_no = #{seller_no}
+        WHERE p.seller_no = 2
         ORDER BY o.order_date DESC
     </select>
 
     <select id="getSalesCount" resultType="int">
-        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = #{seller_no}<!--2바꾸셈-->
+        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = 2<!--2바꾸셈-->
     </select>
 
-    <select id="getDeliveryInfo" parameterType="String" resultType="comm.vo.SalesModalVO">
+    <select id="getDeliveryInfo" parameterType="String" resultType="comm.vo.seller.SalesModalVO">
         SELECT
         o.id AS order_id,
         o.order_date,

@@ -16,7 +16,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
         <%-- CSS --%>
-        <link href="${pageContext.request.contextPath}/user/customer/css/common/common.css" rel="stylesheet" type="text/css">
+<%--        <link href="${pageContext.request.contextPath}/user/customer/css/common/common.css" rel="stylesheet" type="text/css">--%>
         <link href="${pageContext.request.contextPath}/user/customer/css/layout/header.css" rel="stylesheet" type="text/css">
         <%--<link href="./user/customer/css/event/event.css" rel="stylesheet" type="text/css">--%>
 
@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- 네비게이션 메뉴 -->
-                <%--<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item">
                             <a class="nav-link text-success fw-bold" href="#">쿨탠다드</a>
@@ -81,7 +81,7 @@
                             <a class="nav-link" href="#">브랜드</a>
                         </li>
                     </ul>
-                </div>--%>
+                </div>
             </div>
         </nav>
         <div>
@@ -91,25 +91,17 @@
                         <!-- 로그인 상태 -->
                         <span class="nickname">${sessionScope.customer_info.nickname}님 &nbsp;&nbsp; <button type="button" class="btn btn-outline-danger" onclick="onClickLogout()">로그아웃</button></span>
                         <div class="d-flex gap-3 align-items-center user-header-menu">
-                            <%-- 코디 --%>
-                            <a href="${pageContext.request.contextPath}/Controller?type=snap" class="text-decoration-none text-dark">
-                                <i class="bi bi-sunglasses"></i>
-                                <span class="like_title">코디</span>
-                            </a>
-
                             <%-- 좋아요 --%>
                             <a href="Controller?type=like&action=select" class="text-decoration-none text-danger">
                                 <i class="bi bi-heart-fill"></i>
                                 <span class="like_title">좋아요</span>
                             </a>
-
                             <%-- 알림 --%>
                             <%--<a href="#" class="text-decoration-none text-dark position-relative" id="event-toggle">
                                 <i class="bi bi-bell-fill"></i>
                                 <span>알림</span>
                                 <span class="new_alert"></span>
                             </a>--%>
-
                             <%-- 장바구니 --%>
                             <a href="Controller?type=cart" class="text-decoration-none text-dark position-relative">
                                 <i class="bi bi-basket-fill"></i>
@@ -120,13 +112,11 @@
                                     </span>
                                 </c:if>
                             </a>
-
                             <%-- 주문배송조회 --%>
                             <a href="Controller?type=orderDelivery" class="text-decoration-none text-dark">
                                 <i class="bi bi-box-seam-fill"></i>
                                 <span>주문배송조회</span>
                             </a>
-
                             <%-- 마이페이지 --%>
                             <a href="Controller?type=myPage" class="text-decoration-none text-dark">
                                 <i class="bi bi-person-circle"></i>

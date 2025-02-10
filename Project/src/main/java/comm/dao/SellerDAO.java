@@ -1,11 +1,10 @@
 package comm.dao;
 
-import comm.vo.SellerVO;
+import comm.vo.seller.SellerVO;
 import org.apache.ibatis.session.SqlSession;
 import comm.service.FactoryService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SellerDAO {
@@ -99,6 +98,16 @@ public class SellerDAO {
         SellerVO vo = ss.selectOne("seller.login",seller_id);
         ss.close();
         return  vo;
+    }
+    public static void Loginlog(String seller_no){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        ss.insert("seller.log_login",seller_no);
+
+    }
+    public static void Logoutlog(String seller_no){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        ss.insert("seller.log_logout",seller_no);
+
     }
 
 }

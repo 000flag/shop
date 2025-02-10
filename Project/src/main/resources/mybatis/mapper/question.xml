@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="question">
 
-  <select id="get_question_all" parameterType="String" resultType="comm.vo.QuestionVO">
+  <select id="get_question_all" parameterType="String" resultType="comm.vo.seller.QuestionVO">
     SELECT b.*,r.content as answer,c.cus_id as cus_id FROM board as b
     INNER JOIN product as p on b.prod_no = p.id
     INNER JOIN seller as s on s.id = p.seller_no
@@ -27,4 +27,8 @@
     AND b.bname = "question"
     AND p.seller_no  = #{seller_no}
   </select>
+  <insert id="log_reply_question" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, '1', CONCAT('board_no: ', #{board_no}), '2',#{content} , NOW())
+  </insert>
 </mapper>

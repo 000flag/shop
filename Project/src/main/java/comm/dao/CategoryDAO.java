@@ -1,8 +1,8 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.MajorCategoryVO;
-import comm.vo.MiddleCategoryVO;
+import comm.vo.seller.MajorCategoryVO;
+import comm.vo.seller.MiddleCategoryVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;

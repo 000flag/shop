@@ -3,7 +3,7 @@ package seller.action;
 
 import user.action.Action;
 import comm.dao.OrderDAO;
-import comm.vo.OrderVO;
+import comm.vo.seller.OrderVO;
 
 import javax.servlet.http.*;
 

@@ -121,8 +121,7 @@
                                         <div class="wrap-tracking">
                                             <p class="tracking-title">송장 번호</p>
                                             <div class="tracking-info">
-                                                <%--<a href="#" class="tracking-number">${requestScope.list[0].invoice_number}</a>--%>
-                                                    <a href="#" class="tracking-number">456218628743</a>
+                                                <a href="#" class="tracking-number">${requestScope.list[0].invoice_number}</a>
                                                 <i class="bi bi-copy"></i>
                                             </div>
                                         </div>

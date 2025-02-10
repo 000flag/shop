@@ -3,51 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <environments default="">
-    <environment id="">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://43.201.217.68/shop"/>
-        <property name="username" value="team_user"/>
-        <property name="password" value="Faker@12345"/>
-      </dataSource>
-    </environment>
-  </environments>
-  <mappers>
-    <mapper resource="mybatis/mapper/customer/customer.xml"/>
-    <mapper resource="mybatis/mapper/customer/delivery.xml"/>
-    <mapper resource="mybatis/mapper/customer/category.xml"/>
-    <mapper resource="mybatis/mapper/customer/product.xml"/>
-    <mapper resource="mybatis/mapper/customer/point.xml"/>
-    <mapper resource="mybatis/mapper/customer/log.xml"/>
-    <mapper resource="mybatis/mapper/customer/inquiry.xml"/>
-    <mapper resource="mybatis/mapper/customer/question.xml"/>
-    <mapper resource="mybatis/mapper/customer/cart.xml"/>
-    <mapper resource="mybatis/mapper/customer/order.xml"/>
-    <mapper resource="mybatis/mapper/customer/prod_like.xml"/>
-    <mapper resource="mybatis/mapper/customer/grade.xml"/>
-    <mapper resource="mybatis/mapper/customer/coupon.xml"/>
-    <mapper resource="mybatis/mapper/customer/event.xml"/>
-    <mapper resource="mybatis/mapper/customer/review.xml"/>
-
-    <mapper resource="mybatis/snap/mapper/customer.xml"/>
-    <mapper resource="mybatis/snap/mapper/snap.xml"/>
-    <mapper resource="mybatis/snap/mapper/like.xml"/>
-    <mapper resource="mybatis/snap/mapper/FollowMapper.xml"/>
-    <mapper resource="mybatis/snap/mapper/ChatMapper.xml"/>
-    <mapper resource="mybatis/snap/mapper/reply.xml"/>
-
-    <mapper resource="mybatis/mapper/inventory.xml"/>
-    <mapper resource="mybatis/mapper/product.xml"/>
-    <mapper resource="mybatis/mapper/category.xml"/>
-    <mapper resource="mybatis/mapper/order.xml"/>
-    <mapper resource="mybatis/mapper/question.xml"/>
-    <mapper resource="mybatis/mapper/seller.xml"/>
-    <mapper resource="mybatis/mapper/sales.xml"/>
-
-    <mapper resource="mybatis/mapper/coupon.xml"/>
-
-    <mapper resource="mybatis/mapper/admin/root.xml"/>
-  </mappers>
+    <environments default="">
+        <environment id="">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://43.201.217.68/shop"/>
+                <property name="username" value="team_user"/>
+                <property name="password" value="Faker@12345"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/mapper/inventory.xml"/>
+        <mapper resource="mybatis/mapper/product.xml"/>
+        <mapper resource="mybatis/mapper/category.xml"/>
+        <mapper resource="mybatis/mapper/order.xml"/>
+        <mapper resource="mybatis/mapper/question.xml"/>
+        <mapper resource="mybatis/mapper/seller.xml"/>
+        <mapper resource="mybatis/mapper/sales.xml"/>
+        <mapper resource="mybatis/mapper/coupon.xml"/>
+        <mapper resource="mybatis/mapper/sellerLog.xml"/>
+    </mappers>
 </configuration>

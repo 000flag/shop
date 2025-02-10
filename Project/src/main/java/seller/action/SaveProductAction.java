@@ -4,7 +4,7 @@ import user.action.Action;
 import comm.dao.InventoryDAO;
 import comm.dao.ProductDAO;
 import comm.service.S3Uploader;
-import comm.vo.InventoryVO;
+import comm.vo.seller.InventoryVO;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -138,8 +138,6 @@ public class SaveProductAction implements Action {
                                     break;
                                 case "main_url":
                                     mainImageUrl = value;
-                                case "additional_url[]":
-                                    additionalImageUrls.add(value);
                             }
                         }
                     } else {
@@ -184,9 +182,9 @@ public class SaveProductAction implements Action {
                     prod_no = ProductDAO.addProduct(prod_name,major_category, middle_category, price, sale, seller_no, mainImageUrl,additional_images, content, saled_price,contentUrl);
 
                 }else{
-                    ProductDAO.updateProduct(prod_no,prod_name,major_category, middle_category, price, sale, mainImageUrl, additional_images, content, saled_price,contentUrl);
+                    ProductDAO.updateProduct(prod_no,prod_name,major_category, middle_category, price, sale,seller_no, mainImageUrl, additional_images, content, saled_price,contentUrl);
                 }
-                InventoryDAO.deleteOptions(prod_no);
+                InventoryDAO.deleteOptions(prod_no,seller_no);
                 InventoryDAO.addOptions(setArr(prod_no,prod_options,inventory_options,total_length,shoulder,chest,sleeve,waist,
                         hip,thigh,rise,hem,foot_length,foot_width,ankle_height,heel_height));
 

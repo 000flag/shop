@@ -4,15 +4,14 @@ import user.action.Action;
 import comm.dao.CategoryDAO;
 import comm.dao.InventoryDAO;
 import comm.dao.ProductDAO;
-import comm.vo.InventoryVO;
-import comm.vo.MajorCategoryVO;
-import comm.vo.MiddleCategoryVO;
-import comm.vo.ProductVO;
+import comm.vo.seller.InventoryVO;
+import comm.vo.seller.MajorCategoryVO;
+import comm.vo.seller.MiddleCategoryVO;
+import comm.vo.seller.ProductVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductEditAction implements Action{
@@ -23,6 +22,7 @@ public class ProductEditAction implements Action{
 
         String  prod_no = request.getParameter("prod_no");
         String  cPage = request.getParameter("cPage");
+
         ProductVO vo = ProductDAO.getProductOne(prod_no);
         MajorCategoryVO[] majorCategoryAr = CategoryDAO.AllMajorCategory();
         MiddleCategoryVO[] middleCategoryAr = CategoryDAO.AllMiddleCategory();

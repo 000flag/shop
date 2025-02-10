@@ -1,5 +1,5 @@
 <%@ page import="com.mysql.cj.x.protobuf.MysqlxCrud" %>
-<%@ page import="comm.vo.OrderVO" %>
+<%@ page import="comm.vo.seller.OrderVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%-- JSON표기법 --%>
@@ -22,7 +22,7 @@
 "phone":"<%=vo.getPhone()%>",
 "addr1":"<%=vo.getAddr1()%>",
 "addr2":"<%=vo.getAddr2()%>",
-"reason":"<%=vo.getReason()%>"
+"reason":"<%=vo.getReason_seller()%>"
 }
 <%
     }

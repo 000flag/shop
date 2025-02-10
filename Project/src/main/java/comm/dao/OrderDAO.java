@@ -1,13 +1,11 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.OrderVO;
-import comm.vo.ProductVO;
+import comm.vo.seller.OrderVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 public class OrderDAO {
     public static OrderVO[] getOrderList(String seller_no){
@@ -44,7 +42,7 @@ public class OrderDAO {
         ss.close();
         return vo;
     }
-    public static int changeStatus(String[] selectedOrders,String[] status){
+    public static int changeStatus(String[] selectedOrders,String[] status,String seller_no){
         SqlSession ss= FactoryService.getFactory().openSession();
         int cnt = -1;
         boolean chk = true;
@@ -53,19 +51,18 @@ public class OrderDAO {
         for(String s : status){
             System.out.println("status: "+s);
         }
-        if (selectedOrders != null && selectedOrders.length > 0) {
-            for (int i = 0; i < selectedOrders.length; i++) {
-                map.put("tid", selectedOrders[i].trim());
-
-                // status 배열 길이 확인 후 접근
-                if (status != null && i < status.length && status[i] != null && !status[i].trim().isEmpty()) {
-                    str = status[i].trim();
-                }
-
-                map.put("status", str);
-                if (ss.update("order.change_status", map) < 0) {
-                    chk = false;
-                }
+        if(selectedOrders!=null && selectedOrders.length>0){
+            for(int i=0;i<selectedOrders.length;i++){
+                map.put("tid",selectedOrders[i].trim());
+                if(status.length>1)
+                    str= status[i].trim();
+                else
+                    str=status[0].trim();
+                map.put("status",str);
+                map.put("seller_no",seller_no);
+                if(ss.update("order.change_status",map)<0)
+                    chk=false;
+                ss.insert("order.log_change_status",map);
             }
         }
         if(chk) {
@@ -78,13 +75,15 @@ public class OrderDAO {
         ss.close();
         return cnt;
     }
-    public static int cancelOrder(String order_no,String reason_seller,String status){
+    public static int cancelOrder(String order_no,String reason_seller,String status,String seller_no){
         SqlSession ss = FactoryService.getFactory().openSession();
         HashMap<String,String> map = new HashMap<>();
         map.put("order_no",order_no);
         map.put("reason_seller",reason_seller);
         map.put("status",status);
+        map.put("seller_no",seller_no);
         int cnt = ss.update("order.cancel_order",map);
+        ss.insert("order.log_cancel_order",map);
         if(cnt>0){
             ss.commit();
         }else

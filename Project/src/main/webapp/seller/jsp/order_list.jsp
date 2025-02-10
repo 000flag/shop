@@ -585,19 +585,19 @@
             checkboxes.forEach(checkbox => {
                 // checkbox가 속한 tr 요소를 찾아서 그 안의 td 값 추출
                 const row = checkbox.closest('tr');  // 체크박스가 속한 <tr> 찾기
-                const orderValue = row.querySelector('td:nth-child(2)').textContent;// 두 번째 <td>의 값 가져오기
-                const division = row.querySelector('td:nth-child(3)').textContent.trim();
+                const orderValue = row.querySelector('td:nth-child(2)').textContent.trim();// 두 번째 <td>의 값 가져오기
+                console.log("tid: "+orderValue);
                 if (chk) {
+                    const division = row.querySelector('td:nth-child(3)').textContent.trim();
                     if (division === '반품')
                         status[i] = 11;
                     else if (division === '교환')
                         status[i] = 2;
                 }
-                selectedOrders.push(orderValue);
+                selectedOrders[i]=orderValue;
                 i++;
             });
 
-        console.log(selectedOrders.join(','));
         const param = "type=changeStatus&selectedOrders="+encodeURIComponent(selectedOrders.join(','))+"&status="+encodeURIComponent(status.join(','));
         $.ajax({
             url: "Controller",

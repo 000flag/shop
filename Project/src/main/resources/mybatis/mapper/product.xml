@@ -5,25 +5,28 @@
 <mapper namespace="product">
   <!-- 인자로 카테고리 값을 받아 검색하는 기능 -->
 
-  <select id="getAll" parameterType="String" resultType="comm.vo.ProductVO">
+  <select id="getAll" parameterType="String" resultType="comm.vo.seller.ProductVO">
     SELECT * FROM product
     WHERE seller_no = #{id}
-    AND is_del = 0;
+    AND is_del = 0
+    ORDER BY id DESC
   </select>
-  <select id="search_product_all" parameterType="map" resultType="comm.vo.ProductVO">
+  <select id="search_product_all" parameterType="map" resultType="comm.vo.seller.ProductVO">
     SELECT * FROM product
-    WHERE seller_no=1
+    WHERE seller_no=#{seller_no}
     AND name LIKE CONCAT('%',#{prod_name},'%')
     AND is_del = 0
+    ORDER BY id DESC
   </select>
-  <select id="search_product" parameterType="map" resultType="comm.vo.ProductVO">
+  <select id="search_product" parameterType="map" resultType="comm.vo.seller.ProductVO">
     SELECT * FROM product
-    WHERE seller_no=1
+    WHERE seller_no=#{seller_no}
     AND category_no = #{category}
     AND name LIKE CONCAT('%',#{prod_name},'%')
     AND is_del = 0
+    ORDER BY id DESC
   </select>
-  <select id="getProductOne" parameterType="String" resultType="comm.vo.ProductVO">
+  <select id="getProductOne" parameterType="String" resultType="comm.vo.seller.ProductVO">
     SELECT * FROM product
     WHERE id = #{prod_no}
   </select>
@@ -55,4 +58,20 @@
     content_image=#{content_image}
     WHERE id = #{prod_no}
   </update>
+  <insert id="log_add_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', 'new Product', '1', 'product_add', NOW())
+  </insert>
+  <insert id="log_update_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', CONCAT('prod_no: ', #{prod_no}), '2', 'product_update', NOW())
+  </insert>
+  <insert id="log_update" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no}, #{writer_type}, CONCAT('prod_no: ', #{prod_no}), #{log_type}, #{active}, NOW())
+  </insert>
+  <insert id="log_delete_product" parameterType="map">
+    INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+    VALUES(#{seller_no},'1', CONCAT('prod_no: ', #{prod_no}), '2', 'delete', NOW())
+  </insert>
 </mapper>

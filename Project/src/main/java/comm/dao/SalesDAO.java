@@ -1,8 +1,8 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.SalesModalVO;
-import comm.vo.SalesVO;
+import comm.vo.seller.SalesModalVO;
+import comm.vo.seller.SalesVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;

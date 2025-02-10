@@ -3,23 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seller">
-    <select id="login" parameterType="String" resultType="comm.vo.SellerVO">
+    <select id="login" parameterType="String" resultType="comm.vo.seller.SellerVO">
         SELECT * FROM seller
         WHERE seller_id = #{seller_id}
         AND active=0
     </select>
-    <select id="getSellerInfo" resultType="comm.vo.SellerVO">
-        SELECT seller_id, name, phone, email, `desc`, address, seller_icon FROM shop.seller where id = #{seller_no}2
+    <select id="getSellerInfo" resultType="comm.vo.seller.SellerVO">
+        SELECT seller_id, name, phone, email, `desc`, address, seller_icon FROM shop.seller where id = 2
     </select>
 
     <update id="updateSellerInfo">
         update shop.seller set seller_id = #{seller_id}, name = #{name}, phone = #{phone}, email = #{email}, `desc` = #{desc}, address = #{address},
-        seller_icon = #{seller_icon} where id = #{seller_no}
+        seller_icon = #{seller_icon} where id = 2
     </update>
     <update id="updateSellerIcon">
         UPDATE shop.seller
         SET seller_icon = #{seller_icon}
-        WHERE seller_id = #{seller_id}
+        WHERE seller_id = 2
     </update>
     <select id="check_id" parameterType="String" resultType="int">
         SELECT COUNT(*) FROM seller
@@ -29,4 +29,13 @@
         INSERT INTO seller(seller_id,seller_pw,email,phone,name,address,courier,`desc`)
         VALUES(#{seller_id},#{seller_pw},#{email},#{phone},#{name},#{address},#{courier},#{desc})
     </insert>
+    <insert id="log_login" parameterType="String">
+        INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+        VALUES(#{seller_no}, '1', 'LOGIN' , '1',#{seller_no} , NOW())
+    </insert>
+    <insert id="log_logout" parameterType="String">
+        INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date)
+        VALUES(#{seller_no}, '1', 'LOGOUT' , '0',#{seller_no} , NOW())
+    </insert>
+
 </mapper>

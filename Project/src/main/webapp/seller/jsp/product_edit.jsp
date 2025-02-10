@@ -1,4 +1,4 @@
-<%@ page import="comm.vo.ProductVO" %>
+<%@ page import="comm.vo.seller.ProductVO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -160,22 +160,29 @@
         inputElement.click();
     }
     function saveAsImage(){
-        let contentHtml = $("#content").summernote("code");
+        let contentHtml = $("#content").summernote("code");  // Summernote에서 작성된 HTML을 가져옴
         let tempDiv = document.createElement("div");
-        tempDiv.innerHTML = contentHtml;
+        tempDiv.innerHTML = contentHtml;  // 가져온 HTML을 div에 삽입
+
+        // 페이지에 임시로 추가하여 화면을 렌더링하지 않음
         document.body.appendChild(tempDiv);
 
+        // html2canvas를 이용해 화면을 캡처
         html2canvas(tempDiv).then(function(canvas) {
+            // 캡처가 완료된 후, div를 삭제하여 페이지에 추가되지 않도록 함
             document.body.removeChild(tempDiv);
+
+            // Blob으로 변환하고 저장 처리
             canvas.toBlob(function(blob) {
                 if (!blob) {
                     console.error("Blob 생성 실패!");
                     return;
                 }
-                saveAs(blob, "content.png");
+                // FileSaver.js를 이용해 이미지 파일로 저장
+                saveAs(blob, "content.png");  // "content.png"로 저장
             }, "image/png");
         }).catch(error => {
-            console.error("html2canvas 오류 발생:", error);
+            console.error("html2canvas 오류 발생:", error);  // 에러 처리
         });
     }
     function saveProduct(frm){
@@ -530,12 +537,12 @@
         </div>
         <button type="button" class="btn btn-outline-success mt-3" onclick="addAdditionalImage()">이미지 추가</button>
         <hr/>
-     <!-- 추가 이미지 아래에 HTML 에디터 추가 -->
+        <!-- 추가 이미지 아래에 HTML 에디터 추가 -->
         <div class="mb-3" style="margin-top: 30px;">
             <label for="content">상세 설명(HTML)</label>
             <p>HTML 작성 후 이미지로 저장을 하실 수 있습니다.</p>
             <p>이미지로 저장 후 파일 선택을 통해 이미지로 저장된 상세 설명을 선택해주시거나 개별적으로 작성한 상세설명을 첨부하실 수 있습니다.</p>
-            <textarea id="content" name="content">${vo.content}</textarea>
+            <textarea id="content" name="content"></textarea>
             <button type="button" class="btn btn-outline-secondary mt-2" onclick="saveAsImage()">이미지로 저장</button>
         </div>
         <label for="content_image" class="btn btn-outline-secondary" style="width: 200px;">이미지 선택하기</label>

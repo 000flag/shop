@@ -6,20 +6,18 @@ import comm.dao.ProductDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ChangeStatusAction implements Action{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         String selectedOrders = request.getParameter("selectedOrders");
         String status = request.getParameter("status");
+        String seller_no=(String) session.getAttribute("seller_no");
         String[] split_tid= selectedOrders.split(",");
         String[] split_status = status.split(",");
-        for(int i=0;i<split_status.length;i++){
-            System.out.println("tid: "+selectedOrders);
-            System.out.println("status: "+split_status[i]);
-
-        }
-        int cnt = OrderDAO.changeStatus(split_tid,split_status);
+        int cnt = OrderDAO.changeStatus(split_tid,split_status,seller_no);
 
         // JSON 응답 반환
         request.setAttribute("cnt",cnt);

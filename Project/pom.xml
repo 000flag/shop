@@ -147,6 +147,12 @@
         <artifactId>javax.websocket-api</artifactId>
         <version>1.1</version>
       </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.npm/file-saver -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>file-saver</artifactId>
+            <version>2.0.5</version>
+        </dependency>
 
       <!-- JSON 처리 라이브러리 (Jackson) -->
       <dependency>
@@ -154,6 +160,12 @@
         <artifactId>jackson-databind</artifactId>
         <version>2.12.5</version>
       </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.npm/html2canvas -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>html2canvas</artifactId>
+            <version>1.4.1</version>
+        </dependency>
 
       <dependency>
         <groupId>org.glassfish.tyrus.bundles</groupId>

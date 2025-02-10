@@ -1,7 +1,7 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.SellerLogVO;
 import org.apache.ibatis.session.SqlSession;
 
 public class SellerLogDAO {

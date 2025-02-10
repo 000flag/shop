@@ -1,7 +1,7 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.QuestionVO;
+import comm.vo.seller.QuestionVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class QuestionDAO{
         map.put("board_no",board_no);
         map.put("content",content);
         int cnt = ss.insert("question.reply_question",map);
-
+        ss.insert("question.log_reply_question",map);
         if(cnt>0){
             ss.commit();
         }else
