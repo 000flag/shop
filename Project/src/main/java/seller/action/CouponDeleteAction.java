@@ -3,15 +3,18 @@ package seller.action;
 import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.dao.SellerLogDAO;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.SellerLogVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class CouponDeleteAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String seller_no = (String) session.getAttribute("seller_no");
         SellerLogVO vo = new SellerLogVO();
         String id = request.getParameter("id");
         String target = "쿠폰삭제";
@@ -22,6 +25,7 @@ public class CouponDeleteAction implements Action {
         vo.setLog_type(logType);
         vo.setPrev(prev);
         vo.setCurrent(current);
+        vo.setSeller_no(seller_no);
         System.out.println(vo);
 
         int result = CouponDAO.deleteCoupon(id);

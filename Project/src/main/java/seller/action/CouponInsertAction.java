@@ -4,16 +4,19 @@ package seller.action;
 import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.dao.SellerLogDAO;
-import comm.vo.CouponVO;
-import comm.vo.SellerLogVO;
+import comm.vo.seller.CouponVO;
+import comm.vo.seller.SellerLogVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class CouponInsertAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String seller_no = (String) session.getAttribute("seller_no");
         // 폼에서 전달된 데이터 받기
         String name = request.getParameter("name");
         System.out.println(name);
@@ -32,7 +35,7 @@ public class CouponInsertAction implements Action {
         coupon.setEnd_date(end_date);
         coupon.setCategory_no(category_no);
         coupon.setGrade_no(grade_no);
-
+        coupon.setId(seller_no);
         // 쿠폰 추가 실행
         int result = CouponDAO.insertCoupon(coupon);
         System.out.println(coupon);
@@ -47,7 +50,7 @@ public class CouponInsertAction implements Action {
             vo.setLog_type("1");  // 1 = 추가
             vo.setPrev("");  // 추가 이전 값 없음
             vo.setCurrent("쿠폰명: " + name + ", 할인율: " + sale_per + "%"); // 추가된 쿠폰 정보
-
+            vo.setId(seller_no);
             // 🔹 5. 로그 DB에 저장
             SellerLogDAO.insertSellerLog(vo);
             System.out.println("✅ 로그 기록 완료: " + vo);

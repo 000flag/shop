@@ -5,16 +5,16 @@
 <mapper namespace="coupon">
     <!-- 인자로 카테고리 값을 받아 검색하는 기능 -->
 
-    <select id="SearchCoupon" parameterType="String" resultType="comm.vo.CouponVO">
-        select * from shop.coupon where status = 1 and is_del = '0' and seller_no = 2
+    <select id="SearchCoupon" parameterType="String" resultType="comm.vo.seller.CouponVO">
+        select * from shop.coupon where status = 1 and is_del = '0' and seller_no = #{seller_no}
     </select>
 
-    <select id="SearchEndCoupon" parameterType="String" resultType="comm.vo.EndCouponVO">
-        select * from shop.coupon where status = 2 and is_del = '0' and seller_no = 2
+    <select id="SearchEndCoupon" parameterType="String" resultType="comm.vo.seller.EndCouponVO">
+        select * from shop.coupon where status = 2 and is_del = '0' and seller_no = #{seller_no}
     </select>
     
-    <insert id="InsertCoupon" parameterType="comm.vo.CouponVO">
-        insert into shop.coupon (name,start_date,end_date,sale_per,category_no,grade_no,seller_no) value (#{name},#{start_date},#{end_date},#{sale_per},#{category_no},#{grade_no},'2')
+    <insert id="InsertCoupon" parameterType="comm.vo.seller.CouponVO">
+        insert into shop.coupon (name,start_date,end_date,sale_per,category_no,grade_no,seller_no) value (#{name},#{start_date},#{end_date},#{sale_per},#{category_no},#{grade_no},#{id})
     </insert>
 
     <update id="DeleteCoupon" parameterType="String">
@@ -23,7 +23,7 @@
         where id = #{id}
     </update>
 
-    <update id="UpdateCoupon" parameterType="comm.vo.CouponVO">
+    <update id="UpdateCoupon" parameterType="comm.vo.seller.CouponVO">
         update shop.coupon
         set name = #{name},
         start_date = #{start_date},
@@ -34,7 +34,7 @@
         where id = #{id}
     </update>
 
-    <select id="GetCouponById" parameterType="String" resultType="comm.vo.CouponVO">
+    <select id="GetCouponById" parameterType="String" resultType="comm.vo.seller.CouponVO">
         select * from shop.coupon where id = #{id}
     </select>
 </mapper>

@@ -2,13 +2,10 @@ package user.action.Snap;
 
 import user.action.Action;
 import user.dao.snap.SnapDao;
-import user.vo.BoardVO;
+import comm.vo.seller.BoardVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class UpdateSnapAction implements Action {
 

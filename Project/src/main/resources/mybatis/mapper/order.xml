@@ -3,13 +3,32 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
-  <select id="new_order_list" parameterType="String" resultType="comm.vo.OrderVO"> SELECT o.*, p.name as prod_name, c.cus_id,i.option_name,i.count as option_count FROM `order` as o LEFT JOIN product as p ON o.prod_no = p.id LEFT JOIN customer as c ON c.id = o.cus_no LEFT JOIN inventory as i ON o.inventory_no = i.id WHERE p.seller_no = #{seller_no} </select>
-  <select id="get_order_one" parameterType="String" resultType="comm.vo.OrderVO"> SELECT o.*,p.name as prod_name,d.*,i.option_name,i.count as option_count,c.cus_id,c.name as cus_name FROM `order` as o LEFT JOIN product as p ON o.prod_no = p.id LEFT JOIN customer as c ON c.id = o.cus_no LEFT JOIN inventory as i ON o.inventory_no = i.id LEFT JOIN delivery as d ON o.deli_no = d.id WHERE o.id = #{order_no}; </select>
+  <select id="new_order_list" parameterType="String" resultType="comm.vo.seller.OrderVO"> SELECT o.*, p.name as prod_name, c.cus_id,i.option_name,i.count as option_count FROM `order` as o LEFT JOIN product as p ON o.prod_no = p.id LEFT JOIN customer as c ON c.id = o.cus_no LEFT JOIN inventory as i ON o.inventory_no = i.id WHERE p.seller_no = #{seller_no} </select>
+  <select id="get_order_one" parameterType="String" resultType="comm.vo.seller.OrderVO"> SELECT o.*,p.name as prod_name,d.*,i.option_name,i.count as option_count,c.cus_id,c.name as cus_name FROM `order` as o LEFT JOIN product as p ON o.prod_no = p.id LEFT JOIN customer as c ON c.id = o.cus_no LEFT JOIN inventory as i ON o.inventory_no = i.id LEFT JOIN delivery as d ON o.deli_no = d.id WHERE o.id = #{order_no}; </select>
   <update id="change_status" parameterType="String"> UPDATE `order` SET status = #{status}, refund_completed_date = CASE WHEN #{status} = '11' THEN NOW() ELSE refund_completed_date END WHERE tid = #{tid} </update>
   <select id="count" parameterType="String" resultType="java.util.Map"> SELECT status,COUNT(*) as count FROM `order` as o JOIN product as p on p.id = o.prod_no WHERE p.seller_no = #{seller_no} group by status; </select>
   <update id="cancel_order" parameterType="Map"> UPDATE `order` SET reason_seller=#{reason_seller}, status=#{status} WHERE id = #{order_no} </update>
   <select id="get_confirm_month" parameterType="String" resultType="int"> SELECT COUNT(o.purchase_confirm_date) FROM `order` as o JOIN product as p ON p.id = o.prod_no WHERE YEAR(o.purchase_confirm_date) = YEAR(CURDATE()) AND MONTH(o.purchase_confirm_date) = MONTH(CURDATE()) AND p.seller_no = #{seller_no} </select>
   <insert id="log_cancel_order" parameterType="map"> INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date) VALUES(#{seller_no}, '1', CONCAT('order_no: ', #{order_no}), '0',#{reason_seller} , NOW()) </insert>
   <insert id="log_change_status" parameterType="map"> INSERT INTO log(seller_no, writer_type, target, log_type, current, log_date) VALUES(#{seller_no}, '1', CONCAT('tid: ', #{tid}), '2',#{status} , NOW()) </insert>
-  <select id="get_total" parameterType="String" resultType="map"> SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH), '%c월') AS month, COALESCE(SUM(o.result_amount), 0) AS total_sales FROM (SELECT 0 AS month_offset UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5) AS x -- 월별 오프셋을 생성 LEFT JOIN `order` o ON DATE_FORMAT(o.purchase_confirm_date, '%Y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH), '%Y-%m') LEFT JOIN product p ON o.prod_no = p.id AND p.seller_no = #{seller_no} -- 특정 판매자의 데이터만 가져오기 WHERE p.seller_no IS NOT NULL OR o.prod_no IS NULL -- 매칭되지 않는 경우도 포함 GROUP BY month ORDER BY MIN(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH)) ASC; </select>
+  <select id="get_total" parameterType="String" resultType="map">
+    SELECT
+    DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH), '%c월') AS month,
+    COALESCE(SUM(o.result_amount), 0) AS total_sales
+    FROM
+    (SELECT 0 AS month_offset UNION ALL
+    SELECT 1 UNION ALL
+    SELECT 2 UNION ALL
+    SELECT 3 UNION ALL
+    SELECT 4 UNION ALL
+    SELECT 5) AS x -- 월별 오프셋을 생성
+    LEFT JOIN `order` o
+    ON DATE_FORMAT(o.purchase_confirm_date, '%Y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH), '%Y-%m')
+    LEFT JOIN product p
+    ON o.prod_no = p.id
+    AND p.seller_no = #{seller_no} -- 특정 판매자의 데이터만 가져오기
+    WHERE p.seller_no IS NOT NULL OR o.prod_no IS NULL -- 매칭되지 않는 경우도 포함
+    GROUP BY month
+    ORDER BY MIN(DATE_SUB(CURDATE(), INTERVAL x.month_offset MONTH)) ASC
+  </select>
 </mapper>

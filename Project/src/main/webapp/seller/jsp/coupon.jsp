@@ -81,7 +81,7 @@
       white-space: nowrap; /* 줄바꿈 방지 */
     }
     .table th:nth-child(1), .table td:nth-child(1) {
-      width: 4%; /* 번호 열 (작게 설정) */
+      width: 5%; /* 번호 열 (작게 설정) */
     }
     .table th:nth-child(2), .table td:nth-child(2), /* 쿠폰 이름 */
     .table th:nth-child(3), .table td:nth-child(3), /* 발급일자 */
@@ -310,7 +310,13 @@
             </div>
             <div class="mb-3">
               <label for="remaining" class="form-label">등급</label>
-              <input type="number" class="form-control" id="remaining" required>
+              <select class="form-select" id="remaining" required>
+                <option value="" disabled selected>등급을 선택하세요</option>
+                <option value="1">브론즈</option>
+                <option value="2">실버</option>
+                <option value="3">골드</option>
+                <option value="4">다이아</option>
+              </select>
             </div>
           </form>
         </div>
@@ -369,6 +375,20 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
 
 <script>
+  // 등급 매핑 객체
+  const gradeMap = {
+    "1": "브론즈",
+    "2": "실버",
+    "3": "골드",
+    "4": "다이아"
+  };
+
+  // 등급 선택이 변경될 때 콘솔에 매핑된 등급명 출력
+  document.getElementById("remaining").addEventListener("change", function() {
+    let gradeValue = this.value; // 예: "2"
+    let gradeText = gradeMap[gradeValue] || "";
+    console.log("선택된 등급:", gradeText);
+  });
   document.querySelector(".search-criteria").addEventListener("change", function () {
     const criteria = this.value;
 
@@ -668,7 +688,7 @@
       if (!confirm("정말 삭제하시겠습니까?")) return;
 
       $.ajax({
-        url: "/shop/Controller?type=deleteCoupon",
+        url: "/shop/Controller?type=sellerDeleteCoupon",
         type: "POST",
         data: { id: couponId },
         success: function () {

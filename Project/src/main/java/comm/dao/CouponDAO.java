@@ -1,7 +1,7 @@
 package comm.dao;
 
-import comm.vo.CouponVO;
-import comm.vo.EndCouponVO;
+import comm.vo.seller.CouponVO;
+import comm.vo.seller.EndCouponVO;
 import org.apache.ibatis.session.SqlSession;
 import comm.service.FactoryService;
 
@@ -10,17 +10,17 @@ import java.util.List;
 public class CouponDAO {
 
     // 사용 가능한 쿠폰 조회
-    public static List<CouponVO> getAvailableCoupons() {
+    public static List<CouponVO> getAvailableCoupons(String seller_no) {
         SqlSession ss = FactoryService.getFactory().openSession();
-        List<CouponVO> list = ss.selectList("coupon.SearchCoupon");
+        List<CouponVO> list = ss.selectList("coupon.SearchCoupon",seller_no);
         ss.close();
         return list;
     }
 
     // 만료된 쿠폰 조회
-    public static List<EndCouponVO> getExpiredCoupons() {
+    public static List<EndCouponVO> getExpiredCoupons(String seller_no) {
         SqlSession ss = FactoryService.getFactory().openSession();
-        List<EndCouponVO> list = ss.selectList("coupon.SearchEndCoupon");
+        List<EndCouponVO> list = ss.selectList("coupon.SearchEndCoupon",seller_no);
         ss.close();
         return list;
     }
@@ -53,6 +53,7 @@ public class CouponDAO {
     public static int updateCoupon(CouponVO coupon) {
         SqlSession ss = FactoryService.getFactory().openSession();
         int cnt = ss.update("coupon.UpdateCoupon", coupon);
+        System.out.println("cnt = " + cnt);
         if (cnt > 0) {
             ss.commit();
         } else {

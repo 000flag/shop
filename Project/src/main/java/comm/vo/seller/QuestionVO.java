@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class QuestionVO {
     private String id, cus_no, prod_no, bname, title, content, snapshot_image, additional_images, tags, gender, season, style, score, like_count, write_date, order_code, type, status, is_del, is_private;

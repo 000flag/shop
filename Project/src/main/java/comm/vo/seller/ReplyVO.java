@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class ReplyVO {
     private String id, board_no, seller_no, cus_no, content, is_like, write_date, is_del;

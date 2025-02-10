@@ -2,11 +2,12 @@ package seller.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import user.action.Action;
 import comm.dao.SellerDAO;
 import comm.service.S3Uploader;
-import comm.vo.SellerVO;
+import comm.vo.seller.SellerVO;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -21,6 +22,8 @@ public class UpdateSellerAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // 파일 업로드를 위한 설정
         String uploadPath = request.getServletContext().getRealPath("/upload");
+        HttpSession session = request.getSession();
+        String seller_no = (String) session.getAttribute("seller_no");
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -78,8 +81,6 @@ public class UpdateSellerAction implements Action {
                         // S3 업로드
                         S3Uploader s3Uploader = new S3Uploader();
                         sellerIconUrl = s3Uploader.uploadFile(file, "seller-icons/" + uniqueFileName);
-
-
                     }
                 }
             }
@@ -92,24 +93,26 @@ public class UpdateSellerAction implements Action {
             sellerVO.setEmail(email);
             sellerVO.setAddress(address);
             sellerVO.setDesc(desc);
+            sellerVO.setId(seller_no);
+            System.out.println("seller_id:"+sellerId);
             System.out.println("sds"+sellerIconUrl);
 
             // 파일이 존재할 경우에만 업데이트
             if (sellerIconUrl != null) {
                 sellerVO.setSeller_icon(sellerIconUrl);
             }
-
+            System.out.println("updateSeller");
             // DAO를 통해 데이터베이스 업데이트 실행
             int updateSuccess = SellerDAO.updateSeller(sellerVO);
-
+            System.out.println("updateSuccess:"+updateSuccess);
             if (updateSuccess == 1) {
-                System.out.println("성공");
+                System.out.println("success");
             } else {
-                System.out.println("좀되라고 ");
+                System.out.println("not success ");
             }
 
             // 업데이트 후 브랜드 정보 페이지로 리다이렉트
-            SellerVO updatedVO = SellerDAO.getSellerInfo();
+            SellerVO updatedVO = SellerDAO.getSellerInfo(seller_no);
             request.setAttribute("vo", updatedVO);
             return "/seller/jsp/brandinfo.jsp";
 

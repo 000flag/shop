@@ -1,7 +1,6 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.StatusVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.HashMap;

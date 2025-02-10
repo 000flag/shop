@@ -3,7 +3,7 @@ package user.dao.snap;
 import org.apache.ibatis.session.SqlSession;
 import service.FactoryService;
 import user.vo.snap.BoardProductVO;
-import user.vo.BoardVO;
+import comm.vo.seller.BoardVO;
 import user.vo.snap.ProductVO;
 
 import java.util.*;

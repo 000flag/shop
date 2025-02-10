@@ -1,9 +1,8 @@
 package seller.action;
 
-import com.mysql.cj.Session;
 import user.action.Action;
 import comm.dao.QuestionDAO;
-import comm.vo.QuestionVO;
+import comm.vo.seller.QuestionVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

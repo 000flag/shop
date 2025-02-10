@@ -1,24 +1,24 @@
 package comm.dao;
 
 import comm.service.FactoryService;
-import comm.vo.SalesModalVO;
-import comm.vo.SalesVO;
+import comm.vo.seller.SalesModalVO;
+import comm.vo.seller.SalesVO;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 public class SalesDAO {
 
-    public static List<SalesVO> getSalesList() {
+    public static List<SalesVO> getSalesList(String seller_no) {
         SqlSession ss = FactoryService.getFactory().openSession();
-        List<SalesVO> salesList = ss.selectList("sales.getSalesList");
+        List<SalesVO> salesList = ss.selectList("sales.getSalesList",seller_no);
         ss.close();
         return salesList;
     }
 
-    public static int getSalesCount() {
+    public static int getSalesCount(String seller_no) {
         SqlSession ss = FactoryService.getFactory().openSession();
-        int cnt = ss.selectOne("sales.getSalesCount");
+        int cnt = ss.selectOne("sales.getSalesCount",seller_no);
         ss.close();
         return cnt;
     }

@@ -1,9 +1,7 @@
 package seller.action;
 import user.action.Action;
 import comm.dao.OrderDAO;
-import comm.service.FactoryService;
-import comm.vo.OrderVO;
-import comm.vo.ProductVO;
+import comm.vo.seller.OrderVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -25,11 +25,11 @@ import user.action.Action;
     initParams = {
         @WebInitParam(name = "myParam", value = "/WEB-INF/action.properties")
     })
-@MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2,  // 파일이 2MB를 초과하면 디스크 임시 저장소에 저장
-    maxFileSize = 1024 * 1024 * 10,         // 업로드 가능한 단일 파일의 최대 크기를 10MB로 제한
-    maxRequestSize = 1024 * 1024 * 50       // 전체 요청(여러 파일 포함)의 최대 크기를 50MB로 제한
-)
+//@MultipartConfig(
+//    fileSizeThreshold = 1024 * 1024 * 2,  // 파일이 2MB를 초과하면 디스크 임시 저장소에 저장
+//    maxFileSize = 1024 * 1024 * 10,         // 업로드 가능한 단일 파일의 최대 크기를 10MB로 제한
+//    maxRequestSize = 1024 * 1024 * 50       // 전체 요청(여러 파일 포함)의 최대 크기를 50MB로 제한
+//)
 
 public class Controller extends HttpServlet {
   private static final long serialVersionUID = 1L;

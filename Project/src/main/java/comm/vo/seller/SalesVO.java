@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class SalesVO {
     private String order_id, order_date,product_name, category_name, discount_value, final_price, status;

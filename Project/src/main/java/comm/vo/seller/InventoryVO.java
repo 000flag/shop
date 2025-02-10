@@ -1,4 +1,4 @@
-package comm.vo;
+package comm.vo.seller;
 
 public class InventoryVO {
     private String id, prod_no, count, restock_date, status, option_name, total_length, shoulder, chest, sleeve, waist, hip, thigh, rise, hem, foot_length, foot_width, ankle_height, heel_height;

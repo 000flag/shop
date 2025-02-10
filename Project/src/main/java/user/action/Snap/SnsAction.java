@@ -1,5 +1,6 @@
 package user.action.Snap;
 
+import comm.vo.seller.BoardVO;
 import user.action.Action;
 
 import user.dao.snap.*;
@@ -21,7 +22,7 @@ public class SnsAction implements Action {
 
     // Snap 및 연관된 제품 데이터 가져오기
     SnapDao snapDao = new SnapDao();
-    user.vo.BoardVO snap = snapDao.getSnapDetail(boardNo);
+    BoardVO snap = snapDao.getSnapDetail(boardNo);
     List<ProductVO> productList = snapDao.getProductsByBoardNo(boardNo);
 
     int cus_no = snap.getCus_no();

@@ -14,7 +14,7 @@
     INSERT INTO inventory(prod_no, count)
     VALUES(#{id},#{stock})
   </insert>
-  <select id="getOptions" parameterType="String" resultType="comm.vo.InventoryVO">
+  <select id="getOptions" parameterType="String" resultType="comm.vo.seller.InventoryVO">
     SELECT * FROM inventory
     WHERE prod_no = #{prod_no}
     AND status =0

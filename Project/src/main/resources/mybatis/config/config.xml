@@ -44,6 +44,7 @@
     <mapper resource="mybatis/mapper/order.xml"/>
     <mapper resource="mybatis/mapper/question.xml"/>
     <mapper resource="mybatis/mapper/seller.xml"/>
+    <mapper resource="mybatis/mapper/sellerLog.xml"/>
     <mapper resource="mybatis/mapper/sales.xml"/>
 
     <mapper resource="mybatis/mapper/coupon.xml"/>
