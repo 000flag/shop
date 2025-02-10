@@ -1,11 +1,15 @@
 package comm.vo;
 
 public class SellerVO {
-    private String id, seller_id, seller_pw, name, phone, email, desc, courier, address, is_del;
+    private String id, seller_id, seller_pw, name, phone, email, desc, courier, address, is_del, seller_icon;
 
     public String getId() {
         return id;
     }
+
+    public String getSeller_icon() {return seller_icon;}
+
+    public void setSeller_icon(String seller_icon) {this.seller_icon = seller_icon;}
 
     public void setId(String id) {
         this.id = id;

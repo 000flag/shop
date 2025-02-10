@@ -6,6 +6,7 @@ import comm.service.FactoryService;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SellerDAO {
 
@@ -74,10 +75,28 @@ public class SellerDAO {
         ss.close();
         return cnt;
     }
+    // ✅ 로고 이미지 (seller_icon)만 업데이트
+    public static int updateSellerIcon(String sellerId, String logoUrl) {
+        SqlSession ss = FactoryService.getFactory().openSession();
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("sellerId", sellerId);
+            paramMap.put("logoUrl", logoUrl);
+
+            int cnt = ss.update("seller.updateSellerIcon", paramMap);
+            if (cnt > 0) {
+                ss.commit();
+            } else {
+                ss.rollback();
+            }
+            return cnt;
+        } finally {
+            ss.close();
+        }
+    }
     public static SellerVO login(String seller_id){
         SqlSession ss = FactoryService.getFactory().openSession();
         SellerVO vo = ss.selectOne("seller.login",seller_id);
-        System.out.println("DAOvo: "+vo.toString());
         ss.close();
         return  vo;
     }

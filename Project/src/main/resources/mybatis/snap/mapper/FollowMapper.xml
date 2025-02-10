@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FollowMapper">
+  <insert id="addFollow" parameterType="map">
+    INSERT INTO follow (customer_id, following_id, created_at)
+    VALUES (#{customerId}, #{followingId}, NOW())
+  </insert>
+
+  <delete id="removeFollow">
+    DELETE FROM follow
+    WHERE customer_id = #{customerId}
+      AND following_id = #{followingId}
+  </delete>
+
+  <select id="isFollowing" resultType="int">
+    SELECT COUNT(*)
+    FROM follow
+    WHERE customer_id = #{customerId}
+      AND following_id = #{followingId}
+  </select>
+
+
+  <select id="getFollowers" parameterType="map" resultType="user.vo.snap.CustomerVO">
+    SELECT c.id AS user_id,
+           c.profile_image,
+           c.nickname,
+           (SELECT COUNT(*) FROM follow
+            WHERE customer_id = #{sessionUserId}
+              AND following_id = c.id) AS is_following
+    FROM follow f
+           JOIN customer c ON f.customer_id = c.id
+    WHERE f.following_id = #{userId}
+
+  </select>
+
+  <select id="getFollowings" parameterType="map" resultType="user.vo.snap.CustomerVO">
+    SELECT c.id AS user_id, c.profile_image, c.nickname,
+           (SELECT COUNT(*) FROM follow WHERE customer_id = #{sessionUserId} AND following_id = c.id) AS is_following
+    FROM follow f
+           JOIN customer c ON f.following_id = c.id
+    WHERE f.customer_id = #{userId}
+  </select>
+
+
+
+  <select id="getFollowerCount" parameterType="int" resultType="int">
+    SELECT COUNT(*) FROM follow WHERE following_id = #{userId}
+  </select>
+
+  <select id="getFollowingCount" parameterType="int" resultType="int">
+    SELECT COUNT(*) FROM follow WHERE customer_id = #{userId}
+  </select>
+
+  <select id="searchUsers" parameterType="String" resultType="user.vo.snap.CustomerVO">
+    SELECT c.id, c.nickname, c.profile_image,
+           (SELECT COUNT(*) FROM follow f WHERE f.customer_id = c.id) AS follower_count
+    FROM customer c   WHERE c.nickname LIKE CONCAT('%', #{keyword}, '%')
+    ORDER BY CASE WHEN c.nickname = #{keyword} THEN 1
+        WHEN c.nickname LIKE CONCAT(#{keyword}, '%') THEN 2
+        WHEN c.nickname LIKE CONCAT('%', #{keyword}) THEN 3
+        ELSE 4  END LIMIT 4
+  </select>
+
+
+
+</mapper>

@@ -1,6 +1,6 @@
 package seller.action;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.SalesDAO;
 import comm.vo.SalesModalVO;
 import javax.servlet.http.HttpServletRequest;

@@ -1,0 +1,30 @@
+.user-header-menu {
+    gap: 25px !important;
+}
+
+.nickname {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.like_title {
+    color: rgb(33, 37, 41);
+}
+
+.new_alert {
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 50%;
+    position: relative;
+    bottom: 10px;
+    right: 5px;
+}
+
+.cart_count {
+    position: relative;
+    bottom: 10px;
+    right: 12px;
+}

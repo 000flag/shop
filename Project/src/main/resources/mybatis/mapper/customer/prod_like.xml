@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="prod_like">
+    <!-- 좋아요 조회(상품 상세) -->
+    <select id="select_prod_like" resultType="user.vo.customer.ProdLikeVO" parameterType="user.vo.customer.ProdLikeVO">
+        SELECT * FROM prod_like
+        WHERE cus_no = #{cus_no} AND prod_no = #{prod_no}
+    </select>
+
+    <!-- 좋아요 목록 (좋아요 페이지) -->
+    <select id="select_prod_like_list" resultType="user.vo.customer.ProdLikeVO" parameterType="user.vo.customer.ProdLikeVO">
+        SELECT
+            pl.*,
+            p.category_no, p.seller_no, p.name AS p_name, p.price, p.sale, p.prod_image, p.saled_price,
+            s.name AS brand,
+            COALESCE((
+                SELECT COUNT(*) FROM prod_like l
+                WHERE l.prod_no = p.id AND l.like_status IN ('1', '3')
+                GROUP BY l.prod_no
+            ), 0) AS like_count,
+            (SELECT FORMAT(AVG(score), 1) FROM board b WHERE b.prod_no = p.id AND b.bname = 'review') AS avg_score,
+            (SELECT COUNT(*) FROM board b WHERE b.prod_no = p.id AND b.bname = 'review') AS review_count
+        FROM prod_like pl
+        JOIN product p ON pl.prod_no = p.id
+        JOIN seller s ON p.seller_no = s.id
+        WHERE pl.cus_no = #{cus_no} AND p.is_del = 0 AND p.active = 1 AND s.is_del = 0
+    </select>
+
+    <!-- 좋아요 설정 -->
+    <insert id="insert_prod_like" parameterType="user.vo.customer.ProdLikeVO">
+        INSERT INTO prod_like (prod_no, cus_no, like_status)
+        VALUES (#{prod_no}, #{cus_no}, '1')
+    </insert>
+
+    <!-- 좋아요 해제 -->
+    <delete id="delete_prod_like" parameterType="user.vo.customer.ProdLikeVO">
+        DELETE FROM prod_like
+        WHERE cus_no = #{cus_no} AND prod_no = #{prod_no}
+    </delete>
+</mapper>

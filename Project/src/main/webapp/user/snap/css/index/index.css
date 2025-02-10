@@ -1,0 +1,268 @@
+.product-menu {
+    width: 250px;
+    margin-top: 20px;
+    float: left;
+}
+
+.card {
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.card:not(:first-child) {
+    border-top: none !important;
+}
+
+.card-header {
+    background-color: #fff !important;
+    border-bottom: none !important;
+    border-radius: initial !important;
+    padding: 10px 15px;
+}
+
+.text-left {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 10px 25px !important;
+}
+
+.btn-link {
+    text-decoration: none !important;
+    color: #333;
+    width: 100%;
+}
+
+.btn-link:hover {
+    text-decoration: none;
+}
+
+.btn-link:active, .btn-link:focus, .btn-link:focus-visible {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.bi-plus, .bi-dash {
+    color: #333;
+}
+
+.popular-list,
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popular-list li,
+.category-list li {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.badge-secondary {
+    font-size: 12px;
+    background-color: #fff;
+    color: #656565 !important;
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+.list-unstyled {
+    padding: 0 10px;
+    margin-bottom: 0 !important;
+}
+
+.list-unstyled li {
+    margin: 10px 0;
+}
+
+.list-unstyled li:last-child {
+    margin-bottom: 0;
+}
+
+.unstyled-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* Content */
+.product-section {
+    width: calc(100% - 280px);
+    float: right;
+    margin-left: 20px;
+}
+
+.sorting-bar {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.selected-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.selected-item {
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.selected-item .item-text, .selected-item .remove-item {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.selected-filters .unstyled-btn i {
+    color: rgb(221, 53, 69);
+}
+
+.sort-pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-dropdown {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.dropdown-items {
+    display: flex;
+    gap: 15px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown-item.active {
+    font-weight: bold;
+    color: #000;
+    background-color: #e6e6e6;
+}
+
+.dropdown-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 1px;
+    background-color: #ddd;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.pagination .page-item .page-link {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.pagination .page-item .page-link:first-child, .pagination .page-item .page-link:last-child {
+    height: 31.5px;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #f1f1f1;
+}
+
+.product-list {
+    gap: 5px;
+}
+
+.product-item {
+    width: 210px;
+    min-width: 210px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.product-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 4px;
+}
+
+.product-info {
+    margin-top: 5px;
+    padding: 5px 20px;
+}
+
+.product-brand,
+.product-name,
+.product-price {
+    margin-bottom: 5px;
+}
+
+.product-brand, .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 200px;
+}
+
+.product-price {
+    font-weight: bold;
+}
+
+.product-price del {
+    font-size: 13px;
+    font-weight: normal;
+    color: #8f8d8d;
+}
+
+.product-rating {
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.stars i, .stars .star-count {
+    color: #f5c518;
+    font-weight: bold;
+}
+
+.product-likes {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.product-likes i, .product-likes .like-count {
+    color: rgb(221, 53, 69);
+    font-weight: bold;
+}

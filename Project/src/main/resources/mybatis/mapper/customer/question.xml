@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="question">
+    <!-- 전체 상품문의 조회 -->
+    <select id="select_all" resultType="user.vo.customer.BoardVO" parameterType="String">
+        SELECT s.name AS brand, r.content AS r_content, r.write_date AS r_write_date, c.cus_id AS c_cus_id, b.*
+        FROM board b
+        LEFT JOIN reply r ON b.id = r.board_no
+        LEFT JOIN seller s ON r.seller_no = s.id
+        LEFT JOIN customer c ON b.cus_no = c.id
+        WHERE b.cus_no = #{cus_no} AND b.is_del = 0
+        AND (r.is_del = 0 OR r.is_del IS NULL)
+        AND b.bname = 'question'
+        ORDER BY b.write_date DESC, b.id DESC
+    </select>
+
+    <!-- 상품상세 문의 -->
+    <select id="select_prod_question" resultType="user.vo.customer.BoardVO" parameterType="String">
+        SELECT s.name AS brand, r.content AS r_content, r.write_date AS r_write_date, c.cus_id AS c_cus_id, b.*
+        FROM board b
+        LEFT JOIN reply r ON b.id = r.board_no
+        LEFT JOIN seller s ON r.seller_no = s.id
+        LEFT JOIN customer c ON b.cus_no = c.id
+        WHERE b.prod_no = #{prod_no} AND b.is_del = 0
+        AND (r.is_del = 0 OR r.is_del IS NULL)
+        AND b.bname = 'question'
+        ORDER BY b.write_date DESC, b.id DESC
+    </select>
+
+    <!-- 답변 상태에 따른 상품문의 조회 -->
+    <select id="select_option" resultType="user.vo.customer.BoardVO" parameterType="map">
+        SELECT s.name AS brand, r.content AS r_content, r.write_date AS r_write_date, b.*
+        FROM board b
+        LEFT JOIN reply r ON b.id = r.board_no
+        LEFT JOIN seller s ON r.seller_no = s.id
+        WHERE b.is_del = 0 AND b.cus_no = #{cus_no}
+        AND (r.is_del = 0 OR r.is_del IS NULL)
+        AND b.bname = 'question'
+        <if test="status != null and status != 'all'">
+            <choose>
+                <!-- 답변 대기 -->
+                <when test="status == 'wait'">
+                    AND b.status = 1
+                </when>
+                <!-- 답변 확인중 -->
+                <when test="status == 'checking'">
+                    AND b.status = 2
+                </when>
+                <!-- 답변 완료 -->
+                <when test="status == 'complete'">
+                    AND b.status = 3
+                </when>
+            </choose>
+        </if>
+        <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+            AND b.write_date BETWEEN #{startDate} AND #{endDate}
+        </if>
+        ORDER BY b.write_date DESC, b.id DESC
+    </select>
+
+    <!-- 상품 문의 등록 (writeQuestion.jsp) -->
+    <insert id="insert_question" parameterType="user.vo.customer.BoardVO">
+        INSERT INTO board(cus_no, prod_no, bname, title, content, additional_images, write_date, type, status, is_del, is_private)
+        VALUES(#{cus_no}, #{prod_no}, 'question', #{title}, #{content}, #{additional_images}, NOW(), #{type}, 1, 0, #{is_private})
+    </insert>
+</mapper>

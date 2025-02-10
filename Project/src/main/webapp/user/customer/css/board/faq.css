@@ -1,0 +1,44 @@
+.container {
+    width: 900px !important;
+}
+
+.text-title {
+    height: 60px;
+}
+
+.text-title h3 {
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 22px;
+}
+
+.accordion-button {
+    background-color: #fff !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-type {
+    margin-right: 10px;
+    color: #757373;
+}
+
+.accordion-title {
+    color: #212121;
+}
+
+.board-button-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.board-button-container button {
+    width: 100%;
+}
+
+.board-button-container button:hover {
+    background-color: #000 !important;
+    color: #fff !important;
+}

@@ -1,7 +1,7 @@
 package seller.action;
 
 import com.mysql.cj.Session;
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.QuestionDAO;
 import comm.vo.QuestionVO;
 

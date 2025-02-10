@@ -1,0 +1,84 @@
+.loyalty-points-section {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.points-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.points-item:last-child {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.points-label {
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+}
+
+.points-value {
+    text-align: right;
+    font-size: 14px;
+    color: #333;
+}
+
+.point-tabs {
+    margin-top: 20px;
+}
+
+.custom-points-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.custom-points-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-points-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.custom-points-amount {
+    font-size: 13px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.custom-points-amount.custom-negative {
+    color: #7d7c7c;
+}
+
+.custom-points-description {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.custom-points-status, .custom-points-date {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 0px !important;
+}

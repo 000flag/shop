@@ -181,7 +181,7 @@
                     <c:if test="${order.status == 2 || order.status == 3}">
                         <tr class="list">
                             <td><c:if test="${order.status == 2}">
-                                <input type="checkbox" name="returnBox">
+                                <input type="checkbox" name="readyBox">
                             </c:if></td>
                             <td> <a href="#" class="text-primary" onclick="setModal('${order.id}')" >
                                 ${order.tid}
@@ -381,7 +381,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="cancelForm" method="post" action="cancelOrder">
+                <form id="cancelForm" method="post" action="sellerCancelOrder">
                     <div class="mb-3">
                         <label for="cancelReason" class="form-label">사유 선택</label>
                         <select class="form-select" id="cancelReason" name="cancelReason" required onchange="cancelChange()">
@@ -564,7 +564,7 @@
 
     // 선택된 항목 처리
     function processSelected(button) {
-        const selectedOrders = [];
+        let selectedOrders = [];
         let checkboxes = [];
         let status = [];
         let chk = false;
@@ -580,7 +580,7 @@
         }
 
 
-        if (chk) {
+
             let i = 0;
             checkboxes.forEach(checkbox => {
                 // checkbox가 속한 tr 요소를 찾아서 그 안의 td 값 추출
@@ -593,11 +593,11 @@
                     else if (division === '교환')
                         status[i] = 2;
                 }
-
                 selectedOrders.push(orderValue);
                 i++;
             });
-        }
+
+        console.log(selectedOrders.join(','));
         const param = "type=changeStatus&selectedOrders="+encodeURIComponent(selectedOrders.join(','))+"&status="+encodeURIComponent(status.join(','));
         $.ajax({
             url: "Controller",
@@ -686,7 +686,7 @@
             if (!userConfirmed) {
                 return; // 사용자가 "취소"를 클릭하면 아무 작업도 하지 않음
             }
-            const param = "type=cancelOrder&order_no="+encodeURIComponent(order_no)+"&reason_seller="+encodeURIComponent(reason)+"&status="+encodeURIComponent(status);
+            const param = "type=sellerCancelOrder&order_no="+encodeURIComponent(order_no)+"&reason_seller="+encodeURIComponent(reason)+"&status="+encodeURIComponent(status);
             // 예시로, 서버에 데이터를 전송하는 코드 (AJAX)
             $.ajax({
                 url: "Controller",  // 취소 요청을 처리할 서버 URL

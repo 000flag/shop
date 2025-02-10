@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="likes">
+
+  <!-- 좋아요 여부 확인 -->
+  <!-- 좋아요 데이터 삽입 -->
+  <insert id="insertLike" parameterType="user.vo.snap.LikesVO">
+    INSERT INTO likes (board_no, cus_no, status)
+    VALUES (#{boardNo}, #{cusNo}, #{status})
+  </insert>
+
+  <!-- 좋아요 데이터 업데이트 -->
+  <update id="updateLike" parameterType="user.vo.snap.LikesVO">
+    UPDATE likes SET status = #{status} WHERE board_no = #{boardNo} AND cus_no = #{cusNo}
+  </update>
+
+  <select id="checkLikeExists" resultType="java.lang.Integer" parameterType="user.vo.snap.LikesVO">
+    SELECT status
+    FROM likes
+    WHERE board_no = #{boardNo} AND cus_no = #{cusNo} AND status=1
+  </select>
+
+  <select id="checkLikeExists1" resultType="java.lang.Integer" parameterType="user.vo.snap.LikesVO">
+    SELECT status
+    FROM likes
+    WHERE board_no = #{boardNo} AND cus_no = #{cusNo}
+  </select>
+
+  <select id="getCurrentStatus" resultType="java.lang.Integer" parameterType="user.vo.snap.LikesVO">
+    SELECT status
+    FROM likes
+    WHERE board_no = #{boardNo} AND cus_no = #{cusNo}
+  </select>
+
+
+
+
+</mapper>

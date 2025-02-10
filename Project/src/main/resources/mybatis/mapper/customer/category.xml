@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+    <resultMap id="map1" type="user.vo.customer.MajorCategoryVO">
+        <id property="id" column="id"/>
+        <collection property="middleCategories" ofType="user.vo.customer.MiddleCategoryVO" select="select_middle_category" column="id"/>
+    </resultMap>
+
+    <!-- 대분류 카테고리 목록 가져오기 -->
+    <select id="select_major_category" resultMap="map1">
+        SELECT * FROM major_category WHERE is_del = 0
+    </select>
+
+    <!-- 대분류 카테고리 번호를 인자로 받아 중분류 카테고리 목록 가져오기 -->
+    <select id="select_middle_category" resultType="user.vo.customer.MiddleCategoryVO" parameterType="String">
+        SELECT * FROM middle_category WHERE is_del = 0
+    </select>
+</mapper>

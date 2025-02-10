@@ -2,7 +2,7 @@ package seller.action;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import comm.action.Action;
+import user.action.Action;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

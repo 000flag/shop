@@ -9,11 +9,17 @@
         AND active=0
     </select>
     <select id="getSellerInfo" resultType="comm.vo.SellerVO">
-        SELECT seller_id, name, phone, email, `desc`, address FROM shop.seller where id = 2
+        SELECT seller_id, name, phone, email, `desc`, address, seller_icon FROM shop.seller where id = #{seller_no}2
     </select>
 
     <update id="updateSellerInfo">
-        update shop.seller set seller_id = #{seller_id}, name = #{name}, phone = #{phone}, email = #{email}, `desc` = #{desc}, address = #{address} where id = 2
+        update shop.seller set seller_id = #{seller_id}, name = #{name}, phone = #{phone}, email = #{email}, `desc` = #{desc}, address = #{address},
+        seller_icon = #{seller_icon} where id = #{seller_no}
+    </update>
+    <update id="updateSellerIcon">
+        UPDATE shop.seller
+        SET seller_icon = #{seller_icon}
+        WHERE seller_id = #{seller_id}
     </update>
     <select id="check_id" parameterType="String" resultType="int">
         SELECT COUNT(*) FROM seller

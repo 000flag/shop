@@ -11,7 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
-
+webapp/WEB-INF/config.properties
+mybatis/config/config.xml
 ### Eclipse ###
 .apt_generated
 .classpath

@@ -1,0 +1,103 @@
+#delivery-table thead tr th:first-child {
+    width: 50px;
+}
+
+#delivery-table thead tr th:nth-child(2) {
+    width: 100px;
+}
+
+#delivery-table thead tr th:nth-child(3) {
+    width: 130px;
+}
+
+#delivery-table thead tr th:nth-child(4) {
+    width: 160px;
+}
+
+#delivery-table thead tr th:last-child {
+    width: 120px;
+}
+
+.delivery-notice {
+    height: 100px;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #a3a4a5;
+    border: 1px solid #a3a4a5;
+}
+
+.delivery-buttons-left {
+    float: left;
+    text-align: left;
+}
+
+.delivery-buttons-right {
+    float: right;
+    text-align: right;
+}
+
+.delivery-notice > ol {
+    list-style: none;
+    padding: 20px;
+}
+
+.delivery-notice li {
+    text-align: left;
+    color: #fff;
+}
+
+.add-address-button {
+    display: block;
+    width: 20%;
+}
+
+.add-address-button:hover {
+    background-color: #f5f5f5;
+}
+
+.address-box {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.address-box label {
+    margin-bottom: 0 !important;
+}
+
+.address-details {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.default {
+    font-size: 12px;
+    color: #007aff;
+}
+
+.address {
+    font-size: 13px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.phone, .request {
+    font-size: 13px;
+    color: #555;
+}
+
+.delivery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

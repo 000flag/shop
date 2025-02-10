@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="event">
+    <!-- 알림 조회 -->
+    <select id="select_event" resultType="user.vo.customer.EventVO" parameterType="Map">
+        SELECT
+            e.id AS id,
+            s.name AS brand,
+            s.seller_icon AS brand_icon,
+            c.id AS coupon_no,
+            c.name AS coupon_name,
+            c.sale_per,
+            c.grade_no,
+            e.event_time,
+            IF(ce.event_no IS NULL, 0, 1) AS is_read
+        FROM event e
+        JOIN coupon c ON e.coupon_no = c.id
+        LEFT JOIN seller s ON c.seller_no = s.id
+        LEFT JOIN cus_event ce ON e.id = ce.event_no AND ce.cus_no = #{cus_no}
+        WHERE c.grade_no = #{grade_no} AND e.is_del = 0
+        ORDER BY
+        e.event_time DESC
+    </select>
+
+    <!-- 읽음 처리 -->
+    <insert id="insert_cus_event" parameterType="user.vo.customer.EventVO">
+        INSERT INTO cus_event (cus_no, event_no, read_time)
+        VALUES (#{cus_no}, #{event_no}, NOW())
+    </insert>
+</mapper>

@@ -1,0 +1,114 @@
+.search-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar label {
+    font-size: 14px;
+    color: #555;
+    margin-right: 5px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    min-width: 60px;
+}
+
+.search-bar label[for="date-range"] {
+    margin-left: 10px;
+}
+
+.search-bar select,
+.search-bar input[type="date"] {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 115px;
+}
+
+.search-bar .search-button {
+    min-width: 55px;
+}
+
+.date-picker {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.question-container {
+    padding: 20px;
+}
+
+.wrap-question {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.question {
+    margin-bottom: 10px;
+}
+
+.answer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-left: 3px solid #007bff;
+}
+
+.answer p {
+    margin: 0 0 5px;
+    line-height: 1.5;
+}
+
+.question-container .product-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    gap: 15px;
+}
+
+.question-container .product-info .product-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.product-link .product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 0;
+}
+
+.product-link .product-details {
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+}
+
+.product-link .product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    font-size: 14px;
+    color: #555;
+}

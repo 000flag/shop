@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+@import "reset.css";
+
+.wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden auto;
+}
+
+.row {
+    padding: 20px;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.wrap::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.wrap::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/**************
+기타 스타일
+***************/
+.ellip { /* 문자열이 공간에 맞도록 줄임표 표현 */
+    display: inline-block;
+    width: 97%;
+
+    /* 스페이스, 탭 줄바꿈 등을 공백 1칸으로 표시 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 줄임표 표현 */
+}

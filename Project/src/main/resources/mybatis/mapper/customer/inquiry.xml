@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiry">
+    <!-- 전체 1:1문의 조회 -->
+    <select id="select_all" resultType="user.vo.customer.BoardVO" parameterType="String">
+        SELECT
+            NULL AS s_name,
+            b.id,
+            b.cus_no,
+            b.prod_no,
+            b.bname,
+            b.title,
+            b.content,
+            b.write_date,
+            b.additional_images,
+            b.status,
+            b.order_code,
+            NULL AS r_content
+        FROM board b
+        WHERE b.cus_no = #{cus_no}
+            AND b.is_del = 0
+            AND b.bname = 'inquiry'
+            AND NOT EXISTS (SELECT 1 FROM reply r WHERE r.board_no = b.id)
+        UNION
+        SELECT
+            s.name AS s_name,
+            b.id,
+            b.cus_no,
+            b.prod_no,
+            b.bname,
+            b.title,
+            b.content,
+            b.write_date,
+            b.additional_images,
+            b.status,
+            b.order_code,
+            r.content AS r_content
+        FROM reply r
+        INNER JOIN board b ON b.id = r.board_no
+        INNER JOIN seller s ON r.seller_no = s.id
+        WHERE b.cus_no = #{cus_no}
+            AND b.is_del = 0
+            AND b.bname = 'inquiry'
+        ORDER BY write_date DESC
+    </select>
+
+    <!-- 검색 조건에 맞는 1:1문의 조회 -->
+    <select id="select_search" resultType="user.vo.customer.BoardVO" parameterType="Map">
+        SELECT
+        <if test="status != null and status != 3">
+            *
+        </if>
+        <if test="status != null and status == 3">
+            b.id, b.cus_no, b.prod_no, b.bname, b.title, b.content, b.write_date, b.additional_images,
+            s.name AS s_name, b.status,
+            r.content AS r_content
+        </if>
+        FROM board b
+        <if test="status != null and status == 3">
+            INNER JOIN reply r ON b.id = r.board_no
+            INNER JOIN seller s ON r.seller_no = s.id
+        </if>
+        WHERE b.is_del = 0
+        AND b.cus_no = #{cus_no}
+        <if test="status != null and status != 0">
+            AND b.status = #{status}
+        </if>
+        <if test="startDate != null and endDate != null">
+            AND b.write_date BETWEEN #{startDate} AND #{endDate}
+        </if>
+        ORDER BY b.write_date DESC
+    </select>
+
+    <!-- 1:1문의 등록 -->
+    <insert id="insert_inquiry" parameterType="user.vo.customer.BoardVO">
+        INSERT INTO board (cus_no, bname, content, additional_images, write_date, order_code, type, status, is_del)
+        VALUES (#{cus_no}, 'inquiry', #{content}, #{additional_images}, NOW(), #{order_code}, #{type}, 1, 0)
+    </insert>
+</mapper>

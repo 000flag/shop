@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+
+  <!-- 스냅샷 글쓰기 저장 -->
+  <insert id="insertBoard" parameterType="user.vo.BoardVO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    INSERT INTO board (bname, cus_no, gender, season, style, tags, content, snapshot_image, additional_images, like_count, write_date, is_del)
+    VALUES (#{bname}, #{cus_no}, #{gender}, #{season}, #{style}, #{tags}, #{content}, #{snapshot_image}, #{additional_images}, 0, NOW(), 0)
+  </insert>
+  <!-- board저장되면서 prod테이블 저장되기  -->
+  <insert id="insertBoardProd" parameterType="map">
+    INSERT INTO board_prod (board_no, prod_no)
+    VALUES
+    <foreach collection="prodNos" item="prodNo" separator=",">
+      (#{boardNo}, #{prodNo})
+    </foreach>
+  </insert>
+
+
+
+
+  <select id="getSnapList"  parameterType="map" resultType="user.vo.BoardVO">
+    SELECT id, cus_no, gender, season, style, title, content, snapshot_image, like_count, write_date, is_del
+    FROM board
+    WHERE is_del = 0 AND bname = snap
+    ORDER BY write_date DESC
+    LIMIT #{offset}, #{limit}
+  </select>
+
+  <select id="getTotalSnapCount" resultType="int">
+    SELECT COUNT(*)
+    FROM board
+    WHERE bname = 'snap' AND is_del = 0
+  </select>
+
+
+  <select id="getFilteredSnapList" parameterType="map" resultType="user.vo.BoardVO">
+    SELECT id, cus_no, gender, season, style, title, content, snapshot_image, like_count, write_date, is_del
+    FROM board
+    WHERE 1=1
+    AND bname = 'snap' AND is_del = 0
+    <if test="gender != null and gender != ''"> AND gender = #{gender} </if>
+    <if test="season != null and season != ''"> AND season LIKE CONCAT('%', #{season}, '%') </if>
+    <if test="style != null and style != ''"> AND style LIKE CONCAT('%', #{style}, '%') </if>
+    ORDER BY write_date DESC
+    LIMIT #{offset}, #{limit}
+  </select>
+
+
+  <select id="getTotalFilteredSnapCount" parameterType="map" resultType="int">
+    SELECT COUNT(*)
+    FROM board
+    WHERE 1=1
+    AND bname = 'snap' AND is_del = 0
+    <if test="gender != null and gender != ''"> AND gender = #{gender} </if>
+    <if test="season != null and season != ''"> AND season LIKE CONCAT('%', #{season}, '%') </if>
+    <if test="style != null and style != ''"> AND style LIKE CONCAT('%', #{style}, '%') </if>
+  </select>
+
+  <update id="incrementLikeCount" parameterType="int">
+    UPDATE board
+    SET like_count = like_count + 1
+    WHERE id = #{boardNo}
+  </update>
+
+  <update id="decrementLikeCount" parameterType="int">
+    UPDATE board
+    SET like_count = like_count - 1
+    WHERE id = #{boardNo}
+  </update>
+
+  <select id="getBoardDetail" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT id, cus_no, gender, season, style, title, content, snapshot_image, additional_images, like_count, write_date
+    FROM board
+    WHERE id = #{id}
+  </select>
+
+  <select id="getSnapWithCustomerData" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT s.id AS snap_id, s.title, s.content, s.snapshot_image, s.additional_images, c.height, c.weight, c.profile_image, c.nickname, c.gender
+    FROM board s JOIN customer c ON s.cus_no = c.id WHERE s.id = #{snapId}
+  </select>
+
+
+  <select id="getPurchasedProducts" parameterType="int" resultType="user.vo.snap.ProductVO">
+    SELECT p.id, p.name, p.prod_image
+    FROM product p
+    JOIN `order` o ON p.id = o.prod_no
+    WHERE o.cus_no = #{cusNo} AND o.status = 1
+  </select>
+
+  <select id="getProductsByKeyword" parameterType="string" resultType="user.vo.snap.ProductVO">
+    SELECT id, name, prod_image
+    FROM product
+    WHERE name LIKE CONCAT('%', #{keyword}, '%') AND active = 1
+  </select>
+
+  <select id="getProfile" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT c.id, b.cus_no, b.gender, b.season, b.style, b.title, b.content, b.snapshot_image, b.like_count, b.write_date, b.is_del , c.Introduce,
+    c.profile_image,c.nickname
+    FROM customer c LEFT JOIN board b ON b.cus_no = c.id  AND bname = 'snap' AND b.is_del = 0 WHERE c.id =#{cus_no}
+  </select>
+
+  <select id="getProfile1" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT b.id, b.cus_no, b.gender, b.season, b.style, b.title, b.content, b.snapshot_image, b.like_count, b.write_date, b.is_del , c.Introduce,
+    c.profile_image,c.nickname
+    FROM customer c LEFT JOIN board b ON b.cus_no = c.id  AND bname = 'snap' AND b.is_del = 0 WHERE c.id =#{cus_no}
+  </select>
+
+
+
+  <select id="getProductsByBoardNo" parameterType="int" resultType="user.vo.snap.ProductVO">
+    SELECT p.id, p.name, p.prod_image, p.price, p.sale, s.name AS sellerName
+    FROM product p
+    JOIN board_prod bp ON p.id = bp.prod_no
+    JOIN seller s ON p.seller_no = s.id
+    WHERE bp.board_no = #{boardNo}
+  </select>
+
+  <select id="getSnapDetail" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT b.*, c.nickname, c.profile_image, c.gender AS customer_gender, c.height, c.weight
+    FROM board b JOIN customer c ON b.cus_no = c.id
+    WHERE b.id = #{boardNo}
+  </select>
+
+
+
+
+  <update id="deleteSnap" parameterType="int">
+    UPDATE board
+    SET is_del = 1
+    WHERE id = #{id}
+
+  </update>
+
+  <update id="updateSnap" parameterType="user.vo.BoardVO">
+    UPDATE board
+    SET content = #{content}, gender = #{gender}, season = #{season}, style = #{style},
+    tags = #{tags}, snapshot_image = #{snapshot_image}, additional_images = #{additional_images}
+    WHERE id = #{id}
+  </update>
+
+  <delete id="deleteBoardProducts" parameterType="int">
+    DELETE FROM board_prod WHERE board_no = #{board_no}
+  </delete>
+
+  <insert id="insertBoardProduct" parameterType="user.vo.snap.BoardProductVO">
+    INSERT INTO board_prod (board_no, prod_no) VALUES (#{board_no}, #{prod_no})
+  </insert>
+
+  <select id="getSnapDetaill" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT
+    b.*,
+    COALESCE(GROUP_CONCAT(bp.prod_no SEPARATOR ','), '') AS products
+    FROM board b
+    LEFT JOIN board_prod bp ON b.id = bp.board_no
+    WHERE b.id = #{board_no}
+    GROUP BY b.id
+  </select>
+
+  <select id="boardCount" parameterType="int" resultType="int">
+    SELECT COUNT(*) AS count
+    FROM board
+    WHERE cus_no = #{customerId} AND iS_del = 0
+  </select>
+
+
+
+
+  <!-- 테스트용 -->
+  <select id="selectBoardById" parameterType="int" resultType="user.vo.BoardVO">
+    SELECT id, cus_no, bname, gender, season, style, tags, content, snapshot_image, additional_images,
+    like_count, write_date, order_code, type, status, is_del, is_private, prod_no
+    FROM board
+    WHERE id = #{id}
+  </select>
+
+  <!-- 게시글 업데이트 -->
+  <update id="updateBoard" parameterType="user.vo.BoardVO">
+    UPDATE board
+    SET
+    gender = #{gender},
+    season = #{season},
+    style = #{style},
+    tags = #{tags},
+    content = #{content}
+
+    WHERE id = #{id}
+  </update>
+
+
+  <select id="selectProductsByBoardId" parameterType="int" resultType="user.vo.snap.ProductVO">
+    SELECT p.id,
+    p.category_no,
+    p.seller_no,
+    p.prod_code,
+    p.name,
+    p.price,
+    p.add_date,
+    p.view_count,
+    p.active,
+    p.sale,
+    p.prod_image,
+    p.additional_images,
+    p.content,
+    p.is_del,
+    p.saled_price,
+    p.content_image,
+    p.major_category
+    FROM board_prod bp
+    JOIN product p ON bp.prod_no = p.id
+    WHERE bp.board_no = #{boardId}
+  </select>
+
+  </mapper>
+
+
+

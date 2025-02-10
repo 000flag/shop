@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coupon">
+    <!-- 상품에 적용할 수 있는 쿠폰 목록 -->
+    <select id="select_prod_coupon" resultType="user.vo.customer.CouponVO" parameterType="Map">
+        SELECT c.*
+        FROM coupon c
+        JOIN product p ON (p.category_no = c.category_no)
+        WHERE p.id = #{prod_no}
+            AND c.grade_no = #{grade_no}
+            AND c.status = '1'
+            AND c.is_del = '0'
+            AND NOT EXISTS (
+                SELECT 1
+                FROM cus_coupon cc
+                WHERE cc.cus_no = #{cus_no}
+                AND cc.coupon_no = c.id
+        )
+    </select>
+
+    <!-- 쿠폰 사용 이력 추가 -->
+    <insert id="insert_cus_coupon" parameterType="Map">
+        INSERT INTO cus_coupon (cus_no, coupon_no, order_code, used_date, status)
+        VALUES (#{cus_no}, #{coupon_no}, #{order_code}, NOW(), 2)
+    </insert>
+
+    <!-- 사용한 쿠폰 복구 -->
+    <update id="update_cus_coupon" parameterType="map">
+        UPDATE cus_coupon
+        SET status = '1'
+        WHERE cus_no = #{cus_no} AND coupon_no IN (
+        SELECT coupon_no FROM `order` WHERE order_code = #{order_code}
+        )
+    </update>
+
+    <!-- 보유 쿠폰 수 -->
+    <select id="select_coupon_count" resultType="int" parameterType="Map">
+        SELECT IFNULL(COUNT(*), 0) AS total_count FROM coupon
+        WHERE grade_no = #{grade_no}
+            AND status = '1'
+            AND is_del = '0'
+            AND id NOT IN (
+                SELECT coupon_no
+                FROM cus_coupon
+                WHERE cus_no = #{cus_no}
+            )
+    </select>
+
+    <!-- 보유 쿠폰 목록 -->
+    <select id="select_coupon" resultType="user.vo.customer.CouponVO" parameterType="Map">
+        SELECT c.id, c.root_no, c.seller_no, c.name, c.sale_per, c.start_date, c.end_date, s.name AS brand
+        FROM coupon c
+        LEFT JOIN seller s ON c.seller_no = s.id
+        LEFT JOIN root r ON c.root_no = r.id
+        WHERE c.grade_no = #{grade_no}
+            AND c.status = '1'
+            AND c.is_del = '0'
+            AND c.id NOT IN (
+                SELECT cc.coupon_no
+                FROM cus_coupon cc
+                WHERE cc.cus_no = #{cus_no}
+            )
+        <if test="searchValue != null and searchValue != ''">
+            AND (c.name LIKE CONCAT('%', #{searchValue}, '%') OR s.name LIKE CONCAT('%', #{searchValue}, '%'))
+        </if>
+        <choose>
+            <when test="sort == 0">
+                ORDER BY c.id
+            </when>
+            <when test="sort == 1">
+                ORDER BY c.sale_per DESC
+            </when>
+            <when test="sort == 2">
+                ORDER BY c.end_date DESC
+            </when>
+        </choose>
+    </select>
+
+    <!-- 사용한 쿠폰 찾기 -->
+    <select id="select_cus_coupon" resultType="user.vo.customer.OrderVO" parameterType="map">
+        SELECT * FROM cus_coupon
+        WHERE cus_no = #{cus_no} AND order_code = #{order_code}
+    </select>
+</mapper>

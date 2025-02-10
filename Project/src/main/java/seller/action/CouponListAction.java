@@ -1,6 +1,6 @@
 package seller.action;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.CouponDAO;
 import comm.vo.CouponVO;
 import comm.vo.EndCouponVO;

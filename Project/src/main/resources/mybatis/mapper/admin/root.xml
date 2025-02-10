@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="root">
+  <!-- 인자로 카테고리 값을 받아 검색하는 기능 -->
+
+    <!--insert id="signupInsert" parameterType="user.vo.CustomerVO">
+      INSERT INTO `customer` (
+      `cus_id`, `cus_pw`, `cus_name`, `cus_nickname`, `cus_gender`, `cus_birth`,
+      `cus_phone`, `cus_email`, `weight`, `height`, `total`, `expire_date`, `is_del` )
+      VALUES (
+      #{cus_id}, #{cus_pw}, #{cus_name}, #{cus_nickname}, #{cus_gender}, #{cus_birth},
+      #{cus_phone}, #{cus_email}, #{weight}, #{height}, #{total}, #{expire_date}, #{is_del} )
+    </insert>-->
+  <select id="loginSelect" parameterType="admin.vo.RootVO" resultType="admin.vo.RootVO">
+    SELECT * FROM `root`
+    WHERE root_id = #{root_id} AND
+    root_pw = #{root_pw}
+  </select>
+  <!--테이블 전체-->
+  <select id="allCustomer" resultType="admin.vo.CustomerVO" >
+    select g.name as grade_name,c.id,c.cus_id,c.name,c.nickname,c.gender,c.birth_date,c.phone,c.email,c.weight,c.height,c.total,c.grade_expire_date,c.is_del from `customer` as c join `grade` as g on g.id = c.grade_no
+  </select>
+  <select id="allMajor" resultType="admin.vo.MajorCategoryVO">
+    select * from `major_category`
+  </select>
+  <select id ="allMiddle" resultType="admin.vo.MiddleCategoryVO">
+    select mdc.is_del,mdc.id,mc.name as major_name,mdc.name,mdc.type from major_category as mc join middle_category as mdc on mc.id = mdc.major_no
+  </select>
+  <select id ="allBoard" resultType="admin.vo.BoardVO">
+    select * from `board` where is_del = 0
+  </select>
+  <select id ="allBoardProd" resultType="admin.vo.BoardProdVO">
+    select * from `board_prod`
+  </select>
+  <select id ="allCoupon" resultType="admin.vo.CouponVO">
+    select * from `coupon`;
+  </select>
+  <select id="allSeller" resultType="admin.vo.SellerVO">
+    select * from `seller`;
+  </select>
+  <select id="allLog" resultType="admin.vo.LogVO">
+    select * from `log`;
+  </select>
+
+  <!--열이름 전체-->
+  <select id="allMajorCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'major_category'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+
+  <select id="allMiddleCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'middle_category'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+  <select id="allBoardCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'board'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+  <select id="allBoardProdCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'board_prod'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+  <select id="allCouponCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'coupon'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+  <select id="allCustomerCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'customer'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+  </select>
+  <select id="allSellerCol" resultType="String">
+    SELECT COLUMN_NAME as mcname
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'seller'
+    AND TABLE_SCHEMA = 'shop'
+    ORDER BY ORDINAL_POSITION
+
+  </select>
+
+
+  <!--테이블 부분-->
+  <select id="searchMajorCategory" parameterType="Map" resultType="admin.vo.MajorCategoryVO">
+    SELECT * FROM major_category
+    <trim prefix="where">
+      <choose>
+        <when test="searchType == 'ename'">ename LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'name'">name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'type'">type LIKE CONCAT('%',#{searchValue},'%')</when>
+      </choose>
+    </trim>
+  </select>
+  <select id="searchMiddleCategory" parameterType="Map" resultType="admin.vo.MiddleCategoryVO">
+    select mdc.is_del,mdc.id,mc.name as major_name,mdc.name as name,mdc.type from major_category as mc join middle_category as mdc on mc.id = mdc.major_no
+    <trim prefix="where">
+      <choose>
+        <when test=" searchType == 'major_name'">mc.name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'middle_name'">name LIKE CONCAT('%',#{searchValue},'%')</when>
+
+        <when test=" searchType == 'type'">type LIKE CONCAT('%',#{searchValue},'%')</when>
+      </choose>
+    </trim>
+  </select>
+  <select id="searchBoard" parameterType="Map" resultType="admin.vo.BoardVO">
+    SELECT * FROM board
+    <trim prefix="where">
+      <choose>
+
+        <when test=" searchType == 'cus_no'">cus_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'prod_no'">prod_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'bname'">bname LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'title'">title LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'content'">content LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'snapshot_image'">snapshot_image LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'tags'">tags LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'gender'">gender LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'season'">season LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'style'">style LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'score'">score LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'like_count'">like_count LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'write_date'">write_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'is_del'">is_del LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'additional_images'">additional_images LIKE CONCAT('%',#{searchValue},'%')</when>
+      </choose>
+    </trim>
+  </select>
+  <select id="searchBoardProd" parameterType="Map" resultType="admin.vo.BoardProdVO">
+    SELECT * FROM board_prod
+    <trim prefix="where">
+      <choose>
+        <when test=" searchType == 'board_no'">board_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test=" searchType == 'prod_no'">prod_no LIKE CONCAT('%',#{searchValue},'%')</when>
+
+      </choose>
+    </trim>
+
+  </select>
+  <select id="searchCoupon" parameterType="Map" resultType="admin.vo.CouponVO">
+    SELECT * FROM coupon
+    <trim prefix="where">
+      <choose>
+        <when test="searchType == 'root_no'">root_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'category_no'">category_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'seller_no'">seller_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'type'">type LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'grade_no'">grade_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'name'">name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'sale_per'">sale_per LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'sale_price'">sale_price LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'start_date'">start_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'end_date'">end_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'status'">status LIKE CONCAT('%',#{searchValue},'%')</when>
+      </choose>
+    </trim>
+  </select>
+  <select id="searchCustomer" parameterType="Map" resultType="admin.vo.CustomerVO">
+    select g.name as grade_name ,
+    c.cus_id,
+    c.name,
+    c.nickname,
+    c.gender,
+    c.birth_date,
+    c.phone,
+    c.email,
+    c.weight,
+    c.height,
+    c.total,
+    c.grade_expire_date,
+    c.is_del
+    from `customer` as c
+    join `grade` as g on g.id = c.grade_no
+    <trim prefix="where">
+      <choose>
+        <when test="searchType == 'grade_name'">g.name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'cus_id'">cus_id LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'name'">c.name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'nickname'">nickname LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'gender'">gender LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'birth_date'">birth_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'phone'">phone LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'email'">email LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'weight'">weight LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'height'">height LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'total'">total LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'grade_expire_date'">grade_expire_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'is_del'">is_del LIKE CONCAT('%',#{searchValue},'%')</when>
+      </choose>
+    </trim>
+  </select>
+  <select id="searchSeller" parameterType="Map" resultType="admin.vo.SellerVO">
+    select * from seller
+    <trim prefix="where">
+      <choose>
+        <when test="searchType == 'seller_id'">seller_id LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'name'">name LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'phone'">phone LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'email'">email LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'desc'">desc LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'courier'">courier LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'birth_date'">birth_date LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'phone'">phone LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'desc'">desc LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'courier'">courierLIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'address'">address LIKE CONCAT('%',#{searchValue},'%')</when>
+
+      </choose>
+    </trim>
+
+  </select>
+  <select id="searchLog" parameterType="Map" resultType="admin.vo.LogVO">
+    select * from log
+    <trim prefix="where">
+      <choose>
+        <when test="searchType == 'root_no'">root_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'seller_no'">seller_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'cus_no'">cus_no LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'writer_type'">writer_type LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'target'">target LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'log_type'">log_type LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'prev'">prev LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'current'">current LIKE CONCAT('%',#{searchValue},'%')</when>
+        <when test="searchType == 'log_date'">log_date LIKE CONCAT('%',#{searchValue},'%')</when>
+
+
+      </choose>
+    </trim>
+
+  </select>
+  <insert id="addMajorCategory" parameterType="admin.vo.MajorCategoryVO">
+    INSERT INTO major_category (name,ename,is_del)
+    VALUES (#{name},#{ename},0)
+
+  </insert>
+  <insert id="addMiddleCategory" parameterType="admin.vo.MiddleCategoryVO">
+    INSERT INTO middle_category (major_no,name,type,is_del)
+    VALUES (#{major_no},#{name},#{type},0)
+
+  </insert>
+  <select id="getBoardById" parameterType="String" resultType="admin.vo.BoardVO">
+    select * from board where id = #{id}
+
+  </select>
+
+  <select id="getMajorId" parameterType="admin.vo.MajorCategoryVO" resultType="admin.vo.MajorCategoryVO">
+    SELECT id FROM major_category
+    WHERE name = #{name} AND ename = #{ename}
+
+  </select>
+  <select id="getMiddleCategory" resultType="admin.vo.CategoryVO">
+    select mc.name as major_name,mdc.name,mdc.id,mdc.type from major_category as mc join middle_category as mdc on mc.id = mdc.major_no;
+
+
+  </select>
+
+  <select id="getId" resultType="int" parameterType="String">
+    SELECT id FROM shop.middle_category
+    where name =  #{cn};
+
+  </select>
+
+  <update id="deleteBoard" parameterType="int">
+    UPDATE board
+    SET is_del = 1
+    WHERE id = #{id}
+  </update>
+  <update id="deleteMajorCategory" parameterType="int">
+    UPDATE major_category
+    SET is_del = 1
+    WHERE id = #{id}
+  </update>
+  <update id="deleteMiddleCategory" parameterType="int">
+    UPDATE middle_category
+    SET is_del = 1
+    WHERE id = #{id}
+  </update>
+  <update id="deleteCoupon" parameterType="int">
+    UPDATE coupon
+    SET is_del = 1
+    WHERE id = #{id}
+  </update>
+  <update id="rejectSeller" parameterType="int">
+    update seller
+    set active = 2
+    where id = #{id}
+  </update>
+  <update id="admitSeller" parameterType="int">
+    update seller
+    set active = 0
+    where id = #{id}
+  </update>
+  <update id="admitCustomer" parameterType="int">
+    update customer
+    set is_del=0
+    where id = #{id}
+  </update>
+
+  <update id="stopSeller" parameterType="int">
+    update seller
+    set active = 3
+    where id = #{id}
+  </update>
+  <update id="stopCustomer" parameterType="int">
+    update customer
+    set is_del=2
+    where id = #{id}
+  </update>
+
+
+  <insert id="loginsert" parameterType="admin.vo.LogVO">
+    INSERT INTO log (cus_no, root_no, target, log_type, prev, current, log_date)
+    VALUES (#{cus_no}, #{root_no}, #{target}, #{log_type}, #{prev}, #{current}, NOW());
+  </insert>
+
+</mapper>

@@ -111,6 +111,11 @@
       vertical-align: middle;    /* 수직 정렬 */
     }
     .page-item .page-link {
+      background-color: white; /* 🔹 기본 배경 흰색 */
+      color: black;
+      border-radius: 5px;
+      padding: 8px 12px;
+      text-decoration: none;
       cursor: pointer;
     }
 
@@ -155,6 +160,28 @@
       font-size: 14px; /* 글자 크기 동일 */
       box-sizing: border-box; /* 크기 계산 정확하게 */
     }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 5px; /* 페이지 버튼 사이 간격 */
+    }
+
+    .page-item {
+      list-style: none; /* 리스트 스타일 제거 */
+    }
+
+    .page-item .page-link {
+      cursor: pointer;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #000000;
+    }
+
+    .page-item.active .page-link {
+      background-color: #ddd; /* 🔹 선택된 버튼만 회색 */
+      font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
@@ -183,10 +210,10 @@
 
         <select class="form-select search-category" style="display: none; width: 150px;">
           <option value="all">전체</option>
-          <option value="outer">아우터</option>
-          <option value="top">상의</option>
-          <option value="pants">바지</option>
-          <option value="dress_skirt">원피스/스커트</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
         </select>
 
         <button type="button" class="btn btn-outline-secondary search-button">검색</button>
@@ -232,11 +259,15 @@
       </c:forEach>
       </tbody>
     </table>
-
     <nav>
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">이전</a></li>
-        <li class="page-item"><a class="page-link" href="#">다음</a></li>
+      <ul class="pagination justify-content-center" id="pageNumbers">
+        <li class="page-item disabled" id="prevPage">
+          <a class="page-link" href="#" aria-label="Previous">이전</a>
+        </li>
+        <!-- 페이지 번호가 여기에 추가됨 -->
+        <li class="page-item" id="nextPage">
+          <a class="page-link" href="#" aria-label="Next">다음</a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -332,6 +363,7 @@
   </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
@@ -349,6 +381,86 @@
       document.querySelector(".search-category").style.display = "none"; // 카테고리 숨김
     }
   });
+
+  const rowsPerPage = 5; // 한 페이지에 표시할 행 수
+  let currentPage = 1; // 현재 페이지
+  const rows = document.querySelectorAll("#couponTableBody tr"); // 모든 쿠폰 목록
+  const totalPages = Math.ceil(rows.length / rowsPerPage); // 전체 페이지 수
+
+  const prevPageButton = document.getElementById("prevPage");  // 이전 그룹 버튼
+  const nextPageButton = document.getElementById("nextPage");  // 다음 그룹 버튼
+  console.log("nextPageButton:", nextPageButton);
+  const pageNumbersContainer = document.getElementById("pageNumbers"); // 페이지 번호 영역 (ul 태그)
+
+  const pagesPerGroup = 3; // 한 번에 표시할 페이지 개수
+  let currentGroup = 1; // 현재 페이지 그룹
+
+  function showPage(page) {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+
+    rows.forEach((row, index) => {
+      row.style.display = index >= start && index < end ? "" : "none";
+    });
+
+    updatePagination();
+  }
+
+  function updatePagination() {
+    // ✅ 기존 페이지 버튼 삭제 후 다시 추가
+    document.querySelectorAll("#pageNumbers .page-item").forEach(el => {
+      if (el.id !== "prevPage" && el.id !== "nextPage") el.remove();
+    });
+
+    const totalGroups = Math.ceil(totalPages / pagesPerGroup); // 전체 그룹 수
+    const startPage = (currentGroup - 1) * pagesPerGroup + 1;
+    let endPage = startPage + pagesPerGroup - 1;
+
+    if (endPage > totalPages) endPage = totalPages; // 마지막 페이지를 초과하지 않도록
+
+    for (let i = startPage; i <= endPage; i++) {
+      const pageItem = document.createElement("li");
+      pageItem.className = `page-item ${i eq currentPage ? "active" : ""}`;
+      pageItem.innerHTML = `<a class="page-link" href="#">`+i+`</a>`;
+
+      pageItem.addEventListener("click", () => {
+        document.querySelector(".page-item.active")?.classList.remove("active"); // ✅ 기존 활성화된 버튼 해제
+        pageItem.classList.add("active"); // ✅ 클릭한 버튼 강조
+        currentPage = i;
+        showPage(currentPage);
+      });
+      console.log("추가된 페이지 번호:", i);
+      nextPageButton.before(pageItem); // ✅ "다음" 버튼 앞에 추가
+    }
+
+    // 이전/다음 그룹 버튼 활성화 및 비활성화
+    prevPageButton.classList.toggle("disabled", currentGroup === 1);
+    nextPageButton.classList.toggle("disabled", currentGroup === totalGroups);
+  }
+
+  // 이전 그룹 버튼 클릭 시
+  prevPageButton.addEventListener("click", () => {
+    if (currentGroup > 1) {
+      currentGroup--;
+      currentPage = (currentGroup - 1) * pagesPerGroup + 1; // 현재 그룹의 첫 번째 페이지로 이동
+      showPage(currentPage);
+    }
+  });
+
+  // 다음 그룹 버튼 클릭 시
+  nextPageButton.addEventListener("click", () => {
+    const totalGroups = Math.ceil(totalPages / pagesPerGroup);
+    if (currentGroup < totalGroups) {
+      currentGroup++;
+      currentPage = (currentGroup - 1) * pagesPerGroup + 1; // 현재 그룹의 첫 번째 페이지로 이동
+      showPage(currentPage);
+    }
+  });
+
+  // 페이지 초기화
+  showPage(1);
+
+
 
   document.querySelector(".search-button").addEventListener("click", function () {
     const criteria = document.querySelector(".search-criteria").value; // 선택된 검색 기준
@@ -395,6 +507,7 @@
       }
     });
   });
+
 
   // 신규 쿠폰 발급 버튼 클릭 시 AJAX 요청
   $("#addCouponButton").on("click", function () {
@@ -464,7 +577,7 @@
     });
 
 
-  // 모달 닫기
+    // 모달 닫기
     $('#newCouponModal').modal('hide');
 
     // 모달 초기화 (입력된 값 초기화)
@@ -535,7 +648,7 @@
           grade_no: grade,
           category_no: category
         },
-        success: function (response) {
+        success: function () {
           alert("쿠폰이 수정되었습니다.");
           $(`#name-${couponId}, #start-${couponId}, #end-${couponId}, #discount-${couponId}, #grade-${couponId}, #category-${couponId}`).prop("disabled", true);
           $(`.save-button[data-id='${couponId}']`).hide();
@@ -555,11 +668,11 @@
       if (!confirm("정말 삭제하시겠습니까?")) return;
 
       $.ajax({
-        url: "/shop/Controller?type=deleteCoupon",
+        url: "/shop/Controller?type=sellerDeleteCoupon",
         type: "POST",
         data: { id: couponId },
         success: function () {
-          alert("쿠폰이 삭제되었습니다.");
+          alert("쿠폰이 삭제되었습니다!");
           $(`tr[data-id='${couponId}']`).remove();
         },
         error: function () {

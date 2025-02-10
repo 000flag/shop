@@ -1,0 +1,574 @@
+.container {
+    width: 900px !important;
+}
+
+.user-info {
+    width: 100%;
+}
+
+.user-info, .user-action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.user-action-buttons {
+    margin-top: 40px !important;
+}
+
+.header-option, .text-title {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100% !important;
+}
+
+.text-title {
+    height: 60px;
+}
+
+.text-title h3 {
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 22px;
+}
+
+.profile-container {
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-left {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.profile-name button {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.profile-level {
+    color: #888;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 0 20px;
+    max-width: 400px;
+    flex-grow: 1;
+}
+
+.stats-item {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    padding: 0 10px;
+}
+
+.stats-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #eaeaea;
+}
+
+.stats-label {
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+}
+
+.stats-value {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.profile-button,
+.snap-profile-button {
+    white-space: nowrap;
+    padding: 5px 10px;
+    flex-shrink: 0;
+}
+
+.profile-button:hover, .snap-profile-button:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}
+
+.order-container {
+    margin: 20px auto;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.order-container .order-status h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.order-container .order-status .order-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.order-item {
+    display: flex;
+    border-top: 1px solid #eaeaea;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.order-details {
+    flex: 1;
+    padding: 10px;
+}
+
+.payment-status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+table th, table td {
+    border: 1px solid #dee2e6;
+    padding: 10px 10px;
+}
+
+#user-table td {
+    border-top: none;
+    border-bottom: none;
+}
+
+#user-table td:first-child {
+    border-left: none;
+    border-right: none;
+}
+
+#user-table td:nth-child(2) {
+    border-left: none;
+    padding: 0px 50px 0 0;
+}
+
+#user-table td:nth-child(2) div:nth-child(2) {
+    margin-top: 5px;
+}
+
+#user-table td:nth-child(3), #user-table td:nth-child(4) {
+    padding: 0 50px;
+}
+
+#user-table td:last-child {
+    border-right: none;
+}
+
+#user-table .point-info, #user-table .coupon-info {
+    font-weight: bold;
+}
+
+#user-table .point-value, #user-table .coupon-value {
+    margin-top: 5px;
+}
+
+.user-info-change, .user-info-change:active, .user-info-change:visited, .user-info-change:hover {
+    text-decoration: #dee2e6;
+    font-weight: bold;
+}
+
+.btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+.prod_img {
+    width: 100px;
+    height: 100px;
+}
+
+.prod_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-action-buttons, .review-section-container, .delivery-section-container,
+.coupon-section-container, .point-section-container, .order-section-container,
+.refund-section-container, .inquiry-section-container, .question-section-container {
+    margin: 0 auto;
+}
+
+.user-action-buttons, .user-action-buttons .btn-group, .review-section-container,
+.delivery-section-container, .coupon-section-container, .point-section-container,
+.order-section-container, .refund-section-container, .inquiry-section-container, .question-section-container {
+    width: 100% !important;
+}
+
+.review-section-container, .delivery-section-container, .coupon-section-container,
+.point-section-container, .order-section-container, .refund-section-container, .inquiry-section-container, .question-section-container {
+    margin-top: 20px !important;
+}
+
+.review-section, .coupon-section, .point-section, .order-section,
+.order-section, .delivery-section, .inquiry-section, .question-section {
+    height: 35px;
+}
+
+.review-header, .coupon-header, .point-header,
+.order-section .order-header, .inquiry-header, .question-header {
+    line-height: 35px;
+    float: left;
+}
+
+.review-title, .delivery-title, .coupon-title, .point-title,
+.order-section .order-header .order-title, .order-title,
+.inquiry-title, .question-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.order-section .order-header .order-title {
+    line-height: 35px;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+.table th {
+    text-align: center;
+    font-weight: bold;
+}
+
+.table thead tr th {
+    font-weight: bold;
+}
+
+.table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.navigation {
+    display: flex;
+    justify-content: right;
+}
+
+/* modal */
+.modal-table-info {
+    background-color: #ffffff;
+    color: #555;
+    text-align: center;
+}
+
+.asterisk {
+    background: url("../../../images/asterisk_img.png") no-repeat;
+    background-size: 5px 5px;
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+}
+
+.modal-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.modal-table > caption {
+    text-indent: -9999px;
+    line-height: 0px;
+}
+
+.modal-table tr {
+    border-top: 1px solid #a3a4a5;
+    border-bottom: 1px solid #a3a4a5;
+}
+
+.modal-table th {
+    width: 200px;
+}
+
+.modal-table td {
+    padding: 5px;
+}
+
+.modal-table tr:first-child {
+    width: 190px;
+}
+
+.modal-table tr:nth-child(2) {
+    width: auto;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-footer {
+    position: relative;
+}
+
+.modal-footer-left {
+    float: left;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    margin-left: 33px !important;
+}
+
+.modal-footer-right {
+    float: right;
+    text-align: right;
+}
+
+input.text {
+    height: 30px;
+    width: 350px;
+    margin: 5px 10px;
+}
+
+input.addr1 {
+    height: 30px;
+    width: 200px;
+    margin: 5px 10px;
+}
+
+input.addr2, input.toggle, #request-select {
+    height: 30px;
+    width: 500px;
+    margin: 5px 10px;
+}
+
+#custom-input {
+    display: none;
+}
+
+/* 프로필 변경 모달 */
+.profile-settings-form {
+    padding: 20px;
+}
+
+.profile-change-notice {
+    color: #8a8989;
+}
+
+.photo-box img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.profile-settings-form .form-group:last-child {
+    margin-top: 25px;
+    margin-bottom: 0 !important;
+}
+
+.profile-actions {
+    text-align: right;
+}
+
+#profileSettingModal .btn:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}
+/**************재구매 모달**************/
+.modal-title{
+    font-weight: bold;
+    color: #333;
+    border: none;
+}
+
+.modal-body>p{
+    margin: 10px 0;
+}
+
+.modal-footer>button:first-child:hover {
+    background-color: #fff !important;
+    color: #000000 !important;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 14px;
+}
+/*************리뷰 작성 모달************/
+
+.modal-content {
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.modal-header {
+    border-bottom: none;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    padding: 0;
+}
+
+
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review-list li {
+    border-bottom: 1px solid #ddd;
+}
+
+.review-list li:last-child {
+    border-bottom: none;
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.review-item:hover {
+    background-color: #f9f9f9;
+}
+
+.review-title {
+    width: 30%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.review-subtitle {
+    font-size: 14px;
+    color: #888;
+}
+
+.arrow-icon {
+    font-size: 18px;
+    color: #ccc;
+}
+/***********반송장 입력 모달(취소/반품 탭)************/
+.form-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control {
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.form-check-label {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #555;
+}
+
+.info-message {
+    font-size: 12px;
+    color: #888;
+    margin-top: 15px;
+}
+
+.info-message p {
+    margin: 0 0 5px;
+}

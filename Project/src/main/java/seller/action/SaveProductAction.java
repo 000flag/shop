@@ -1,6 +1,6 @@
 package seller.action;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.InventoryDAO;
 import comm.dao.ProductDAO;
 import comm.service.S3Uploader;
@@ -138,6 +138,8 @@ public class SaveProductAction implements Action {
                                     break;
                                 case "main_url":
                                     mainImageUrl = value;
+                                case "additional_url[]":
+                                    additionalImageUrls.add(value);
                             }
                         }
                     } else {

@@ -1,0 +1,106 @@
+.container {
+    width: 900px !important;
+}
+
+.refund-summary{
+    margin: 15px 0;
+}
+
+.refund-title{
+    margin: 10px 0 20px 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.wrap-refund-list {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.refund-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.refund-date {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.refund-details-link {
+    text-decoration: underline; !important;
+    font-size: 14px;
+    color: #555;
+}
+
+.refund-status {
+    font-size: 13px;
+    font-weight: bold;
+    color: #777777;
+    margin: 15px 0;
+}
+
+.order-product {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.product-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-brand {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.product-name {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.product-options {
+    font-size: 13px;
+    color: #777;
+    margin: 5px 0;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wrap-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.wrap-buttons>button{
+    flex: 1;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+.wrap-buttons>button:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}

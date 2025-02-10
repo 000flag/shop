@@ -61,4 +61,11 @@ public class CouponDAO {
         ss.close();
         return cnt;
     }
+    public static CouponVO getCouponById(String id) {
+        SqlSession ss = FactoryService.getFactory().openSession();
+        CouponVO coupon = ss.selectOne("coupon.GetCouponById", id);
+        ss.close();
+        return coupon;
+    }
+
 }

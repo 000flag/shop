@@ -1,6 +1,6 @@
 package comm.dao;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.service.FactoryService;
 import comm.vo.InventoryVO;
 import org.apache.ibatis.session.SqlSession;

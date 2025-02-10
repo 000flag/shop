@@ -1,6 +1,6 @@
 package seller.action;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.SellerDAO;
 import comm.vo.SellerVO;
 import org.mindrot.jbcrypt.BCrypt;

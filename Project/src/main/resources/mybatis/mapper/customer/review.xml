@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+    <!-- 구매확정 상품 리뷰 작성 -->
+    <insert id="insert_review" parameterType="user.vo.customer.BoardVO">
+        INSERT INTO board(cus_no, prod_no, bname, content, additional_images, gender, score, write_date, order_code, is_del)
+        VALUES(#{cus_no}, #{prod_no}, 'review', #{content}, #{additional_images}, #{gender}, #{score}, NOW(), #{order_code}, 0)
+    </insert>
+
+    <!-- 리뷰 수정 -->
+    <update id="update_review" parameterType="user.vo.customer.BoardVO">
+        UPDATE board
+        SET
+            content = #{content},
+            additional_images = #{additional_images},
+            score = #{score}
+        WHERE bname = 'review' AND id = #{id}
+    </update>
+
+    <!-- 리뷰 삭제 -->
+    <update id="delete_review" parameterType="String">
+        UPDATE board
+        SET is_del = 1
+        WHERE bname = 'review' AND id = #{id}
+    </update>
+
+    <!-- 작성한 리뷰 찾기 -->
+    <select id="select_review" resultType="boolean" parameterType="map">
+        SELECT EXISTS (
+        SELECT *
+        FROM board
+        WHERE cus_no = #{cus_no} AND prod_no = #{prod_no} AND bname = 'review'
+        ) AS record_exists
+    </select>
+
+    <!-- 작성한 리뷰 목록 -->
+    <select id="select_write_review" resultType="user.vo.customer.BoardVO" parameterType="Map">
+        SELECT c.nickname, c.profile_image, p.name AS p_name, i.option_name, b.id, b.cus_no, b.prod_no, b.bname,
+            b.title, b.content, b.additional_images, IFNULL(b.like_count, 0) AS like_count,
+            b.score, b.write_date, b.order_code, b.is_private
+        FROM board b
+        INNER JOIN customer c ON b.cus_no = c.id
+        INNER JOIN product p ON b.prod_no = p.id
+        INNER JOIN `order` o ON b.order_code = o.order_code
+        INNER JOIN inventory i ON o.inventory_no = i.id
+        WHERE b.bname = 'review'
+            AND b.cus_no = #{cus_no}
+            AND b.is_del = 0
+            AND EXISTS (
+                SELECT 1
+                FROM `order` o
+                WHERE o.prod_no = b.prod_no
+                AND o.order_code = b.order_code
+                AND o.cus_no = #{cus_no}
+            )
+        <if test="startDate != null and endDate != null">
+            AND (b.write_date BETWEEN #{startDate} AND #{endDate})
+        </if>
+    </select>
+
+    <!-- 리뷰 상세 보기 -->
+    <select id="select_review_details" resultType="user.vo.customer.BoardVO" parameterType="Map">
+        SELECT
+            b.id,
+            b.bname,
+            b.cus_no,
+            b.title,
+            b.content,
+            b.additional_images,
+            b.write_date,
+            b.score,
+            b.like_count,
+            b.is_private,
+            o.order_code,
+            o.prod_no,
+            o.count,
+            o.order_date,
+            p.name AS prod_name,
+            p.prod_image,
+            s.name AS brand,
+            i.option_name
+        FROM board b
+        LEFT JOIN `order` o ON b.order_code = o.order_code AND b.prod_no = o.prod_no AND o.cus_no = '30'
+        LEFT JOIN product p ON b.prod_no = p.id AND p.is_del = 0
+        LEFT JOIN seller s ON p.seller_no = s.id AND s.is_del = 0
+        LEFT JOIN inventory i ON o.inventory_no = i.id
+        LEFT JOIN customer c ON b.cus_no = c.id AND c.is_del = 0
+        WHERE b.bname = 'review'
+            AND b.cus_no = #{cus_no}
+            AND b.is_del = 0
+            AND b.id = #{id}
+    </select>
+</mapper>

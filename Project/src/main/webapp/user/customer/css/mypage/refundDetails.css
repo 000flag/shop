@@ -1,0 +1,260 @@
+.container {
+    width: 900px !important;
+}
+
+.refund-details {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.order-date {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wrap-title{
+    padding: 5px 20px;
+}
+
+.title {
+    font-size: 18px;
+    padding: 10px 0;
+    margin: 10px auto 20px auto;
+    font-weight: bold;
+}
+
+/* 주문 정보 */
+.order-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.order-date {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.wrap-order-details{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.order-details-link {
+    text-decoration: underline; !important;
+    font-size: 14px;
+    color: #555;
+}
+
+/* 상품 정보 */
+.refund-product {
+    margin-bottom: 20px;
+}
+
+.refund-product h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.refund-status {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.product-details {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.product-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-right: 15px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.product-brand {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-name {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.product-options {
+    font-size: 13px;
+    color: #777;
+    margin: 3px 0;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* 버튼 */
+.wrap-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.wrap-buttons>button:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}
+
+/********************************/
+
+/* 정보 리스트 */
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.info-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    width: 30%;
+    flex-shrink: 0;
+}
+
+.info-value {
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    color: #333;
+    word-wrap: break-word;
+    line-height: 1.6;
+}
+
+/* 마지막 항목 아래 경계선 제거 */
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-row{
+    display: flex;
+    justify-content: space-between;
+}
+/**************************************/
+
+/* 서브타이틀 */
+.subtitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* 상세 내역 리스트 */
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.detail-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    width: 40%;
+    flex-shrink: 0;
+}
+
+.detail-value {
+    text-align: right;
+    color: #333;
+}
+
+/********** 환불 예정 금액 ***********/
+
+.refund-amount {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrap-p{
+    display: flex;
+    justify-content: space-between;
+}
+
+.refund-expected {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.refund-method {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* 공지 */
+.notice {
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+/**************재구매 모달**************/
+.modal-title{
+    font-weight: bold;
+    color: #333;
+    border: none;
+}
+
+.modal-body>p{
+    margin: 10px 0;
+}
+
+.modal-footer>button:first-child:hover {
+    background-color: #fff !important;
+    color: #000000 !important;
+}

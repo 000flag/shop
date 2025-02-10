@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="log">
+    <!-- 삭제 로그 -->
+    <insert id="delete_log" parameterType="user.vo.customer.LogVO">
+        INSERT INTO log (cus_no, writer_type, target, log_type, prev, log_date)
+        VALUES (#{cus_no}, '2', #{target}, '0', #{prev}, CURRENT_TIMESTAMP())
+    </insert>
+
+    <!-- 추가 로그 -->
+    <insert id="insert_log" parameterType="user.vo.customer.LogVO">
+        INSERT INTO log (cus_no, writer_type, target, log_type, current, log_date)
+        VALUES (#{cus_no}, '2', #{target}, '1', #{current}, CURRENT_TIMESTAMP())
+    </insert>
+
+    <!-- 수정 로그 -->
+    <insert id="update_log" parameterType="user.vo.customer.LogVO">
+        INSERT INTO log (cus_no, writer_type, target, log_type, prev, current, log_date)
+        VALUES (#{cus_no}, '2', #{target}, '2', #{prev}, #{current}, CURRENT_TIMESTAMP())
+    </insert>
+
+    <!-- 기타 로그 -->
+    <insert id="insert_etc_log" parameterType="user.vo.customer.LogVO">
+        INSERT INTO log (cus_no, writer_type, target, log_type, current, log_date)
+        VALUES (#{cus_no}, '2', #{target}, '3', #{current}, CURRENT_TIMESTAMP())
+    </insert>
+</mapper>

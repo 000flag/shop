@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+    <!-- 장바구니 수 -->
+    <select id="select_cart_count" resultType="int" parameterType="String">
+        SELECT COUNT(*) AS total_count FROM cart
+        WHERE cus_no = #{cus_no}
+    </select>
+
+    <!-- 장바구니 조회 -->
+    <select id="select_cart" resultType="user.vo.customer.CartVO" parameterType="String">
+        SELECT c.*, p.name AS p_name, p.prod_image, s.name AS brand, p.price AS price, p.saled_price AS saled_price, i.option_name FROM cart c
+        INNER JOIN product p ON c.prod_no = p.id
+        INNER JOIN seller s ON p.seller_no = s.id
+        INNER JOIN inventory i ON c.inventory_no = i.id
+        WHERE c.cus_no = #{cus_no}
+    </select>
+
+    <!-- 장바구니 존재 여부 -->
+    <select id="select_exists_cart" resultType="int" parameterType="Map">
+        SELECT COUNT(*) FROM cart
+        WHERE cus_no = #{cus_no} AND prod_no = #{prod_no} AND inventory_no = #{inventory_no}
+    </select>
+
+    <!-- 이미 존재하는 상품일 때 수량만 증가 -->
+    <update id="update_exists_cart" parameterType="map">
+        UPDATE cart
+        SET count = count + #{count}
+        WHERE cus_no = #{cus_no} AND prod_no = #{prod_no} AND inventory_no = #{inventory_no}
+    </update>
+
+    <!-- 장바구니 추가 -->
+    <insert id="insert_cart" parameterType="user.vo.customer.CartVO">
+        INSERT INTO cart (cus_no, prod_no, inventory_no, count, add_date)
+        VALUES (#{cus_no}, #{prod_no}, #{inventory_no}, #{count}, NOW())
+    </insert>
+
+    <!-- 장바구니 수정 -->
+    <update id="update_cart" parameterType="user.vo.customer.CartVO">
+        UPDATE cart
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="count != null">
+                count = #{count},
+            </if>
+            <if test="inventory_no != null">
+                inventory_no = #{inventory_no},
+            </if>
+        </trim>
+        WHERE cus_no = #{cus_no} AND id = #{id}
+    </update>
+
+    <!-- 장바구니 단일 삭제 -->
+    <delete id="delete_cart" parameterType="Map">
+        DELETE FROM cart
+        WHERE cus_no = #{cus_no} AND id = #{id}
+    </delete>
+
+    <!-- 장바구니 선택 삭제 -->
+    <delete id="deletes_cart" parameterType="Map">
+        DELETE FROM cart
+        WHERE cus_no = #{cus_no} AND id in
+        <foreach item="item" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 장바구니 전체 삭제 -->
+    <delete id="delete_all_cart" parameterType="String">
+        DELETE FROM cart
+        WHERE cus_no = #{cus_no}
+    </delete>
+
+    <!-- 장바구니 상품 상세 조회 -->
+    <select id="select_cart_details" resultType="user.vo.customer.CartVO" parameterType="Map">
+        SELECT c.*, p.prod_code, p.name AS p_name, p.price, p.sale, p.prod_image, p.saled_price, s.name AS brand, i.option_name FROM cart c
+        INNER JOIN product p ON c.prod_no = p.id
+        INNER JOIN seller s ON p.seller_no = s.id
+        INNER JOIN inventory i ON c.inventory_no = i.id
+        WHERE cus_no = #{cus_no} AND c.id = #{id}
+    </select>
+</mapper>

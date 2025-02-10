@@ -1,9 +1,11 @@
 package seller.action;
 
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.CouponDAO;
+import comm.dao.SellerLogDAO;
 import comm.vo.CouponVO;
+import comm.vo.SellerLogVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +39,18 @@ public class CouponInsertAction implements Action {
 
         if (result > 0) {
             System.out.println("✅ CouponInsertAction: Coupon inserted successfully!");
+
+            SellerLogVO vo = new SellerLogVO();
+            vo.setSeller_no((String) request.getSession().getAttribute("seller_no")); // 현재 로그인한 판매자 ID
+            vo.setWriter_type((String) request.getSession().getAttribute("writer_type")); // 작성자 유형
+            vo.setTarget("쿠폰추가");  // 로그 대상
+            vo.setLog_type("1");  // 1 = 추가
+            vo.setPrev("");  // 추가 이전 값 없음
+            vo.setCurrent("쿠폰명: " + name + ", 할인율: " + sale_per + "%"); // 추가된 쿠폰 정보
+
+            // 🔹 5. 로그 DB에 저장
+            SellerLogDAO.insertSellerLog(vo);
+            System.out.println("✅ 로그 기록 완료: " + vo);
         } else {
             System.err.println("❌ CouponInsertAction: Failed to insert coupon.");
         }

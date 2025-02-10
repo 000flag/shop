@@ -1,7 +1,7 @@
 package seller.action;
 
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.OrderDAO;
 import comm.vo.OrderVO;
 

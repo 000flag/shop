@@ -1,6 +1,5 @@
 package seller.action;
-
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.InventoryDAO;
 import comm.dao.SellerDAO;
 

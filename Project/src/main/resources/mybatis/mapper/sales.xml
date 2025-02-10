@@ -21,12 +21,12 @@
         LEFT JOIN shop.product p ON p.id = o.prod_no
         LEFT JOIN shop.middle_category mc ON mc.type = p.category_no
         LEFT JOIN shop.coupon c ON c.id = o.coupon_no
-        WHERE p.seller_no = 2
+        WHERE p.seller_no = #{seller_no}
         ORDER BY o.order_date DESC
     </select>
 
     <select id="getSalesCount" resultType="int">
-        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = 2<!--2바꾸셈-->
+        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = #{seller_no}<!--2바꾸셈-->
     </select>
 
     <select id="getDeliveryInfo" parameterType="String" resultType="comm.vo.SalesModalVO">

@@ -1,0 +1,278 @@
+.container {
+    width: 800px !important;
+}
+
+.wrap-title {
+    height: 40px;
+    margin: 10px auto;
+    font-weight: bold;
+    border-bottom: 1px solid #a3a4a5;
+}
+
+.wrap-title>span {
+    padding: 10px 10px;
+}
+
+.wrap-reason>.bold {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.left {
+    float: left;
+    text-align: left;
+}
+
+.box {
+    height: auto;
+    margin: 0 auto 40px auto;
+    padding: 10px;
+}
+
+#refund-input, #custom-input {
+    display: none;
+}
+
+.bold {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#refund-input > .toggle, .refund-account input.toggle {
+    margin-top: 5px;
+    width: 45%;
+    height: 30px;
+}
+
+input#account-number.toggle, input#account-holder.toggle {
+    margin: 5px 0;
+    width: 45%;
+    height: 30px;
+}
+
+.product-content {
+    display: flex;
+}
+
+.product-img{
+    background: url("../../../images/thisisnever_img.png") no-repeat;
+    background-size: 100px 100px;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.option-text {
+    margin-top: 10px;
+    color: #a3a4a5;
+    font-size: 9pt;
+}
+
+.product-detail {
+    margin-top: 10px;
+}
+
+.select {
+    margin: 5px 0;
+    width: 45%;
+    height: 30px;
+}
+
+#shop-delivery {
+    margin: 10px 0px;
+}
+
+.margin {
+    padding: 10px 0;
+    margin: 10px 0;
+    height: 60px;
+}
+
+/**********주소선택 css*************/
+
+.add-address-button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.add-address-button:hover {
+    background-color: #f5f5f5;
+}
+
+/* 배송지 박스 */
+.address-box {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.address-box label {
+    margin-bottom: 0 !important;
+}
+
+/* 기본 배송지 라벨 */
+.address-details {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.address-details p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.default {
+    font-size: 12px;
+    color: #007aff;
+    margin-left: 5px;
+}
+
+.address {
+    font-size: 13px;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.phone {
+    font-size: 13px;
+    color: #555;
+}
+
+/* 배송지 추가하기 버튼 */
+.add-address-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.add-address-button:hover {
+    background-color: #f5f5f5;
+}
+
+/***************배송지 추가 모달 css***************/
+
+/* modal */
+.modal-table-info {
+    background-color: #ffffff;
+    color: #555;
+    text-align: center;
+}
+
+.asterisk {
+    background: url("../../../images/asterisk_img.png") no-repeat;
+    background-size: 5px 5px;
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+}
+
+.modal-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.modal-table > caption {
+    text-indent: -9999px;
+    line-height: 0px;
+}
+
+.modal-table tr {
+    border-top: 1px solid #a3a4a5;
+    border-bottom: 1px solid #a3a4a5;
+}
+
+.modal-table th {
+    width: 200px;
+}
+
+.modal-table td {
+    padding: 5px;
+}
+
+.modal-table tr:first-child {
+    width: 190px;
+}
+
+.modal-table tr:nth-child(2) {
+    width: auto;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-footer {
+    position: relative;
+}
+
+.modal-footer-left {
+    float: left;
+    text-align: left;
+    position: absolute;
+    left: 0;
+    margin-left: 33px !important;
+}
+
+.modal-footer-right {
+    float: right;
+    text-align: right;
+}
+
+input.text {
+    height: 30px;
+    width: 350px;
+    margin: 5px 10px;
+}
+
+input.addr1 {
+    height: 30px;
+    width: 200px;
+    margin: 5px 10px;
+}
+
+input.addr2, #custom-input>input.toggle, #request-select {
+    height: 30px;
+    width: 500px;
+    margin: 5px 10px;
+}
+
+.refund-info>ul{
+    padding: 0;
+    margin: 15px 0px;
+}
+
+.refund-info li{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+/***************배송 방법 정보 모달******************/
+.modal .modal-body ul {
+    list-style: disc;
+}
+
+.modal .modal-body ul li {
+    padding: 3px;
+}

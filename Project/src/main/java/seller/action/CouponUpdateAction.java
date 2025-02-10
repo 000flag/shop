@@ -1,8 +1,10 @@
 package seller.action;
 
-import comm.action.Action;
+import user.action.Action;
 import comm.dao.CouponDAO;
+import comm.dao.SellerLogDAO;
 import comm.vo.CouponVO;
+import comm.vo.SellerLogVO;
 import org.json.JSONObject; // JSON 응답을 위해 필요
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,12 @@ public class CouponUpdateAction implements Action {
             String end_date = request.getParameter("end_date");
             String category_no = request.getParameter("category_no");
             String grade_no = request.getParameter("grade_no");
+            System.out.println(grade_no);
+            // 🔹 2. 기존 쿠폰 정보 조회 (수정 전 값 저장)
+            CouponVO prevCoupon = CouponDAO.getCouponById(id);  // 수정 전 데이터 조회
+            String prev = (prevCoupon != null) ?
+                    "쿠폰명: " + prevCoupon.getName() +
+                            ", 할인율: " + prevCoupon.getSale_per() + "%" : "데이터 없음";
 
             // 쿠폰 객체 생성 및 값 설정
             CouponVO coupon = new CouponVO();
@@ -33,6 +41,7 @@ public class CouponUpdateAction implements Action {
             coupon.setEnd_date(end_date);
             coupon.setCategory_no(category_no);
             coupon.setGrade_no(grade_no);
+            System.out.println(coupon);
 
             // 데이터베이스 업데이트 실행
             int result = CouponDAO.updateCoupon(coupon);
@@ -43,6 +52,20 @@ public class CouponUpdateAction implements Action {
                 jsonResponse.put("status", "success");
                 jsonResponse.put("message", "쿠폰이 성공적으로 수정되었습니다.");
                 System.out.println("✅ CouponUpdateAction: Coupon updated successfully!");
+
+                // 🔹 6. 로그 객체 생성 및 값 설정
+                SellerLogVO log = new SellerLogVO();
+                log.setSeller_no((String) request.getSession().getAttribute("seller_no")); // 현재 로그인한 판매자 ID
+                log.setWriter_type((String) request.getSession().getAttribute("writer_type")); // 작성자 유형
+                log.setTarget("쿠폰수정");  // 로그 대상
+                log.setLog_type("2");  // 2 = 수정
+                log.setPrev(prev);  // 수정 전 데이터
+                log.setCurrent("쿠폰명: " + name + ", 할인율: " + sale_per + "%"); // 수정된 데이터
+
+                // 🔹 7. 로그 DB에 저장
+                SellerLogDAO.insertSellerLog(log);
+                System.out.println("✅ 로그 기록 완료: " + log);
+
             } else {
                 jsonResponse.put("status", "error");
                 jsonResponse.put("message", "쿠폰 수정에 실패했습니다.");
@@ -58,6 +81,6 @@ public class CouponUpdateAction implements Action {
             e.printStackTrace();
         }
 
-        return null; // AJAX 요청이므로 JSP 이동 불필요
+        return "seller/jsp/ajax/coupon_delete.jsp"; // AJAX 요청이므로 JSP 이동 불필요
     }
 }

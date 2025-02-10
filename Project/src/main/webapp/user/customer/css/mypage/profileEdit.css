@@ -1,0 +1,124 @@
+.container {
+    width: 800px !important;
+}
+
+.edit-header {
+    padding: 20px;
+}
+
+.edit-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.profile-container {
+    margin: 0 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.profile-table th {
+    text-align: left;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    width: 120px;
+    background-color: #f9f9f9;
+}
+
+.profile-table td {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.button-container .btn {
+    flex: 1;
+}
+
+.button-container .btn:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}
+
+.retired-link-container {
+    margin: 300px 20px 0 20px;
+    text-align: left;
+}
+
+.retired-link-container {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.retired-link-container a:hover, .retired-link-container a:focus, .retired-link-container a:active {
+    text-decoration: none;
+}
+
+/* 이메일 변경 모달 */
+.email-change-form {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.email-input {
+    flex: 1;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.verification-input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.request-btn {
+    white-space: nowrap;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.request-btn:hover {
+    background-color: #fff !important;
+    color: #6c757d !important;
+}
+
+.change-button-container {
+    margin-top: 35px;
+}
+
+.change-button-container button {
+    width: 100%;
+}
+
+/* 회원 탈퇴 모달 */
+.modal-actions {
+    text-align: right;
+}

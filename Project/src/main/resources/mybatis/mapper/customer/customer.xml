@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customer">
+    <!-- 회원 가입 -->
+    <insert id="insert_customer" parameterType="user.vo.customer.CustomerVO">
+        INSERT INTO customer (grade_no, cus_id, cus_pw, name, nickname, gender, birth_date, phone, email, weight, height, is_del)
+        VALUES (1, #{cus_id}, #{cus_pw}, #{name}, #{nickname}, #{gender}, #{birth_date}, #{phone}, #{email}, #{weight}, #{height}, 0)
+    </insert>
+
+    <!-- 로그인 검증 -->
+    <select id="login" parameterType="user.vo.customer.CustomerVO" resultType="user.vo.customer.CustomerVO">
+        SELECT c.id, c.grade_no, c.cus_id, c.name, c.nickname, c.gender, c.birth_date, c.phone, c.email, c.profile_image, c.weight, c.height, c.total, c.grade_expire_date,
+            g.name AS grade_name, g.point_condition, g.sale_condition
+        FROM customer c
+        INNER JOIN grade g
+        ON c.grade_no = g.id
+        WHERE cus_id = #{cus_id} AND cus_pw = #{cus_pw} AND is_del = 0
+    </select>
+
+    <!-- 아이디 중복 확인 -->
+    <select id="select_cus_id" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM customer
+        WHERE cus_id = #{cus_id} AND is_del = 0
+    </select>
+
+    <!-- 비밀번호 재설정 -->
+    <update id="update_cus_pw" parameterType="Map">
+        UPDATE customer
+        SET cus_pw = #{cus_pw}
+        WHERE cus_id = #{cus_id} AND is_del = 0
+    </update>
+
+    <!-- 회원 정보 수정 -->
+    <update id="update_customer" parameterType="user.vo.customer.CustomerVO">
+        UPDATE customer
+        SET email = #{email}, phone = #{phone}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 회원 프로필 수정 -->
+    <update id="update_profile" parameterType="user.vo.customer.CustomerVO">
+        UPDATE customer
+        SET nickname = #{nickname}, profile_image = #{profile_image}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 회원 정보 보기(id) -->
+    <select id="select_customer" resultType="user.vo.customer.CustomerVO" parameterType="String">
+        SELECT * FROM customer
+        WHERE id = #{id} AND is_del = 0
+    </select>
+
+    <!-- 회원 정보 보기(cus_id) -->
+    <select id="select_customer_by_cus_id" resultType="user.vo.customer.CustomerVO" parameterType="String">
+        SELECT c.id, c.grade_no, c.cus_id, c.cus_pw, c.name, c.nickname, c.gender, c.birth_date, c.phone, c.email, c.profile_image, c.weight, c.height, c.total, c.grade_expire_date,
+            g.name AS grade_name, g.point_condition, g.sale_condition
+        FROM customer c
+        INNER JOIN grade g
+        ON c.grade_no = g.id
+        WHERE c.cus_id = #{cus_id} AND c.is_del = 0
+    </select>
+
+    <!-- 누적 금액 수정(취소/반품) -->
+    <update id="update_total" parameterType="map">
+        UPDATE customer
+        SET total = #{total}
+        WHERE id = #{id} AND is_del = 0
+    </update>
+
+    <!-- 누적 금액 추가 -->
+    <update id="update_add_total" parameterType="Map">
+        UPDATE customer
+        SET total = total + #{total}
+        WHERE id = #{id} AND is_del = 0
+    </update>
+
+    <!-- 신체 정보 업데이트(리뷰작성) -->
+    <update id="update_body_information" parameterType="map">
+        UPDATE customer
+        SET weight = #{weight}, height = #{height}
+        WHERE id = #{id} AND is_del = 0
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <update id="delete_customer" parameterType="String">
+        UPDATE customer
+        SET is_del = 1
+        WHERE id = #{id}
+    </update>
+</mapper>

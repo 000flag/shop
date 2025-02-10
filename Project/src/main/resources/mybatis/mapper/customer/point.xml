@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="point">
+    <!-- 적립금 전체 내역 가져오기 -->
+    <select id="select_point" resultType="user.vo.customer.PointVO" parameterType="String">
+        SELECT * FROM point
+        WHERE cus_no = #{cus_no}
+        ORDER BY id DESC
+    </select>
+
+    <!-- 적립금 적립 내역 가져오기 -->
+    <select id="select_point_earned" resultType="user.vo.customer.PointVO" parameterType="String">
+        SELECT * FROM point
+        WHERE cus_no = #{cus_no} AND p_type = 0
+        ORDER BY id DESC
+    </select>
+
+    <!-- 적립금 사용 내역 가져오기 -->
+    <select id="select_point_used" resultType="user.vo.customer.PointVO" parameterType="String">
+        SELECT * FROM point
+        WHERE cus_no = #{cus_no} AND p_type = 1
+        ORDER BY id DESC
+    </select>
+
+    <!-- 적립금 적립 예정 내역 가져오기 -->
+    <select id="select_point_upcoming" resultType="user.vo.customer.PointVO" parameterType="String">
+        SELECT * FROM point p
+        INNER JOIN shop.order o
+        ON p.order_code = o.order_code
+        WHERE p.p_type = '0' AND o.status = '2' AND p.cus_no = '3'
+        ORDER BY p.id DESC
+    </select>
+
+    <!-- 소멸 예정 내역 구하기 -->
+    <select id="select_expire_days_left" resultType="user.vo.customer.PointVO" parameterType="String">
+        SELECT *, DATEDIFF(expire_date, NOW()) AS days_left FROM point
+        WHERE cus_no = #{cus_no}
+        AND p_type = 0
+        AND expire_date IS NOT NULL
+        AND DATEDIFF(expire_date, NOW()) &lt;= 30
+        AND DATEDIFF(expire_date, NOW()) &gt;= 0
+        ORDER BY expire_date
+    </select>
+
+    <!-- 적립 예정 적립금 총 합 -->
+    <select id="select_point_upcoming_total" resultType="String" parameterType="String">
+        SELECT SUM(p.amount) AS upcoming_points FROM point p
+        INNER JOIN shop.order o
+        ON p.cus_no = o.cus_no
+        WHERE p.cus_no = #{cus_no} AND p.p_type = 0 AND o.status = 0
+        GROUP BY p.cus_no
+    </select>
+
+    <!-- 소멸 예정 적립금 총 합 -->
+    <select id="select_point_expire_total" resultType="String" parameterType="String">
+        SELECT SUM(amount) AS total_expiring_points FROM point
+        WHERE cus_no = #{cus_no} AND p_type = 0
+        AND expire_date IS NOT NULL
+        AND DATEDIFF(expire_date, NOW()) &lt;= 30
+        AND DATEDIFF(expire_date, NOW()) &gt;= 0
+        GROUP BY cus_no
+    </select>
+
+    <!-- 보유 적립금 -->
+    <select id="select_save_point" resultType="int" parameterType="String">
+        SELECT
+        COALESCE(
+                SUM(CASE WHEN p_type = 0 THEN amount ELSE 0 END) -
+                SUM(CASE WHEN p_type = 1 THEN amount ELSE 0 END),
+                0
+            ) AS total_points
+        FROM point
+        WHERE cus_no = #{cus_no}
+    </select>
+
+    <!-- order_code로 이전 사용 적립금 찾기 -->
+    <select id="select_point_amount" resultType="int" parameterType="map">
+        SELECT IFNULL(SUM(IFNULL(amount, 0)), 0) AS total_amount FROM point
+        WHERE cus_no = #{cus_no} AND order_code = #{order_code} AND p_type = 1
+    </select>
+
+    <!-- 사용한 적립금 복구(환불) -->
+    <insert id="insert_point_refund" parameterType="map">
+        INSERT point(cus_no, amount, save_date, order_code, p_type)
+        VALUES(#{cus_no}, #{amount}, CURRENT_TIMESTAMP(), #{order_code}, 0)
+    </insert>
+
+    <!-- 환불 시 적립금 내역 삭제 -->
+    <delete id="delete_point" parameterType="map">
+        DELETE FROM point
+        WHERE cus_no = #{cus_no} AND order_code = #{order_code} AND p_type = 1
+    </delete>
+
+    <!-- 적립금 추가 -->
+    <insert id="insert_use_point" parameterType="user.vo.customer.PointVO">
+        INSERT INTO point (cus_no, amount, use_date, order_code, p_type)
+        VALUES (#{cus_no}, #{amount}, CURRENT_TIMESTAMP(), #{order_code}, #{p_type})
+    </insert>
+
+    <!-- order_code 적립금 id 찾기 -->
+    <select id="select_point_by_orderCode" resultType="String" parameterType="map">
+        SELECT id FROM point
+        WHERE cus_no = #{cus_no} AND order_code = #{order_code}
+    </select>
+</mapper>

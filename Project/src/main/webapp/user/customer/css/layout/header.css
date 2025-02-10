@@ -1,0 +1,74 @@
+.navbar-expand-lg .navbar-collapse {
+    width: 620px;
+    max-width: 620px;
+    min-width: 620px;
+}
+
+.user-header-menu {
+    gap: 25px !important;
+    margin-right: 15px;
+}
+
+.user-header-menu a i.bi.bi-heart-fill {
+    color: #f31110;
+}
+
+.nickname {
+    font-size: 15px;
+    margin-left: 10px;
+    display: inline-block;
+    max-width: 270px;
+    white-space: nowrap;
+    /*overflow: hidden;*/
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.like_title {
+    color: rgb(33, 37, 41);
+}
+
+.new_alert {
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 50%;
+    position: relative;
+    bottom: 10px;
+    right: 5px;
+}
+
+.cart_count {
+    position: relative;
+    bottom: 10px;
+    right: 12px;
+}
+
+.prod-search-container .form-group {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.prod-search-container .form-group input {
+    width: 300px;
+    border-radius: 20px;
+    padding: 4px 15px;
+}
+
+.prod-search-container .form-group .form-control-icon {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    right: 20px;
+    top: 20px;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+}

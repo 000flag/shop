@@ -53,14 +53,19 @@ public class OrderDAO {
         for(String s : status){
             System.out.println("status: "+s);
         }
-        if(selectedOrders!=null && selectedOrders.length>0){
-            for(int i=0;i<selectedOrders.length;i++){
-                map.put("tid",selectedOrders[i].trim());
-                if(status[i]!=null && !status[i].trim().isEmpty())
-                    str= status[i].trim();
-                map.put("status",str);
-                if(ss.update("order.change_status",map)<0)
-                    chk=false;
+        if (selectedOrders != null && selectedOrders.length > 0) {
+            for (int i = 0; i < selectedOrders.length; i++) {
+                map.put("tid", selectedOrders[i].trim());
+
+                // status 배열 길이 확인 후 접근
+                if (status != null && i < status.length && status[i] != null && !status[i].trim().isEmpty()) {
+                    str = status[i].trim();
+                }
+
+                map.put("status", str);
+                if (ss.update("order.change_status", map) < 0) {
+                    chk = false;
+                }
             }
         }
         if(chk) {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReplyDao">
+  <!-- 댓글 저장 -->
+  <insert id="insertReply" parameterType="user.vo.snap.ReplyVO">
+    INSERT INTO reply (board_no, cus_no, content, is_like, write_date, is_del)
+    VALUES (#{board_no},  #{cus_no}, #{content}, 0, NOW(), 0)
+  </insert>
+
+  <!-- 최신 댓글 1개 조회 -->
+  <select id="getLatestReply" parameterType="int" resultType="user.vo.snap.ReplyVO">
+    SELECT r.*, c.nickname, c.profile_image
+    FROM reply r
+           JOIN customer c ON r.cus_no = c.id
+    WHERE r.board_no = #{board_no} AND r.is_del = 0
+    ORDER BY r.write_date DESC
+      LIMIT 1
+  </select>
+
+  <select id="getReplyList" parameterType="int" resultType="user.vo.snap.ReplyVO">
+    SELECT r.*, c.nickname, c.profile_image
+    FROM reply r  JOIN customer c ON r.cus_no = c.id
+    WHERE r.board_no = #{board_no} AND r.is_del = 0
+    ORDER BY r.write_date ASC;
+  </select>
+
+  <update id="updateComment" parameterType="map">
+    UPDATE reply
+    SET content = #{content}, write_date = NOW()
+    WHERE id = #{comment_id} AND is_del = 0;
+  </update>
+
+<update id="deleteComment" parameterType="int">
+ update  reply
+ set is_del = 1, write_date = NOW()
+ WHERE id = #{id}
+
+</update>
+
+
+</mapper>

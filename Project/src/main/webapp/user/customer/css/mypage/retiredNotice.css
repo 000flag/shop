@@ -1,0 +1,107 @@
+.container {
+    width: 800px !important;
+}
+
+.retired-header {
+    padding: 20px;
+}
+
+.retired-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.retired-content {
+    padding: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.notice-section {
+    margin-top: 20px;
+}
+
+.notice-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.notice-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notice-list li {
+    margin-bottom: 15px;
+}
+
+.notice-list li strong {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.notice-list li p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.button-group button {
+    width: 48%;
+}
+
+.form-check {
+    margin: 70px 0 20px 0 !important;
+}
+
+.form-check-label {
+    font-size: 14px;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.form-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.form-actions button:first-child {
+    background-color: #e0e1e1 !important;
+}
+
+.form-actions button {
+    flex: 1;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* modal */
+.modal-body {
+    padding: 30px !important;
+}
+
+.modal-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px !important;
+    color: #333;
+}
+
+.modal-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.modal-actions .btn {
+    width: 48%;
+    font-size: 14px;
+    font-weight: bold;
+}
