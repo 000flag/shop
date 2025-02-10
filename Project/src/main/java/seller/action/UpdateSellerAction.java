@@ -2,6 +2,7 @@ package seller.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import user.action.Action;
 import comm.dao.SellerDAO;
@@ -21,6 +22,8 @@ public class UpdateSellerAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // 파일 업로드를 위한 설정
         String uploadPath = request.getServletContext().getRealPath("/upload");
+        HttpSession session = request.getSession();
+        String seller_no = (String) session.getAttribute("seller_no");
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -92,6 +95,7 @@ public class UpdateSellerAction implements Action {
             sellerVO.setEmail(email);
             sellerVO.setAddress(address);
             sellerVO.setDesc(desc);
+            sellerVO.setId(seller_no);
             System.out.println("sds"+sellerIconUrl);
 
             // 파일이 존재할 경우에만 업데이트
@@ -109,7 +113,7 @@ public class UpdateSellerAction implements Action {
             }
 
             // 업데이트 후 브랜드 정보 페이지로 리다이렉트
-            SellerVO updatedVO = SellerDAO.getSellerInfo();
+            SellerVO updatedVO = SellerDAO.getSellerInfo(seller_no);
             request.setAttribute("vo", updatedVO);
             return "/seller/jsp/brandinfo.jsp";
 

@@ -31,9 +31,9 @@ public class SellerDAO {
         ss.close();
         return cnt;
     }
-    public static SellerVO getSellerInfo() {
+    public static SellerVO getSellerInfo(String seller_no) {
         SqlSession session = FactoryService.getFactory().openSession();
-        SellerVO vo = session.selectOne("seller.getSellerInfo");  // ✅ MyBatis 매핑 확인
+        SellerVO vo = session.selectOne("seller.getSellerInfo",seller_no);  // ✅ MyBatis 매핑 확인
         session.close();
         return vo;
     }
@@ -75,11 +75,11 @@ public class SellerDAO {
         return cnt;
     }
     // ✅ 로고 이미지 (seller_icon)만 업데이트
-    public static int updateSellerIcon(String sellerId, String logoUrl) {
+    public static int updateSellerIcon(String seller_no, String logoUrl) {
         SqlSession ss = FactoryService.getFactory().openSession();
         try {
             Map<String, String> paramMap = new HashMap<>();
-            paramMap.put("sellerId", sellerId);
+            paramMap.put("seller_no", seller_no);
             paramMap.put("logoUrl", logoUrl);
 
             int cnt = ss.update("seller.updateSellerIcon", paramMap);

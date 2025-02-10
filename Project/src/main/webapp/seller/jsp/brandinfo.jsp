@@ -70,7 +70,7 @@
         }
     </style>
 </head>
-<%@ include file="header.jsp" %>
+<%@ include file="layout/header.jsp" %>
 <body>
 
 <div class="container mt-4">
