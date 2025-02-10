@@ -40,7 +40,7 @@
 </style>
 
 <body>
-<jsp:include page="/user/customer/jsp/layout/header.jsp"></jsp:include>
+<jsp:include page="/user/snap/jsp/layout/header.jsp"></jsp:include>
 
 <div class="container-fluid mt-4">
     <div class="row">

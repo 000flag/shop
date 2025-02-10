@@ -16,7 +16,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
         <%-- CSS --%>
-<%--        <link href="${pageContext.request.contextPath}/user/customer/css/common/common.css" rel="stylesheet" type="text/css">--%>
+        <link href="${pageContext.request.contextPath}/user/customer/css/common/common.css" rel="stylesheet" type="text/css">
         <link href="${pageContext.request.contextPath}/user/customer/css/layout/header.css" rel="stylesheet" type="text/css">
         <%--<link href="./user/customer/css/event/event.css" rel="stylesheet" type="text/css">--%>
 
