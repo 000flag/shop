@@ -10,29 +10,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="merge2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/BoardVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/CartVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/CouponVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/CustomerVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/DeliveryVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/EventVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/GradeVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/LogVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/MajorCategoryVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/MiddleCategoryVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/OrderVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/PointVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/ProdLikeVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/customer/ProductVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/BoardProductVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/ChatMessageVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/ChatRoomVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/CustomerVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/LikesVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/ProductVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/snap/ReplyVO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/OrderDeliveryAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/OrderDeliveryAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/comm/vo/seller/OrderVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/comm/vo/seller/OrderVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/CancelOrderAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/MyPageAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/OrderDeliveryAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/user/action/customer/RefundRequestAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/customer/order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/resources/mybatis/mapper/customer/order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/cancelOrder.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/components/order.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/components/question.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/orderDelivery.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/orderDetails.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/css/mypage/refundRequest.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/js/mypage/cancelOrder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/js/mypage/orderDetails.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/js/mypage/refundRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/js/payment/payment.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/board/faq.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/layout/header.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/cancelDetails.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/cancelOrder.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/components/order.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/deliveryStatus.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/exchangeDetails.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/mypage.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/orderDelivery.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/refundDetails.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/mypage/refundRequest.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/webapp/user/customer/jsp/payment/approve.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +206,7 @@
       <workItem from="1738758163410" duration="12000" />
       <workItem from="1738819173605" duration="43000" />
       <workItem from="1739189962876" duration="10743000" />
-      <workItem from="1739208508985" duration="1568000" />
+      <workItem from="1739208508985" duration="1921000" />
     </task>
     <task id="LOCAL-00001" summary="병합 중간 푸쉬">
       <option name="closed" value="true" />
@@ -275,7 +280,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739209306654</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="merge2">
+      <option name="closed" value="true" />
+      <created>1739210235244</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739210235244</updated>
+    </task>
+    <task id="LOCAL-00011" summary="merge2">
+      <option name="closed" value="true" />
+      <created>1739210239154</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739210239154</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
