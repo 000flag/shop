@@ -139,3 +139,34 @@
     background-color: #000 !important;
     color: #fff !important;
 }
+
+.account-number{
+    margin-top: 10px;
+}
+
+.refund-account h5{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cancel-refund-info h5{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cancel-refund-info ul{
+    padding: 0px;
+}
+
+.cancel-refund-info li {
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+}
+
+.cancel-refund-amount{
+    font-weight: bold;
+    color: red;
+}

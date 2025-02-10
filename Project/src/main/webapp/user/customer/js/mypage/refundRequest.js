@@ -69,9 +69,8 @@ function refundRequest() {
         return;
     }
 
-    if (!/^\d{3}-\d{4}-\d{4}-\d{4}$/.test(accountNumber)) {
-        alert("올바른 계좌번호 형식이 아닙니다. 예: 111-2222-3333-4444");
-        return;
+    if (!/^\d{2,4}-\d{3,4}-\d{4,6}$/.test(accountNumber)) {
+        alert("올바른 계좌번호 형식이 아닙니다.");
     }
 
     // 환불 예정 금액 가져오기
@@ -155,9 +154,8 @@ function refundRequestAll() {
         return;
     }
 
-    if (!/^\d{3}-\d{4}-\d{4}-\d{4}$/.test(accountNumber)) {
-        alert("올바른 계좌번호 형식이 아닙니다. 예: 111-2222-3333-4444");
-        return;
+    if (!/^\d{2,4}-\d{3,4}-\d{4,6}$/.test(accountNumber)) {
+        alert("올바른 계좌번호 형식이 아닙니다.");
     }
 
     // 환불 예정 금액 가져오기

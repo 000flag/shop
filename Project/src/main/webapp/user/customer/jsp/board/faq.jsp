@@ -295,10 +295,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="board-button-container">
+                        <%--<div class="board-button-container">
                             <button class="btn btn-dark">1:1 문의하기</button>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
 

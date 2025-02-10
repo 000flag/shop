@@ -64,10 +64,8 @@ public class MyPageAction implements Action {
                                 String fieldName = item.getFieldName();
                                 String value = item.getString("UTF-8");
 
-                                switch (fieldName) {
-                                    case "nickname":
-                                        nickname = value;
-                                        break;
+                                if (fieldName.equals("nickname")) {
+                                    nickname = value;
                                 }
                             } else {
                                 // 파일 업로드 처리

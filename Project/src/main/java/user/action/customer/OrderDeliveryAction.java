@@ -22,6 +22,11 @@ public class OrderDeliveryAction implements Action {
         }
 
         List<OrderVO> list = OrderDAO.selectOrderStatus(cvo.getId());
+
+        for (OrderVO o : list) {
+            System.out.println("o seller_no : " + o.getSeller_no());
+        }
+
         request.setAttribute("list", list);
 
         return "/user/customer/jsp/mypage/orderDelivery.jsp";

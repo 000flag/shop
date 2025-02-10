@@ -11,12 +11,8 @@ $(document).ready(function () {
     });
 
     // o_list 길이를 확인하여 버튼에 이벤트 할당
-    const orderListLength = $('input[name="order_id"]').length;
-    if (orderListLength > 1) {
-        $('#cancelRequestButton').on('click', cancelRequestAll);
-    } else {
-        $('#cancelRequestButton').on('click', cancelRequest);
-    }
+    $('#cancelRequestButton').on('click', cancelRequest); // 개별 취소
+    $('#cancelAllRequestButton').on('click', cancelRequestAll); // 전체 취소
 });
 
 function getSelectedCancelReason() {
@@ -83,9 +79,8 @@ function cancelRequest() {
             return;
         }
 
-        if (!/^\d{3}-\d{4}-\d{4}-\d{4}$/.test(accountNumber)) {
-            alert("올바른 계좌번호 형식이 아닙니다. 예: 111-2222-3333-4444");
-            return;
+        if (!/^\d{2,4}-\d{3,4}-\d{4,6}$/.test(accountNumber)) {
+            alert("올바른 계좌번호 형식이 아닙니다.");
         }
     }
 
@@ -157,9 +152,8 @@ function cancelRequestAll() {
             return;
         }
 
-        if (!/^\d{3}-\d{4}-\d{4}-\d{4}$/.test(accountNumber)) {
-            alert("올바른 계좌번호 형식이 아닙니다. 예: 111-2222-3333-4444");
-            return;
+        if (!/^\d{2,4}-\d{3,4}-\d{4,6}$/.test(accountNumber)) {
+            alert("올바른 계좌번호 형식이 아닙니다.");
         }
     }
 

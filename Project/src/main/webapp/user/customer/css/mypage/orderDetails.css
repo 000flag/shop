@@ -150,7 +150,6 @@
 
 .product-actions button {
     flex: 1;
-    max-width: calc(50% - 5px);
 }
 
 .change-address-button:hover, .cancel-button:hover, .option-button:hover, .product-link:hover {

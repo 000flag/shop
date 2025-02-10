@@ -121,7 +121,14 @@
                                         <div class="wrap-tracking">
                                             <p class="tracking-title">송장 번호</p>
                                             <div class="tracking-info">
-                                                <a href="#" class="tracking-number">${requestScope.list[0].invoice_number}</a>
+                                                <c:choose>
+                                                    <c:when test="${not empty requestScope.list[0].invoice_number}">
+                                                        <a href="#" class="tracking-number">${requestScope.list[0].invoice_number}</a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        4081918387
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 <i class="bi bi-copy"></i>
                                             </div>
                                         </div>

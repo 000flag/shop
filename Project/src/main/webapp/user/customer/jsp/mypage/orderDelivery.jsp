@@ -59,7 +59,7 @@
                                         </c:if>
 
                                         <!-- 주문 상품 출력 -->
-                                        <div class="order-item" onclick="location.href='Controller?type=deliveryStatus&order_code=${item.order_code}&brand=${item.brand}'">
+                                        <div class="order-item" onclick="location.href='Controller?type=deliveryStatus&order_code=${item.order_code}&brand=${item.seller_no}'">
                                             <img src="${fn:split(item.prod_image, ',')[0]}" alt="Product Image" class="product-image">
                                             <div class="order-details">
                                                 <c:choose>

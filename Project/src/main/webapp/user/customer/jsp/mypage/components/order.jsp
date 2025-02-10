@@ -36,7 +36,7 @@
                     <c:if test="${currentOrderCode != item.order_code}">
                         <c:set var="currentOrderCode" value="${item.order_code}" />
                         <div class="custom-order-code-group">
-<%--                            <a href="Controller?type=orderDetails&action=select&order_code=${item.order_code}" class="custom-order-code custom-details-link">${item.order_code}</a>--%>
+                            <a href="Controller?type=orderDetails&action=select&order_code=${item.order_code}" class="custom-order-code custom-details-link">주문코드 ${item.order_code}</a>
                             <c:choose>
                                 <c:when test="${item.status == '1'}">
                                     <div class="wrap-all-button">

@@ -20,7 +20,7 @@
             </div>
             <div class="modal-body">
                 <!-- id="snapForm" 추가 -->
-                <form id="snapForm" action="${pageContext.request.contextPath}/Controller?type=snapWrite" method="post" enctype="multipart/form-data">
+                <form id="snapEditForm " action="${pageContext.request.contextPath}/Controller?type=snapWrite" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="prod_no" id="selectedProdNo">
                     <div id="snapSteps">
                         <!-- Step 1: 메인 이미지 업로드 -->
@@ -130,7 +130,7 @@
                             <button type="button" class="btn btn-secondary" id="prevStep" disabled>이전</button>
                             <button type="button" class="btn btn-primary" id="nextStep">다음</button>
                             <!-- type="button"을 유지 -->
-                            <button type="submit" id="submitSnap">저장</button>
+                            <button type="submit" class="btn btn-primary" id="submitSnap">저장</button>
                         </div>
                     </div>
                 </form>

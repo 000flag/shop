@@ -72,8 +72,8 @@
                                     </div>
                                 </div>
                                 <div class="profile-buttons">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm profile-button" onclick="location.href='Controller?type=myPage&action=profile'">프로필</button>
-                                    <button type="button" class="btn btn-outline-secondary btn-sm snap-profile-button">스냅 프로필</button>
+                                    <button type="button" class="btn btn-outline-secondary profile-button" onclick="location.href='Controller?type=myPage&action=profile'">프로필</button>
+                                    <%--<button type="button" class="btn btn-outline-secondary btn-sm snap-profile-button">스냅 프로필</button>--%>
                                 </div>
                             </div>
                         </div>

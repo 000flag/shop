@@ -43,7 +43,7 @@
                                 <div class="order-date">${cancel.order_date}</div>
                                 <div class="wrap-order-details">
                                     <div class="order-number">${cancel.order_code}</div>
-<%--                                    <div class="order-details-link"><a href="Controller?type=orderDetails">주문 상세</a></div>--%>
+                                    <%--<div class="order-details-link"><a href="Controller?type=orderDetails">주문 상세</a></div>--%>
                                 </div>
                             </div>
                             <hr/>

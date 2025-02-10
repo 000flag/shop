@@ -6,7 +6,7 @@ public class OrderVO {
     private String id, tid, cus_no, prod_no, coupon_no, deli_no, order_code, count, order_date, amount, benefit_type, result_amount, pay_type, status, refund_bank, refund_account, reason_customer,
             reason_seller, retrieve_deli_no, prod_code, prod_name, prod_price, prod_sale, prod_image, prod_saled_price, brand, option_name, deli_name, pos_code, addr1,
             addr2, phone, deli_request, is_default, point_amount, inventory_no, coupon_name, sale_per, delivery_date, purchase_confirm_date, exchange_inventory_no,
-            expected_point, refund_request_date, cancel_request_date, exchange_request_date, invoice_number, refund_completed_date, courier, seller_address, delivery_type, is_write_review;
+            expected_point, refund_request_date, cancel_request_date, exchange_request_date, invoice_number, refund_completed_date, courier, seller_address, delivery_type, is_write_review, seller_no;
 
     public String getReason_seller() {
         return reason_seller;
@@ -424,5 +424,13 @@ public class OrderVO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getSeller_no() {
+        return seller_no;
+    }
+
+    public void setSeller_no(String seller_no) {
+        this.seller_no = seller_no;
     }
 }

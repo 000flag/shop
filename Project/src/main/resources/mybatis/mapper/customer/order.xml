@@ -278,7 +278,7 @@
 
     <!-- 진행 중 주문현황 조회 -->
     <select id="select_order_status" resultType="user.vo.customer.OrderVO" parameterType="String">
-        SELECT s.name AS brand, p.name AS prod_name, p.prod_image AS prod_image, i.option_name AS option_name, o.*,
+        SELECT s.id AS seller_no, p.name AS prod_name, p.prod_image AS prod_image, i.option_name AS option_name, o.*,
         CASE
             WHEN o.status = 8 THEN 'EXCHANGE_REQUESTED'  -- 교환 신청 상태 추가
             WHEN o.exchange_request_date IS NOT NULL AND o.status IN (1, 2, 3, 4) THEN 'EXCHANGE_IN_PROGRESS'
@@ -303,7 +303,7 @@
         INNER JOIN product p ON o.prod_no = p.id
         INNER JOIN seller s ON p.seller_no = s.id
         LEFT JOIN inventory i ON i.id = o.inventory_no
-        WHERE o.cus_no = #{cus_no} AND o.order_code = #{order_code} AND s.name = #{brand} AND o.status IN (1, 2, 3, 4, 5, 8)
+        WHERE o.cus_no = #{cus_no} AND o.order_code = #{order_code} AND s.id = #{brand} AND o.status IN (1, 2, 3, 4, 5, 8)
     </select>
 
     <!-- 구매확정 버튼 클릭 시 status변경 -->

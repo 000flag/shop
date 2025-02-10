@@ -150,6 +150,7 @@
 
 .refund-details-button{
     width: 100%;
+    min-width: 100%;
 }
 
 .custom-action-button {
@@ -170,6 +171,11 @@
     padding: 20px;
     margin-bottom: 20px; /* 간격 추가 */
     background-color: #fff;
+    cursor: pointer;
+}
+
+.custom-order-block:hover {
+    background-color: #ebebeb;
 }
 
 .custom-order-block:not(:last-child) {

@@ -198,7 +198,7 @@ public class RefundRequestAction implements Action {
                         }
 
                         // 고객 누적 금액 업데이트
-                        int currentTotal = Integer.parseInt(cvo.getTotal());
+                        int currentTotal = (cvo.getTotal() != null && !cvo.getTotal().isEmpty()) ? Integer.parseInt(cvo.getTotal()) : 0;
                         int totalINT = currentTotal - refundAmountValue;
                         CustomerDAO.updateTotal(cvo.getId(), String.valueOf(totalINT));
 
@@ -328,7 +328,7 @@ public class RefundRequestAction implements Action {
                                 LogDAO.updateLog(lvo);
                             }
 
-                            int currentTotal = Integer.parseInt(cvo.getTotal());
+                            int currentTotal = (cvo.getTotal() != null && !cvo.getTotal().isEmpty()) ? Integer.parseInt(cvo.getTotal()) : 0;
                             CustomerDAO.updateTotal(cvo.getId(), String.valueOf(currentTotal - totalRefundAmount));
 
                             response.setContentType("application/json");
