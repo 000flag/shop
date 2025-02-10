@@ -29,5 +29,4 @@ public class BrandInfoAction implements Action {
 
         return "/seller/jsp/brandinfo.jsp";
     }
-
 }

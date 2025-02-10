@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="찐 최종 승범2" />
+    <list default="true" id="5b829c05-df2b-409a-9128-08397fbb7afd" name="Changes" comment="찐 최종 승범2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/main/java/seller/action/BrandInfoAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/main/java/seller/action/BrandInfoAction.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +179,7 @@
       <updated>1738758162302</updated>
       <workItem from="1738758163410" duration="12000" />
       <workItem from="1738819173605" duration="43000" />
-      <workItem from="1739189962876" duration="10217000" />
+      <workItem from="1739189962876" duration="10743000" />
     </task>
     <task id="LOCAL-00001" summary="병합 중간 푸쉬">
       <option name="closed" value="true" />
@@ -218,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739207904827</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="찐 최종 승범2">
+      <option name="closed" value="true" />
+      <created>1739208034601</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739208034601</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
