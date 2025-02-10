@@ -248,7 +248,7 @@
       if (!roomId) return;
       fetch("/Controller?type=chatRoom&roomId=" + roomId)
           .then(response => response.json())
-          .then(messages => {
+          .then(messages =>
             chatBox.innerHTML = "";
             let lastDate = "";
             messages.forEach(msg => {
