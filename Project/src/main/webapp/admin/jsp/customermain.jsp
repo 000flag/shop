@@ -179,7 +179,9 @@
                             </table>
                         </div>
                         <!-- 초기화 버튼 (필요시) -->
-                        <button class="btn btn-outline-secondary">초기화</button>
+                        <div class="mt-3 mb-4">
+                            <button class="btn btn-outline-secondary" onclick = "location.href='Controller?type=customermain'">초기화</button>
+                        </div>
                     </div>
                 </div>
             </section>

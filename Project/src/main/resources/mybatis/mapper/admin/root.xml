@@ -255,6 +255,16 @@
     VALUES (#{major_no},#{name},#{type},0)
 
   </insert>
+  <insert id="addCoupon" parameterType="admin.vo.CouponVO">
+    INSERT INTO coupon (root_no, category_no , grade_no, name, sale_per, start_date, end_date,status,is_del)
+    VALUES (#{root_no}, #{category_no}, #{grade_no}, #{name}, #{sale_per}, #{start_date}, #{end_date},'1','0')
+
+  </insert>
+  <insert id="addBoard" parameterType="admin.vo.BoardVO">
+  INSERT INTO board (cus_no, prod_no, bname, title, content, gender, season, style, write_date)
+  VALUES (#{cus_no},#{prod_no},#{bname},#{title},#{content},#{gender},#{season},#{style},#{write_date})
+
+  </insert>
   <select id="getBoardById" parameterType="String" resultType="admin.vo.BoardVO">
     select * from board where id = #{id}
 
@@ -270,7 +280,15 @@
 
 
   </select>
-
+  <select id="getCountCustomer0" resultType="String">
+    select count(*) from `customer` where is_del =0;
+  </select>
+  <select id="getCountCustomer1" resultType="String">
+    select count(*) from `customer` where is_del = 1;
+  </select>
+  <select id="getCountCustomer2" resultType="String">
+    select count(*) from `customer` where is_del = 2;
+  </select>
   <select id="getId" resultType="int" parameterType="String">
     SELECT id FROM shop.middle_category
     where name =  #{cn};

@@ -24,7 +24,7 @@ public class AdminDeleteCouponAction implements Action {
             CouponDao cDao = new CouponDao();
 
             // 게시판 삭제 (id_del 0 → 1)
-            boolean chk = CouponDao.deleteCoupon(id);
+            boolean chk = cDao.deleteCoupon(id);
 
             HttpSession session = request.getSession();
             String rootIdStr = (String) session.getAttribute("id"); // 먼저 String으로 가져옴

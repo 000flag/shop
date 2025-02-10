@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomerDao {
+
     public static List<CustomerVO> allCustomer(){
         SqlSession ss = FactoryService.getFactory().openSession();
         List<CustomerVO> vo = new ArrayList<CustomerVO>();
@@ -74,6 +75,27 @@ public class CustomerDao {
         return chk;
 
 
+    }
+    public static String getCountCustomer0(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer0");
+
+        ss.close();
+        return str;
+    }
+    public static String getCountCustomer1(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer1");
+
+        ss.close();
+        return str;
+    }
+    public static String getCountCustomer2(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer2");
+
+        ss.close();
+        return str;
     }
 
 }

@@ -49,5 +49,6 @@
     <mapper resource="mybatis/mapper/coupon.xml"/>
 
     <mapper resource="mybatis/mapper/admin/root.xml"/>
+    <mapper resource="mybatis/mapper/sellerLog.xml"/>
   </mappers>
 </configuration>

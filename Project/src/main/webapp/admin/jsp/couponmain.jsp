@@ -92,6 +92,7 @@
       </thead>
       <tbody>
       <c:forEach var ="coul"  items="${couponList}">
+        <c:if test = "${coul.is_del eq 0}">
         <tr id = "row-${coul.id}">
 
 
@@ -113,6 +114,7 @@
                     onclick = "setCouponId('${coul.id}')">삭제</button>
           </td>
         </tr>
+        </c:if>
       </c:forEach>
       </tbody>
     </table>
@@ -122,34 +124,114 @@
     </div>
 
     <hr/><!---------------------------------------------->
-    <div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="rejectModalLabel">쿠폰 지우기 사유</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form id="deleteCouponForm">
-            <div class="modal-body">
-              <input type="hidden" id="deleteCouponId" name="id">
 
-              <textarea class="form-control" id="deleteReason" name="content" rows="3">쿠폰을 삭제할 이유를 적어주세요.</textarea>
-              <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="submit" class="btn btn-primary">저장</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
 
 
 
 
   </div>
+
+</div>
+<div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rejectModalLabel">쿠폰 지우기 사유</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="deleteCouponForm">
+        <div class="modal-body">
+          <input type="hidden" id="deleteCouponId" name="id" >
+          <textarea class="form-control" id="deleteReason" name="content" rows="3" placeholder="쿠폰을 삭제할 이유를 적어주세요."></textarea>
+          <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="CouponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="couponModalLabel">쿠폰 설정</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id = "addCouponForm" action="Controller" method="POST">
+        <input type="hidden" id="addCouponId" name="couponid" >
+        <div class="modal-body">
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">관리자 번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="rootNo" name="rootNo" placeholder="관리자번호">
+
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold"> 카테고리 번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="categoryNo" name="categoryNo" placeholder="카테고리번호">
+
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">판매자 번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="sellerNo" name="sellerNo" value="1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">등급 번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="gradeNo" name="gradeNo" value="1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">종류</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="type" name="type" value="1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">이름</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="name" name="name" value="1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">할인율</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="salePer" name="salePer" value="1">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">시작일자</div>
+            <div class="col-md-6">
+              <input type="date" class="form-control" id="startDate" name="startDate">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">끝일자</div>
+            <div class="col-md-6">
+              <input type="date" class="form-control" id="endDate" name="endDate">
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            <button type="submit" class="btn btn-primary" >저장</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
 </div>
 <!-- 부트스트랩 관련 스크립트 -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -210,6 +292,7 @@
   function setCouponId(couponId) {
     console.log("전달된 ID:", couponId);
     $("#deleteCouponId").val(couponId);
+    $("#addCouponId").val(couponId);
     console.log("현재 값:", $("#deleteCouponId").val());
   }
   $(function (){
@@ -238,26 +321,36 @@
 
     $("#addCouponForm").submit(function (event) {
       event.preventDefault();
-      let root_no = $("#rootId").val();
+      let root_no = $("#rootNo").val();
 
-      let category_no = $("#category_no").val();
-      let seller_no = $("#seller_no").val().trim();
-      let grade_no = $('#grade_no').val().trim();
-      let type = $('#name').val().trim();
-      let name = $('#sale_per').val().trim();
-      let sale_per = $('#sale_per').val().trim();
-      let start_date = $('#start_date').val().trim();
-      let end_date = $('#end_date').val().trim();
+      let category_no = $("#categoryNo").val();
+
+      let grade_no = $('#gradeNo').val().trim();
+      let type = $('#type').val().trim();
+      let name = $('#name').val().trim();
+      let sale_per = $('#salePer').val().trim();
+      let start_date = $('#startDate').val().trim();
+      let end_date = $('#endDate').val().trim();
       
 
 
       $.ajax({
         type: "POST",
-        url: "Controller?type=addMiddleCategory",
+        url: "Controller?type=addCoupon",
         data: {
-          majorCategoryId: majorCategoryId, // DB에 숫자로 저장
-          middleCategoryName: middleCategoryName,
-          middleCategoryType: middleCategoryType
+          root_no: root_no,
+          category_no: category_no,// DB에 숫자로 저장
+          seller_no: seller_no,
+          grade_no: grade_no,
+          type:type,
+          name: name,
+          sale_per: sale_per,
+          start_date: start_date,
+          end_date: end_date
+
+
+
+
         },
         dataType: "json",
         success: function(response){
