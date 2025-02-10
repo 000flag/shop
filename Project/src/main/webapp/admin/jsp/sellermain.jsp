@@ -12,6 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- 추가 CSS (테이블 디자인 등) -->
     <style>
+        .col-9 {
+            margin: 0 auto;
+        }
         /* 사이드바와 페이지 레이아웃 */
         #wrapper {
             display: flex;

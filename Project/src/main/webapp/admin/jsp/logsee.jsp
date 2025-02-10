@@ -14,6 +14,12 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="css/table.css">
+
+    <style>
+        .col-9 {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="layout/header.jsp"></jsp:include>

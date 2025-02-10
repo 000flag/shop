@@ -8,7 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>카테고리 관리</title>
     <style>
-       <jsp:include page="css/table.css"></jsp:include>
+        .col-9 {
+            margin: 0 auto;
+        }
+
+        <jsp:include page="css/table.css"></jsp:include>
     </style>
 </head>
 <body>
