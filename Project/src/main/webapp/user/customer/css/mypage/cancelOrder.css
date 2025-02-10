@@ -1,0 +1,172 @@
+.container {
+    width: 900px !important;
+}
+
+.cancel-order-title {
+    font-size: 22px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+
+.select-all {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.select-all label[for="select-all"] {
+    margin-bottom: 0 !important;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.select-all input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.product-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.product-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.product-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-brand {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-name {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cancel-reason {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cancel-reason h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.reason-item {
+    margin-bottom: 10px;
+}
+
+.reason-item input[type="radio"] {
+    margin-right: 10px;
+}
+
+.refund-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.refund-info h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.refund-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.refund-info li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.notice {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cancel-button-container {
+    text-align: center;
+}
+
+.cancel-request-btn {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.cancel-request-btn:hover {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.account-number{
+    margin-top: 10px;
+}
+
+.refund-account h5{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cancel-refund-info h5{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cancel-refund-info ul{
+    padding: 0px;
+}
+
+.cancel-refund-info li {
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+}
+
+.cancel-refund-amount{
+    font-weight: bold;
+    color: red;
+}
