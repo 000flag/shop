@@ -9,6 +9,7 @@ import org.json.JSONObject; // JSON 응답을 위해 필요
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CouponUpdateAction implements Action {
@@ -17,8 +18,10 @@ public class CouponUpdateAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             // 요청에서 데이터 받기
+            HttpSession session = request.getSession();
+            String seller_no = (String) session.getAttribute("seller_no");
             String id = request.getParameter("id");
-            System.out.println("id="+id);
+            System.out.println("id="+id);//왜 이거 안나오냐 sout
             String name = request.getParameter("name");
             String sale_per = request.getParameter("sale_per");
             String start_date = request.getParameter("start_date");
@@ -44,7 +47,7 @@ public class CouponUpdateAction implements Action {
 
             // 데이터베이스 업데이트 실행
             int result = CouponDAO.updateCoupon(coupon);
-
+            System.out.println("result="+result);
             // JSON 응답 객체 생성
             JSONObject jsonResponse = new JSONObject();
             if (result > 0) {
@@ -54,7 +57,7 @@ public class CouponUpdateAction implements Action {
 
                 // 🔹 6. 로그 객체 생성 및 값 설정
                 SellerLogVO log = new SellerLogVO();
-                log.setSeller_no((String) request.getSession().getAttribute("seller_no")); // 현재 로그인한 판매자 ID
+                log.setSeller_no(seller_no); // 현재 로그인한 판매자 ID
                 log.setWriter_type((String) request.getSession().getAttribute("writer_type")); // 작성자 유형
                 log.setTarget("쿠폰수정");  // 로그 대상
                 log.setLog_type("2");  // 2 = 수정

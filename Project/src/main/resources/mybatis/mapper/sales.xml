@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sales">
 
-    <select id="getSalesList" resultType="comm.vo.seller.SalesVO">
+    <select id="getSalesList" resultType="comm.vo.seller.SalesVO" parameterType="String">
         SELECT
         o.id AS order_id,
         o.order_date,
@@ -21,12 +21,12 @@
         LEFT JOIN shop.product p ON p.id = o.prod_no
         LEFT JOIN shop.middle_category mc ON mc.type = p.category_no
         LEFT JOIN shop.coupon c ON c.id = o.coupon_no
-        WHERE p.seller_no = 2
+        WHERE p.seller_no = #{seller_no}
         ORDER BY o.order_date DESC
     </select>
 
-    <select id="getSalesCount" resultType="int">
-        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = 2<!--2바꾸셈-->
+    <select id="getSalesCount" resultType="int" parameterType="String">
+        select count(*) from shop.order o, shop.product p where o.prod_no = p.id and p.seller_no = #{seller_no}
     </select>
 
     <select id="getDeliveryInfo" parameterType="String" resultType="comm.vo.seller.SalesModalVO">
@@ -44,7 +44,7 @@
         IFNULL(c.sale_per, 0) AS discount_value,  -- 쿠폰 할인율 (없으면 0)
         CASE
         WHEN c.sale_per IS NOT NULL
-        THEN CAST((p.price * o.count) * (1 - c.sale_per / 100) AS UNSIGNED)  -- 할인 적용
+        THEN CAST((p.price * o.count) * (1 - c.sale_per / 100) AS UNSIGNED)
         ELSE CAST((p.price * o.count) AS UNSIGNED)  -- 할인 없음
         END AS total_price  -- 할인 후 최종 가격
         FROM shop.order o

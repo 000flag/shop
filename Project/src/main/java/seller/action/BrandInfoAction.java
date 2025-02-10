@@ -17,7 +17,6 @@ public class BrandInfoAction implements Action {
         HttpSession session = request.getSession();
         String seller_no = (String) session.getAttribute("seller_no");
         SellerVO vo = SellerDAO.getSellerInfo(seller_no);// ✅ DAO에서 seller 정보 가져오기
-
         if (vo == null) {
             System.err.println("❌ BrandInfoAction: SellerVO is NULL!");
         } else {
@@ -29,4 +28,5 @@ public class BrandInfoAction implements Action {
 
         return "/seller/jsp/brandinfo.jsp";
     }
+
 }

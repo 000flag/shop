@@ -3,6 +3,10 @@
 <%@ page import="comm.vo.seller.SellerVO" %>
 <%
     SellerVO vo = (SellerVO) request.getAttribute("vo");
+    if (vo == null) {
+        vo = new SellerVO(); // 기본 객체 생성
+        System.out.println("🚨 vo가 null입니다! 기본 객체를 생성합니다.");
+    }
 %>
 <%--
   Created by IntelliJ IDEA.
@@ -125,21 +129,16 @@
 
     <script>
         // 텍스트 필드 활성화
-        function enableEditing() {
-            document.getElementById('sellerId').disabled = false;
-            document.getElementById('brandName').disabled = false;
-            document.getElementById('brandPhone').disabled = false;
-            document.getElementById('brandEmail').disabled = false;
-            document.getElementById('brandAddress').disabled = false;
-            document.getElementById('brandDesc').disabled = false;
 
+        function enableEditing() {
+            document.querySelectorAll("input, textarea").forEach(input => input.disabled = false);
             document.getElementById('saveButton').disabled = false;
         }
 
-
         document.getElementById('saveButton').addEventListener("click", function () {
-            document.querySelector("form").submit();
+            document.querySelectorAll("input:not(#sellerId), textarea").forEach(input => input.readOnly = false);
         });
+
 
 
         function uploadLogo(event) {

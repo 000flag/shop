@@ -35,7 +35,6 @@ public class UploadLogoAction implements Action {
             // S3Uploader를 사용하여 S3에 업로드
             S3Uploader s3Uploader = new S3Uploader();
             String fileUrl = s3Uploader.uploadFile(tempFile, fileName);
-            System.out.println("sellerid"+seller_no);
             System.out.println("fileUrl:" + fileUrl);
             // DB 업데이트
             int result = SellerDAO.updateSellerIcon(seller_no, fileUrl);

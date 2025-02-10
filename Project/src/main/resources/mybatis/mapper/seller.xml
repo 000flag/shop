@@ -3,27 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seller">
-    <select id="login" parameterType="String" resultType="comm.vo.seller.SellerVO">
+    <select id="login" parameterType="String" resultType="comm.vo.SellerVO">
         SELECT * FROM seller
         WHERE seller_id = #{seller_id}
         AND active=0
     </select>
     <select id="getSellerInfo" resultType="comm.vo.seller.SellerVO" parameterType="String">
-        SELECT seller_id, name, phone, email, `desc`, address, seller_icon FROM shop.seller where id = #{seller_no}
+        SELECT *
+        FROM shop.seller
+        where id = #{seller_no}
     </select>
 
+
     <update id="updateSellerInfo" parameterType="comm.vo.seller.SellerVO">
-        update shop.seller set seller_id = #{seller_id}, name = #{name}, phone = #{phone}, email = #{email}, `desc` = #{desc}, address = #{address},
-        seller_icon = #{seller_icon} where id = #{id}
+        update shop.seller set
+        seller_id = #{seller_id},
+        name = #{name},
+        phone = #{phone},
+        email = #{email},
+        `desc` = #{desc},
+        address = #{address},
+        seller_icon = #{seller_icon}
+        where id = #{id}
     </update>
     <update id="updateSellerIcon" parameterType="map">
         UPDATE shop.seller
-        SET seller_icon = #{seller_icon}
-        WHERE seller_id = #{seller_no}
+        SET seller_icon = #{logoUrl}
+        WHERE seller_no = #{seller_no}
     </update>
     <select id="check_id" parameterType="String" resultType="int">
         SELECT COUNT(*) FROM seller
-        WHERE seller_id = #{seller_id}
+        WHERE id = #{seller_no}
     </select>
     <insert id="add_seller" parameterType="Map">
         INSERT INTO seller(seller_id,seller_pw,email,phone,name,address,courier,`desc`)

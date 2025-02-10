@@ -81,8 +81,6 @@ public class UpdateSellerAction implements Action {
                         // S3 업로드
                         S3Uploader s3Uploader = new S3Uploader();
                         sellerIconUrl = s3Uploader.uploadFile(file, "seller-icons/" + uniqueFileName);
-
-
                     }
                 }
             }
@@ -96,20 +94,21 @@ public class UpdateSellerAction implements Action {
             sellerVO.setAddress(address);
             sellerVO.setDesc(desc);
             sellerVO.setId(seller_no);
+            System.out.println("seller_id:"+sellerId);
             System.out.println("sds"+sellerIconUrl);
 
             // 파일이 존재할 경우에만 업데이트
             if (sellerIconUrl != null) {
                 sellerVO.setSeller_icon(sellerIconUrl);
             }
-
+            System.out.println("updateSeller");
             // DAO를 통해 데이터베이스 업데이트 실행
             int updateSuccess = SellerDAO.updateSeller(sellerVO);
-
+            System.out.println("updateSuccess:"+updateSuccess);
             if (updateSuccess == 1) {
-                System.out.println("성공");
+                System.out.println("success");
             } else {
-                System.out.println("좀되라고 ");
+                System.out.println("not success ");
             }
 
             // 업데이트 후 브랜드 정보 페이지로 리다이렉트
