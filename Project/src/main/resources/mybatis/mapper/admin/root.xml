@@ -255,6 +255,10 @@
     VALUES (#{major_no},#{name},#{type},0)
 
   </insert>
+  <insert id="addCoupon" parameterType="admin.vo.CouponVO">
+    INSERT INTO coupon(root_no,category_no,grade_no,name,sale_per,start_date,end_date)
+    values(#{root_no},#{category_no},#{grade_no},#{name},#{sale_per},#{start_date},#{end_date})
+  </insert>
   <select id="getBoardById" parameterType="String" resultType="admin.vo.BoardVO">
     select * from board where id = #{id}
 
@@ -263,6 +267,11 @@
   <select id="getMajorId" parameterType="admin.vo.MajorCategoryVO" resultType="admin.vo.MajorCategoryVO">
     SELECT id FROM major_category
     WHERE name = #{name} AND ename = #{ename}
+
+  </select>
+  <select id="getCouponId" parameterType="admin.vo.CouponVO" resultType="admin.vo.CouponVO">
+    SELECT id FROM coupon
+    WHERE root_no = #{root_no} AND category_no = #{category_no}
 
   </select>
   <select id="getMiddleCategory" resultType="admin.vo.CategoryVO">

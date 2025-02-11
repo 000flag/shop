@@ -30,7 +30,7 @@
     <div class="col-9">
 
         <div class="d-flex justify-content-between align-items-center">
-            <h5>승인대기(active = 1)</h5>
+            <h5>승인대기</h5>
 
         </div>
 
@@ -77,24 +77,24 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var ="sl1"  items="${sellerList}">
-                <c:if test="${sl1.active eq 1}">
+            <c:forEach var ="sl"  items="${sellerList}">
+                <c:if test="${sl.active eq 1}">
 
 
-                    <tr id="row-${sl1.id}">
+                    <tr id="row-${sl.id}">
 
-                        <td>${sl1.seller_id}</td>
-                        <td>${sl1.name}</td>
-                        <td>${sl1.phone}</td>
-                        <td>${sl1.email}</td>
-                        <td>${sl1.desc}</td>
-                        <td>${sl1.courier}</td>
-                        <td>${sl1.address}</td>
-                        <td>${sl1.active}</td>
+                        <td>${sl.seller_id}</td>
+                        <td>${sl.name}</td>
+                        <td>${sl.phone}</td>
+                        <td>${sl.email}</td>
+                        <td>${sl.desc}</td>
+                        <td>${sl.courier}</td>
+                        <td>${sl.address}</td>
+                        <td>${sl.active}</td>
                         <td><button class="btn btn-secondary add-user-btn" data-bs-toggle="modal" data-bs-target="#rejectSellerModal"
-                                    onclick="setSellerId('${sl1.id}')"> 거절</button>
+                                    onclick="setSellerId('${sl.id}')"> 거절</button>
                             <button class="btn btn-primary add-user-btn" data-bs-toggle="modal" data-bs-target="#admitSellerModal"
-                                    onclick="setSellerId('${sl1.id}')"> 승인</button></td>
+                                    onclick="setSellerId('${sl.id}')"> 승인</button></td>
 
                     </tr>
                 </c:if>
@@ -111,7 +111,7 @@
         </div>
         <hr/>
         <div class="d-flex justify-content-between align-items-center">
-            <h5>현재 판매자 목록(active = 0)</h5>
+            <h5>현재 판매자 목록</h5>
 
         </div>
 
@@ -158,22 +158,22 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var ="sl0"  items="${sellerList}">
-                <c:if test="${sl0.active eq 0}">
+            <c:forEach var ="sl"  items="${sellerList}">
+                <c:if test="${sl.active eq 0}">
 
 
-                    <tr id="row-${sl0.id}">
+                    <tr id="row-${sl.id}">
 
-                        <td>${sl0.seller_id}</td>
-                        <td>${sl0.name}</td>
-                        <td>${sl0.phone}</td>
-                        <td>${sl0.email}</td>
-                        <td>${sl0.desc}</td>
-                        <td>${sl0.courier}</td>
-                        <td>${sl0.address}</td>
-                        <td>${sl0.active}</td>
+                        <td>${sl.seller_id}</td>
+                        <td>${sl.name}</td>
+                        <td>${sl.phone}</td>
+                        <td>${sl.email}</td>
+                        <td>${sl.desc}</td>
+                        <td>${sl.courier}</td>
+                        <td>${sl.address}</td>
+                        <td>${sl.active}</td>
                         <td><button class="btn btn-dark add-user-btn" data-bs-toggle="modal" data-bs-target="#stopSellerModal"
-                                    onclick="setSellerId('${sl0.id}')"> 판매정지</button></td>
+                                    onclick="setSellerId('${sl.id}')"> 판매정지</button></td>
                     </tr>
                 </c:if>
             </c:forEach>
@@ -187,7 +187,7 @@
 
         <hr/>
         <div class="d-flex justify-content-between align-items-center">
-            <h5>승인거절(active = 2)</h5>
+            <h5>승인거절</h5>
 
         </div>
 
@@ -234,20 +234,20 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var ="sl2"  items="${sellerList}">
-                <c:if test="${sl2.active eq 2}">
+            <c:forEach var ="sl"  items="${sellerList}">
+                <c:if test="${sl.active eq 2}">
 
 
                     <tr>
 
-                        <td>${sl2.seller_id}</td>
-                        <td>${sl2.name}</td>
-                        <td>${sl2.phone}</td>
-                        <td>${sl2.email}</td>
-                        <td>${sl2.desc}</td>
-                        <td>${sl2.courier}</td>
-                        <td>${sl2.address}</td>
-                        <td>${sl2.active}</td>
+                        <td>${sl.seller_id}</td>
+                        <td>${sl.name}</td>
+                        <td>${sl.phone}</td>
+                        <td>${sl.email}</td>
+                        <td>${sl.desc}</td>
+                        <td>${sl.courier}</td>
+                        <td>${sl.address}</td>
+                        <td>${sl.active}</td>
 
                     </tr>
                 </c:if>
@@ -264,7 +264,7 @@
         </div>
         <hr/>
         <div class="d-flex justify-content-between align-items-center">
-            <h5>판매정지(active = 3)</h5>
+            <h5>판매정지</h5>
 
         </div>
 
@@ -311,20 +311,20 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var ="sl3"  items="${sellerList}">
-                <c:if test="${sl3.active eq 3}">
+            <c:forEach var ="sl"  items="${sellerList}">
+                <c:if test="${sl.active eq 3}">
 
 
                     <tr>
 
-                        <td>${sl3.seller_id}</td>
-                        <td>${sl3.name}</td>
-                        <td>${sl3.phone}</td>
-                        <td>${sl3.email}</td>
-                        <td>${sl3.desc}</td>
-                        <td>${sl3.courier}</td>
-                        <td>${sl3.address}</td>
-                        <td>${sl3.active}</td>
+                        <td>${sl.seller_id}</td>
+                        <td>${sl.name}</td>
+                        <td>${sl.phone}</td>
+                        <td>${sl.email}</td>
+                        <td>${sl.desc}</td>
+                        <td>${sl.courier}</td>
+                        <td>${sl.address}</td>
+                        <td>${sl.active}</td>
 
                     </tr>
                 </c:if>

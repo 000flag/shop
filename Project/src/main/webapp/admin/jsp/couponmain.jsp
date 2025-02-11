@@ -90,7 +90,7 @@
 
       </tr>
       </thead>
-      <tbody>
+      <tbody id = "couponBody">
       <c:forEach var ="coul"  items="${couponList}">
         <tr id = "row-${coul.id}">
 
@@ -122,33 +122,100 @@
     </div>
 
     <hr/><!---------------------------------------------->
-    <div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="rejectModalLabel">쿠폰 지우기 사유</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form id="deleteCouponForm">
-            <div class="modal-body">
-              <input type="hidden" id="deleteCouponId" name="id">
 
-              <textarea class="form-control" id="deleteReason" name="content" rows="3">쿠폰을 삭제할 이유를 적어주세요.</textarea>
-              <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
-            </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="submit" class="btn btn-primary">저장</button>
-            </div>
-          </form>
-        </div>
+
+
+
+  </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteCouponModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rejectModalLabel">쿠폰 지우기 사유</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <form id="deleteCouponForm">
+        <div class="modal-body">
+          <input type="hidden" id="deleteCouponId" name="id">
+
+          <textarea class="form-control" id="deleteReason" name="content" rows="3">쿠폰을 삭제할 이유를 적어주세요.</textarea>
+          <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="submit" class="btn btn-primary">저장</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
+<div class="modal fade" id="CouponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="couponModalLabel">대분류 설정</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="addCouponForm" action="Controller" method="POST">
+        <div class="modal-body">
+
+          <!-- type 파라미터 전달 -->
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">관리자번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="rootNo" name="rootNo" placeholder="관리자번호">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">카테고리번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="categoryNo" name="categoryNo" placeholder="카테고리번호">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">등급번호</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="gradeNo" name="gradeNo" placeholder="등급번호">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">이름</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="name" name="name" placeholder="이름">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">할인율</div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" id="salePer" name="salePer" placeholder="할인율">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">시작일자</div>
+            <div class="col-md-6">
+              <input type="date" class="form-control" id="startDate" name="startDate" placeholder="시작일자">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-2 fw-bold">시작일자</div>
+            <div class="col-md-6">
+              <input type="date" class="form-control" id="endDate" name="endDate" placeholder="끝일자">
+            </div>
+          </div>
 
 
-
-
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button type="submit" class="btn btn-primary" id="saveButton">저장</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 <!-- 부트스트랩 관련 스크립트 -->
@@ -156,6 +223,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
+  $("#CouponModal").on("show.bs.modal", function () {
+    $(this).removeAttr("aria-hidden");
+  });
+
+  $("#CouponModal").on("hidden.bs.modal", function () {
+    $(this).attr("aria-hidden", "true");
+  });
   $(document).ready(function () {<%--폼태그--%>
     $("#deleteCouponForm").submit(function (event) {
       event.preventDefault(); // 기본 form 제출 막기
@@ -234,80 +308,103 @@
       });
     });
   });
-  $(document).ready(function () {
+  $("#saveButton").click(function () {
 
-    $("#addCouponForm").submit(function (event) {
-      event.preventDefault();
-      let root_no = $("#rootId").val();
-
-      let category_no = $("#category_no").val();
-      let seller_no = $("#seller_no").val().trim();
-      let grade_no = $('#grade_no').val().trim();
-      let type = $('#name').val().trim();
-      let name = $('#sale_per').val().trim();
-      let sale_per = $('#sale_per').val().trim();
-      let start_date = $('#start_date').val().trim();
-      let end_date = $('#end_date').val().trim();
-      
+    let root_no=$("#rootNo").val().trim();
+    let grade_no=$("#gradeNo").val().trim();
+    let name=$("#name").val().trim();
+    let sale_per=$("#salePer").val().trim();
+    let start_date=$("#startDate").val().trim();
+    let end_date=$("#endDate").val().trim();
 
 
-      $.ajax({
-        type: "POST",
-        url: "Controller?type=addMiddleCategory",
-        data: {
-          majorCategoryId: majorCategoryId, // DB에 숫자로 저장
-          middleCategoryName: middleCategoryName,
-          middleCategoryType: middleCategoryType
-        },
-        dataType: "json",
-        success: function(response){
-          if(response.success) {
-            let middleId = response.id;
-            console.log("middle"+middleId)
 
-            if(! middleId){
-              alert("서버에서 응다이없어");
-              return;
-            }
-
-            const categoryMap = {
-              "1": "상의",
-              "2": "하의",
-              "3": "아우터",
-              "4": "신발"
-            };
-            let majorCategoryText = categoryMap[majorCategoryId]; // 변환된 텍스트
-            let newRow = `
-                        <tr id="row-` + middleId + `">
-                            <td>` + majorCategoryText + `</td>
-                            <td>` + middleCategoryName + `</td>
-                            <td>` + middleCategoryType + `</td>
-                            <td>
-                                <button class="btn btn-secondary add-user-btn delete-middle-btn"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteMiddleModal"
-                                        data-middle-id="` + middleId + `">삭제</button>
-                            </td>
-                        </tr>`;
-            $("#row-" + middleId).remove();
-            $("#middleCategoryBody").append(newRow);
-            $("#majorCategoryId").val('');
-            $("#middleCategoryName").val('');
-            $("#middleCategoryType").val('');
-          }else{
-            alert("카테고리 추가 실패!");
-          }
-        },
-        error: function() {
-          alert("서버 오류 발생!");
-        }
-      });
-
-    });
+    // 모달 닫기
+    $("#CouponModal").modal("hide");
   });
 
 
+  //제홍씨 추가한부분이에요 추가 비동기
+  $(document).ready(function () {
+    $("#addCouponForm").submit(function (event) {
+      event.preventDefault();
+      let couponId = $("#deleteCouponId").val();
+      console.log("cp"+couponId);
+      $.ajax({
+        type: "POST",
+        url: "Controller?type=addCoupon",
+        data: $(this).serialize(),
+        dataType: "json",
+        success: function (response) {
+          if (response.success) {
+            let root_no = $("input[name='root_no']").val();
+            console.log(root_no)
+            let grade_no = $("input[name='grade_no']").val();
+            console.log(grade_no)
+            let name = $("input[name='name']").val();
+            console.log(name)
+            let sale_per = $("input[name='sale_per']").val();
+            console.log(sale_per)
+            let start_date = $("input[name='start_date']").val();
+            console.log(start_date)
+            let end_date = $("input[name='end_date']").val();
+            console.log(end_date)
+            let couponId = response.result;
+
+            let newRow = `
+                      <tr id="row-`+couponId+`">
+                <td>` + root_no + `</td>
+                <td>` + grade_no + `</td>
+                <td>` + name + `</td>
+                <td>` + sale_per+ `</td>
+                <td>` + start_date+ `</td>
+                <td>` + end_date+ `</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-secondary add-user-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteCouponModal"
+                            onclick="setCouponId(` + couponId + `)">삭제</button>
+                </td>
+            </tr>
+        `;
+
+
+
+
+
+            $("#row-" + couponId).remove();
+
+            $("#couponBody").append(newRow);
+
+
+            $("input[name='name']").val('');
+            $("input[name='ename']").val('');
+            $("input[name='root_no']").val('');
+
+            $("input[name='grade_no']").val('');
+
+            $("input[name='name']").val('');
+
+            $("input[name='sale_per']").val('');
+
+            $("input[name='start_date']").val('');
+
+            $("input[name='end_date']").val('');
+
+          } else {
+            alert("카테고리 추가 실패!");
+          }
+        },
+        error: function () {
+          alert("서버 오류 발생!");
+        }
+      });
+    });
+  });
+
 </script>
+
 </body>
 </html>
 
