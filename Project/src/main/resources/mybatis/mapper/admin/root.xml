@@ -256,8 +256,19 @@
 
   </insert>
   <insert id="addCoupon" parameterType="admin.vo.CouponVO">
+<<<<<<< HEAD
     INSERT INTO coupon(root_no,category_no,grade_no,name,sale_per,start_date,end_date)
     values(#{root_no},#{category_no},#{grade_no},#{name},#{sale_per},#{start_date},#{end_date})
+=======
+    INSERT INTO coupon (root_no, category_no , grade_no, name, sale_per, start_date, end_date,status,is_del)
+    VALUES (#{root_no}, #{category_no}, #{grade_no}, #{name}, #{sale_per}, #{start_date}, #{end_date},'1','0')
+
+  </insert>
+  <insert id="addBoard" parameterType="admin.vo.BoardVO">
+  INSERT INTO board (cus_no, prod_no, bname, title, content, gender, season, style, write_date)
+  VALUES (#{cus_no},#{prod_no},#{bname},#{title},#{content},#{gender},#{season},#{style},#{write_date})
+
+>>>>>>> 7c82d144856f11254f334909db9f454a41661148
   </insert>
   <select id="getBoardById" parameterType="String" resultType="admin.vo.BoardVO">
     select * from board where id = #{id}
@@ -279,6 +290,7 @@
 
 
   </select>
+<<<<<<< HEAD
   <select id = "countcus0" resultType="String">
     select count(*) from customer where is_del =0
 
@@ -290,6 +302,17 @@
     select count(*) from customer where is_del =2
   </select>
 
+=======
+  <select id="getCountCustomer0" resultType="String">
+    select count(*) from `customer` where is_del =0;
+  </select>
+  <select id="getCountCustomer1" resultType="String">
+    select count(*) from `customer` where is_del = 1;
+  </select>
+  <select id="getCountCustomer2" resultType="String">
+    select count(*) from `customer` where is_del = 2;
+  </select>
+>>>>>>> 7c82d144856f11254f334909db9f454a41661148
   <select id="getId" resultType="int" parameterType="String">
     SELECT id FROM shop.middle_category
     where name =  #{cn};

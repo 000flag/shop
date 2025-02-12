@@ -166,7 +166,7 @@
         </table>
 
         <div class="mt-3 mb-4">
-            <button class="btn btn-outline-secondary">초기화</button>
+            <button class="btn btn-outline-secondary" onclick = "location.href='Controller?type=categorymain'">초기화</button>
         </div>
     </div>
 </div>

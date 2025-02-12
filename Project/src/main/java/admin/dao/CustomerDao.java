@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomerDao {
+
     public static List<CustomerVO> allCustomer(){
         SqlSession ss = FactoryService.getFactory().openSession();
         List<CustomerVO> vo = new ArrayList<CustomerVO>();
@@ -75,6 +76,7 @@ public class CustomerDao {
 
 
     }
+<<<<<<< HEAD
     public static String countcus0(){
         SqlSession ss = FactoryService.getFactory().openSession();
         String cnt = ss.selectOne("root.countcus0");
@@ -95,6 +97,28 @@ public class CustomerDao {
         ss.commit();
         ss.close();
         return cnt;
+=======
+    public static String getCountCustomer0(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer0");
+
+        ss.close();
+        return str;
+    }
+    public static String getCountCustomer1(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer1");
+
+        ss.close();
+        return str;
+    }
+    public static String getCountCustomer2(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String str = ss.selectOne("root.getCountCustomer2");
+
+        ss.close();
+        return str;
+>>>>>>> 7c82d144856f11254f334909db9f454a41661148
     }
 
 }

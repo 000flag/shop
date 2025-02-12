@@ -143,6 +143,7 @@ public class Controller extends HttpServlet {
     Action action = actionMap.get(type);
     System.out.println("action:"+action);
 
+
     String viewPath = action.execute(request, response);
 
     //forward 준비

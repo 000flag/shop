@@ -613,6 +613,85 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="BoardModal" tabindex="-1" aria-labelledby="boardModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="boardModalLabel">쿠폰 설정</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id = "addBoardForm" action="Controller" method="POST">
+                    <input type="hidden" id="addBoardId" name="boardid" >
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">게시판 번호</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="rootNo" name="rootNo" placeholder="관리자번호">
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold"> 카테고리 번호</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="categoryNo" name="categoryNo" placeholder="카테고리번호">
+
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">판매자 번호</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="sellerNo" name="sellerNo" value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">등급 번호</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="gradeNo" name="gradeNo" value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">종류</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="type" name="type" value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">이름</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" name="name" value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">할인율</div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="salePer" name="salePer" value="1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">시작일자</div>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" id="startDate" name="startDate">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-2 fw-bold">끝일자</div>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" id="endDate" name="endDate">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                            <button type="submit" class="btn btn-primary" >저장</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
     <!-- 모달 끝 -->
 
 

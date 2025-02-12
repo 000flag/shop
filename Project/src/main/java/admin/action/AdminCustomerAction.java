@@ -34,6 +34,17 @@ public class AdminCustomerAction implements Action {
 
 
 
+
+        String c0 = cdao.getCountCustomer0();
+        String c1 = cdao.getCountCustomer1();
+        String c2 = cdao.getCountCustomer2();
+
+        request.setAttribute("activeCount", c0);
+        request.setAttribute("withdrawnCount", c1);
+        request.setAttribute("stoppedCount", c2);
+
+
+
         return "/admin/jsp/customermain.jsp";
     }
 }

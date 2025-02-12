@@ -1,28 +1,59 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: aaa
-  Date: 25. 1. 20.
-  Time: 오후 2:55
-  To change this template use File | Settings | File Templates.
---%>
-
-
+<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>판매자 관리</title>
+    <title>쇼핑몰 관리자 대시보드</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- 추가 CSS (테이블 디자인 등) -->
     <style>
-    <jsp:include page ="css/table.css"></jsp:include>
+        /* 사이드바와 페이지 레이아웃 */
+        #wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #sidebar-wrapper {
+            min-width: 250px;
+            max-width: 250px;
+            background: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+        #sidebar-wrapper .sidebar-heading {
+            padding: 1rem 1.5rem;
+            font-size: 1.25rem;
+            background: #e9ecef;
+        }
+        #sidebar-wrapper .list-group-item {
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+        }
+        #sidebar-wrapper .list-group-item:hover {
+            background: #e2e6ea;
+        }
+        #page-content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+        }
+        /* 페이지 상단 요약 카드 영역 */
+        .summary-card {
+            min-height: 120px;
+        }
+        /* jsp include 된 테이블 CSS (있다면) */
+        <jsp:include page="css/table.css"></jsp:include>
     </style>
 </head>
 <body>
+<!-- 상단 Header (공통 헤더 포함) -->
 <jsp:include page="layout/header.jsp"></jsp:include>
-
+<div id="wrapper">
 <div class="container-fluid mt-4">
 
 
@@ -350,76 +381,78 @@
 
 
     </div>
-    <%--판매자대기 거절 모달 창--%>
-    <div class="modal fade" id="rejectSellerModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="rejectModalLabel">거절 사유</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="rejectSellerForm">
-                    <div class="modal-body">
-                        <input type="hidden" id="rejectSellerId" name="id">
 
-                        <textarea class="form-control" id="rejectSellerReason" name="content" rows="3" placeholder="해당 판매자대기를 삭제할 이유를 적어주세요."></textarea>
-                        <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary">저장</button>
-                    </div>
-                </form>
+</div>
+<%--판매자대기 거절 모달 창--%>
+<div class="modal fade" id="rejectSellerModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rejectModalLabel">거절 사유</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="rejectSellerForm">
+                <div class="modal-body">
+                    <input type="hidden" id="rejectSellerId" name="id">
+
+                    <textarea class="form-control" id="rejectSellerReason" name="content" rows="3" placeholder="해당 판매자대기를 삭제할 이유를 적어주세요."></textarea>
+                    <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
         </div>
     </div>
-    <%--판매자대기 승인 모달 창--%>
-    <div class="modal fade" id="admitSellerModal" tabindex="-1" aria-labelledby="admitModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="admitModalLabel">승인 사유</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="admitSellerForm">
-                    <div class="modal-body">
-                        <input type="hidden" id="admitSellerId" name="id">
-
-                        <textarea class="form-control" id="admitSellerReason" name="content" rows="3" placeholder="해당 판매자대기를 승인할 이유를 적어주세요."></textarea>
-                        <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary">저장</button>
-                    </div>
-                </form>
+</div>
+<%--판매자대기 승인 모달 창--%>
+<div class="modal fade" id="admitSellerModal" tabindex="-1" aria-labelledby="admitModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="admitModalLabel">승인 사유</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="admitSellerForm">
+                <div class="modal-body">
+                    <input type="hidden" id="admitSellerId" name="id">
+
+                    <textarea class="form-control" id="admitSellerReason" name="content" rows="3" placeholder="해당 판매자대기를 승인할 이유를 적어주세요."></textarea>
+                    <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
         </div>
     </div>
-    <%--판매자 정지 모달 창--%>
-    <div class="modal fade" id="stopSellerModal" tabindex="-1" aria-labelledby="stopModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="stopModalLabel">정지 사유</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="stopSellerForm">
-                    <div class="modal-body">
-                        <input type="hidden" id="stopSellerId" name="id">
-
-                        <textarea class="form-control" id="stopSellerReason" name="content" rows="3" placeholder="해당 판매자를 정지할 이유를 적어주세요."></textarea>
-                        <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                        <button type="submit" class="btn btn-primary">저장</button>
-                    </div>
-                </form>
+</div>
+<%--판매자 정지 모달 창--%>
+<div class="modal fade" id="stopSellerModal" tabindex="-1" aria-labelledby="stopModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="stopModalLabel">정지 사유</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form id="stopSellerForm">
+                <div class="modal-body">
+                    <input type="hidden" id="stopSellerId" name="id">
+
+                    <textarea class="form-control" id="stopSellerReason" name="content" rows="3" placeholder="해당 판매자를 정지할 이유를 적어주세요."></textarea>
+                    <span class="text-danger">*특수문자사용시 스마트스토어 정책에 따라 전송 에러가 발생합니다. 텍스트와 숫자로 안내문구를 작성해주시기 바랍니다.</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

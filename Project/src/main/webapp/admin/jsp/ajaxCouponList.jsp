@@ -9,6 +9,7 @@ category_no, seller_no, type, grade_no, name, sale_per, sale_price, start_date, 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:forEach var ="coul"  items="${car}">
+    <c:if test = "${coul.is_del eq 0}">
     <tr>
 
         <td>${coul.root_no}</td>
@@ -26,4 +27,5 @@ category_no, seller_no, type, grade_no, name, sale_per, sale_price, start_date, 
 
 
     </tr>
+    </c:if>
 </c:forEach>

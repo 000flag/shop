@@ -12,7 +12,20 @@ public class CouponVO {
     String sale_price;
     String start_date;
     String end_date;
+
+    public String getIs_del() {
+        return is_del;
+    }
+
+    public void setIs_del(String is_del) {
+        this.is_del = is_del;
+    }
+
     String status;
+
+
+
+    String is_del;
 
     public String getId() {
         return id;

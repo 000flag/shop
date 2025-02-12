@@ -38,7 +38,6 @@
     FROM customer
     WHERE id = #{cusId}
   </select>
-
   <!-- 랜덤 추천 사용자 5명 가져오기 (로그인한 사용자는 제외) -->
   <select id="getRandomUsers" parameterType="int" resultType="user.vo.snap.CustomerVO">
     SELECT id, nickname, profile_image
