@@ -279,6 +279,16 @@
 
 
   </select>
+  <select id = "countcus0" resultType="String">
+    select count(*) from customer where is_del =0
+
+  </select>
+  <select id = "countcus1" resultType="String">
+    select count(*) from customer where is_del =1
+  </select>
+  <select id = "countcus2" resultType="String">
+    select count(*) from customer where is_del =2
+  </select>
 
   <select id="getId" resultType="int" parameterType="String">
     SELECT id FROM shop.middle_category

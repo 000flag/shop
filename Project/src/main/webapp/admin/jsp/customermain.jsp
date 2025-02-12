@@ -79,7 +79,7 @@
                         <div class="card-body">
                             <h5 class="card-title">구매자 수</h5>
                             <p class="card-text display-6">
-                                <c:out value="${activeCount}" default="0"/>
+                                <c:out value="${cnt0}" default="0"/>
                             </p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                         <div class="card-body">
                             <h5 class="card-title">탈퇴 수</h5>
                             <p class="card-text display-6">
-                                <c:out value="${withdrawnCount}" default="0"/>
+                                <c:out value="${cnt1}" default="0"/>
                             </p>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="card-body">
                             <h5 class="card-title">정지 수</h5>
                             <p class="card-text display-6">
-                                <c:out value="${stoppedCount}" default="0"/>
+                                <c:out value="${cnt2}" default="0"/>
                             </p>
                         </div>
                     </div>

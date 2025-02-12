@@ -75,5 +75,26 @@ public class CustomerDao {
 
 
     }
+    public static String countcus0(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String cnt = ss.selectOne("root.countcus0");
+        ss.commit();
+        ss.close();
+        return cnt;
+    }
+    public static String countcus1(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String cnt = ss.selectOne("root.countcus1");
+        ss.commit();
+        ss.close();
+        return cnt;
+    }
+    public static String countcus2(){
+        SqlSession ss = FactoryService.getFactory().openSession();
+        String cnt = ss.selectOne("root.countcus2");
+        ss.commit();
+        ss.close();
+        return cnt;
+    }
 
 }

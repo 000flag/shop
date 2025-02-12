@@ -22,6 +22,7 @@ public class AdminCouponAction implements Action {
         request.setAttribute("couponList", list);
         request.setAttribute("couponName", list1_1);
 
+
         return "/admin/jsp/couponmain.jsp";
 
 

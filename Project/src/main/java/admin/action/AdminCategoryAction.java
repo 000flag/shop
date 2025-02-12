@@ -35,6 +35,7 @@ public class AdminCategoryAction implements Action {
         List<CategoryVO> list3 = cateDao.allCategory();
 
 
+
         request.setAttribute("category1List", list3);
         System.out.println("category1List: " + list3);
         return "/admin/jsp/categorymain.jsp";

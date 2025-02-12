@@ -22,6 +22,16 @@ public class AdminCustomerAction implements Action {
         request.setAttribute("customerName", list1);
         System.out.println("CC"+list1.size());
 
+        String cnt0 = cdao.countcus0();
+        String cnt1 = cdao.countcus1();
+        String cnt2 = cdao.countcus2();
+        request.setAttribute("cnt0", cnt0);
+        request.setAttribute("cnt1", cnt1);
+        request.setAttribute("cnt2", cnt2);
+
+        //request.setAttribute("cus0",string0);
+
+
 
 
         return "/admin/jsp/customermain.jsp";
